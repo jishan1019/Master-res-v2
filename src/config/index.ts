@@ -1,6 +1,8 @@
-import { siteDescription, siteTitle } from '@/config/site-config';
+import { siteDescription, siteFullTitle, siteLogo, siteTitle } from '@/config/site-config';
 
 export const Config = {
+          siteLogo,
           siteTitle,
+          siteFullTitle,
           siteDescription,
 }
