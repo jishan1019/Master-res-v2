@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Master Restaurant Frontend v2 - a master template for restaurant-type web app
 
-## Getting Started
+Hey there! Are you seeking a fantastic template to create a stunning restaurant website or web app? Look no further! Introducing the ultimate master template for all your restaurant needs—Master Restaurant Frontend v2. With this template, you can create a beautiful and functional website quickly. So, what are you waiting for? Get started and impress your customers with a top-notch web presence today! Master Restaurant Frontend v2 is a master template for a restaurant-type web app.
 
-First, run the development server:
+## Template Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Responsive design**
+  
+- **Easy-to-use navigation menu**
+  
+- **Customizable layout and color scheme**
+  
+- **Multiple page templates**
+  
+- **Integration with popular payment gateways**
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **SEO-friendly**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- **Built-in analytics**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Cross-browser compatibility**
 
-## Learn More
+## Installation Guide (Local Setup)
 
-To learn more about Next.js, take a look at the following resources:
+To set up Master Restaurant Frontend v2 locally on your machine, follow these simple steps:
+  
+### Installation Steps
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. **Clone the Repository**: Open your terminal and run the following command to clone the Master Restaurant Frontend v2 repository:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+    ```
+    git clone https://github.com/jeysol-team/master-restaurant-frontend-v2.git
+    ```
 
-## Deploy on Vercel
+2. **Navigate to the Project Directory**: Move into the project directory by running the following command:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```
+    cd master-restaurant-frontend-v2
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3. **Install Dependencies**: Use yarn to install the project dependencies:
+
+    ```
+    yarn
+    ```
+
+4. **Start the Development Server**: Once the dependencies are installed, start the development server by running:
+
+    ```
+    yarn dev
+    ```
+
+5. **Access the Application**: You can now access Master Restaurant Frontend v2 by opening your web browser and navigating to `http://localhost:3000`.
