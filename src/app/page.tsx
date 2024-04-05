@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Config } from "@/config";
 import Image from "next/image";
 
@@ -10,6 +11,7 @@ export default function Home() {
           alt={Config.siteFullTitle}
           width={100}
           height={100}
+          draggable={false}
           className="select-none"
         />
       </div>
@@ -19,10 +21,13 @@ export default function Home() {
       </h1>
       <p className="mt-4 text-lg text-center">
         Get started by editing{" "}
-        <code className="p-2 font-mono text-sm bg-gray-100 rounded-md">
+        <code className="p-2 font-mono text-sm bg-gray-100 shadow-md rounded-md">
           src/app/page.tsx
         </code>
       </p>
+      <Button className="mt-8" variant="default" size="sm">
+        Let&apos;s dive in!
+      </Button>
     </main>
   );
 }
