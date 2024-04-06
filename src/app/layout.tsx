@@ -3,6 +3,7 @@ import { Config } from "@/config";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -35,6 +36,7 @@ export default function RootLayout({
             {children}
           </main>
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );
