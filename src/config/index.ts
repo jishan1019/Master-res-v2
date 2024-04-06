@@ -1,8 +1,10 @@
-import { siteDescription, siteFullTitle, siteLogo, siteTitle } from '@/config/site-config';
+import { baseUrl, siteDescription, siteFullTitle, siteLogo, siteTitle, storeEncryptKey } from '@/config/site-config';
 
 export const Config = {
-          siteLogo,
-          siteTitle,
-          siteFullTitle,
-          siteDescription,
-}
+  siteLogo,
+  siteTitle,
+  siteFullTitle,
+  siteDescription,
+  baseUrl,
+  storeEncryptKey
+};
