@@ -20,6 +20,7 @@ export default function CustomToastMessage({ title, message }: ToastProps) {
                                                                       draggable={false}
                                                                       className="w-10 select-none"
                                                                       src={Logo}
+                                                                      placeholder='blur'
                                                                       alt="FashionFlair Logo"
                                                             />
                                                   </div>
