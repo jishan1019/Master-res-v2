@@ -1,11 +1,10 @@
+import { Config } from "@/config";
 import { configureStore } from "@reduxjs/toolkit";
-import authReducer from "./features/auth/authSlice";
-import { persistReducer, persistStore, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER, } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE, } from "redux-persist";
 import { encryptTransform } from "redux-persist-transform-encrypt";
 import { baseApi } from "./api/baseApi/baseApi";
-import { Config } from "@/config";
-
+import authReducer from "./features/auth/authSlice";
+import storage from "./storage";
 
 const encryptor = encryptTransform({
   secretKey: Config.storeEncryptKey,

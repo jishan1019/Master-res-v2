@@ -1,11 +1,11 @@
 import { ThemeProvider } from "@/components/theme-provider";
 import { Config } from "@/config";
 import { cn } from "@/lib/utils";
+import StoreProvider from "@/redux/StoreProvider";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
-import StoreProvider from "@/redux/StoreProvider";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -24,17 +24,17 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={cn("antialiased", montserrat.className)}>
-        <StoreProvider>
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="light"
-            enableSystem
-            disableTransitionOnChange
-          >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <StoreProvider>
             <main>{children}</main>
-          </ThemeProvider>
-          <Toaster />
-        </StoreProvider>
+          </StoreProvider>
+        </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   );
