@@ -2,14 +2,16 @@ import { baseApi } from "@/redux/api/baseApi/baseApi";
 
 const authApi = baseApi.enhanceEndpoints({ addTagTypes: ["User"] })
     .injectEndpoints({
-        endpoints: (builder: typeof baseApi) => ({
+        endpoints: (builder) => ({
             getUserByToken: builder.query({
-                queryFn: () => "/users/getMe",
+                query: () => ({
+                    url: "/users/me",
+                }),
                 providesTags: ["User"],
             }),
 
             loginUser: builder.mutation({
-                queryFn: (body: any) => ({
+                query: (body: any) => ({
                     url: "/users/login",
                     method: "POST",
                     body: body,

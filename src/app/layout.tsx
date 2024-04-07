@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils";
 import StoreProvider from "@/redux/StoreProvider";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
+import NextTopLoader from "nextjs-toploader";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
@@ -35,6 +36,7 @@ export default function RootLayout({
           </StoreProvider>
         </ThemeProvider>
         <Toaster />
+        <NextTopLoader />
       </body>
     </html>
   );

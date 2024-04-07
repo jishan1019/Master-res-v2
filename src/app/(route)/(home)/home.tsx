@@ -2,9 +2,10 @@
 
 import CustomToastMessage from "@/components/custom-toast-message";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Config } from "@/config";
 import Image from "next/image";
+import Link from "next/link";
 import toast from "react-hot-toast";
 
 export default function HomePage() {
@@ -46,6 +47,9 @@ export default function HomePage() {
                                                   </Button>
                                                   <ModeToggle />
                                         </div>
+                                        <Link href="#" className={buttonVariants({ size: "sm", className: "text-xs" })}>
+                                                  Top Loader
+                                        </Link>
                               </section>
                     </main>
           )
