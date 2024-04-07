@@ -46,9 +46,6 @@ export default function HomePage() {
                                                   </Button>
                                                   <ModeToggle />
                                         </div>
-
-                                        
-                                        
                               </section>
                     </main>
           )
