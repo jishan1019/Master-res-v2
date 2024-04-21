@@ -8,7 +8,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
           return {
                     metadataBase: new URL(BASE_URL),
-                    title: `Not Found | ${Config.siteTitle}`,
+                    title: `Not Found | ${Config.title}`,
                     description: "Hey, this page does not exist. Please check the URL and try again. If you think this is a mistake, please let me know.",
                     openGraph: {
                               images: [
@@ -16,7 +16,7 @@ export async function generateMetadata(): Promise<Metadata> {
                                                   url: new URL('/not-found.webp', BASE_URL),
                                                   width: 800,
                                                   height: 600,
-                                                  alt: Config.siteTitle,
+                                                  alt: Config.title,
                                         },
                               ],
                     },

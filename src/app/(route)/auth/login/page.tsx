@@ -3,8 +3,8 @@ import type { Metadata } from 'next';
 import Login from './login';
 
 export const metadata: Metadata = {
-          title: `Login | ${Config.siteFullTitle}`,
-          description: Config.siteDescription,
+          title: `Login | ${Config.fullTitle}`,
+          description: Config.description,
 };
 
 export default function Page() {
