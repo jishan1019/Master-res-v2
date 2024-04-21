@@ -18,36 +18,37 @@ export async function generateMetadata(): Promise<Metadata> {
 
   return {
     metadataBase: new URL(BASE_URL),
-    title: Config.siteFullTitle,
-    description: Config.siteDescription,
+    title: Config.fullTitle,
+    description: Config.description,
     openGraph: {
       images: [
         {
           url: new URL('/home.jpg', BASE_URL),
           width: 800,
           height: 600,
-          alt: Config.siteTitle,
+          alt: Config.title,
         },
         {
           url: new URL('/home.jpg', BASE_URL),
           width: 1200,
           height: 900,
-          alt: Config.siteTitle,
+          alt: Config.title,
         },
         {
           url: new URL('/home.jpg', BASE_URL),
           width: 1920,
           height: 1440,
-          alt: Config.siteTitle,
+          alt: Config.title,
         },
         {
           url: new URL('/home.jpg', BASE_URL),
           width: 4000,
           height: 3000,
-          alt: Config.siteTitle,
+          alt: Config.title,
         }
       ],
     },
+    keywords: Config.keywords,
   }
 }
 

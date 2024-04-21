@@ -1,11 +1,15 @@
 import { baseUrl, storeEncryptKey } from '@/config/dotenv-config';
-import { siteDescription, siteFullTitle, siteLogo, siteTitle } from '@/config/site-config';
+import { description, fullTitle, keywords, logo, logoWhite, mdfLogo, mdfLogoWhite, title } from '@/config/site-config';
 
 export const Config = {
-  siteLogo,
-  siteTitle,
-  siteFullTitle,
-  siteDescription,
+  logo,
+  logoWhite,
+  mdfLogo,
+  mdfLogoWhite,
+  title,
+  fullTitle,
+  description,
+  keywords,
   baseUrl,
   storeEncryptKey
 };

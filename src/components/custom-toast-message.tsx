@@ -1,16 +1,20 @@
 'use client'
 
-import Logo from '@/assets/icon/logo-default.png';
+import LogoWhite from '@/assets/icon/logo-white.png';
+import Logo from '@/assets/icon/logo.png';
+import { Config } from '@/config';
 import Image from 'next/image';
 
 type ToastProps = {
           title: string,
-          message: string
+          message: string,
+          type: 'success' | 'error' | 'info' | 'warning'
 };
 
-export default function CustomToastMessage({ title, message }: ToastProps) {
+export default function CustomToastMessage({ title, message, type }: ToastProps) {
           return (
-                    <div className={`animate-leave rounded-lg shadow-lg bg-background dark:bg-primary text-primary dark:text-primary-foreground w-full flex`}
+                    <div className={`animate-leave rounded-lg shadow-lg 
+                    ${type === "success" ? "bg-primary text-primary-foreground" : type === "info" ? "bg-sky-500 text-white" : type === "warning" ? "bg-yellow-500 text-black" : "bg-destructive text-white"} w-full flex`}
                               style={{ padding: '0.75rem 1rem', width: '20rem', borderRadius: '0.5rem' }}
                     >
                               <div className="flex-1 w-0">
@@ -19,9 +23,9 @@ export default function CustomToastMessage({ title, message }: ToastProps) {
                                                             <Image
                                                                       draggable={false}
                                                                       className="w-10 select-none"
-                                                                      src={Logo}
+                                                                      src={type === "success" ? Logo : type === "info" ? LogoWhite : type === "warning" ? Logo : LogoWhite}
                                                                       placeholder='blur'
-                                                                      alt="FashionFlair Logo"
+                                                                      alt={`${Config.title} Logo`}
                                                             />
                                                   </div>
                                                   <div className="ml-3 w-0 flex-1">

@@ -1,46 +1,26 @@
 "use client"
 
-import CustomToastMessage from "@/components/custom-toast-message";
+import LogoHelper from "@/components/logo-helper";
+import MDFLogoHelper from "@/components/mdf-logo-helper";
 import { ModeToggle } from "@/components/mode-toggle";
+import { notifySuccess } from "@/components/toast";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Config } from "@/config";
-import Image from "next/image";
 import Link from "next/link";
-import toast from "react-hot-toast";
 
 export default function HomePage() {
           const handleDiveIn = () => {
-                    toast.custom(() => (
-                              <CustomToastMessage
-                                        title="Diving in! 🚀"
-                                        message={`Welcome to your new app ${Config.siteTitle} ! 🎉`}
-                              />
-                    ))
+                    notifySuccess("Diving in! 🚀", `Welcome to your new app ${Config.title} ! 🎉`)
           }
 
           return (
                     <main className="flex justify-center items-center h-screen">
                               <section className="flex flex-col justify-center items-center gap-5 px-1 sm:px-0">
-                                        <div>
-                                                  <Image
-                                                            src={Config.siteLogo}
-                                                            alt={Config.siteFullTitle}
-                                                            width={100}
-                                                            height={100}
-                                                            draggable={false}
-                                                            className="select-none"
-                                                  />
-                                        </div>
-                                        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-center">
+                                        <LogoHelper imgClassName="w-32" />
+                                        <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center">
                                                   Welcome to your new app! 🚀 <br />
-                                                  ({Config.siteTitle})
+                                                  <span className="uppercase text-destructive">({Config.title})</span>
                                         </h1>
-                                        <p className="text-lg text-center">
-                                                  Get started by editing{" "}
-                                                  <code className="p-2 font-mono text-sm bg-gray-100 dark:bg-primary dark:text-primary-foreground shadow-md rounded-md">
-                                                            src/app/page.tsx
-                                                  </code>
-                                        </p>
                                         <div className="flex justify-center items-center gap-5 mt-3">
                                                   <Button variant="default" size="sm" onClick={handleDiveIn}>
                                                             Let&apos;s dive in!
@@ -50,6 +30,8 @@ export default function HomePage() {
                                         <Link href="#" className={buttonVariants({ size: "sm", className: "text-xs" })}>
                                                   Top Loader
                                         </Link>
+
+                                        <MDFLogoHelper className="mt-5" imgClassName="w-80" />
                               </section>
                     </main>
           )
