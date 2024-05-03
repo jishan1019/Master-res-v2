@@ -8,7 +8,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { HiOutlineMenuAlt4 } from "@/constant"
 import { CircleUser, Home, LineChart, Package, Search, ShoppingCart, Users } from "lucide-react"
 import Link from "next/link"
@@ -44,86 +44,6 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                               href: "/dashboard/analytics",
                               icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
                               label: "Analytics",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics2",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics3",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics4",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics5",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics6",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics7",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics8",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics9",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics0",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics01",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics02",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics03",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics04",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics05",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics06",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics07",
                     },
           ];
 
@@ -188,13 +108,15 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                                       <ScrollArea className="flex-1">
                                                                                 <nav className="grid gap-2 text-lg font-medium px-3">
                                                                                           {navLinks.map((link) => (
-                                                                                                    <Link
-                                                                                                              key={link.label}
-                                                                                                              href={link.href}
-                                                                                                              className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 ${pathname === link.href ? "bg-muted text-foreground" : "text-muted-foreground sm:hover:text-foreground"}`}
-                                                                                                    >
-                                                                                                              {link.icon} {link.label} {link.badge && <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">{link.badge}</Badge>}
-                                                                                                    </Link>
+                                                                                                    <SheetClose
+                                                                                                              key={link.label} asChild>
+                                                                                                              <Link
+                                                                                                                        href={link.href}
+                                                                                                                        className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 ${pathname === link.href ? "bg-muted text-foreground" : "text-muted-foreground sm:hover:text-foreground"}`}
+                                                                                                              >
+                                                                                                                        {link.icon} {link.label} {link.badge && <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">{link.badge}</Badge>}
+                                                                                                              </Link>
+                                                                                                    </SheetClose>
                                                                                           ))}
                                                                                 </nav>
                                                                       </ScrollArea>
