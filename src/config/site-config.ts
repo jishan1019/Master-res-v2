@@ -2,8 +2,8 @@ import LogoWhite from "@/assets/icon/logo-white.png";
 import Logo from "@/assets/icon/logo.png";
 import MDFLogoWhite from "@/assets/icon/mdf-white.png";
 import MDFLogo from "@/assets/icon/mdf.png";
-import { TTokenUser } from "@/types";
 
+export const cookieName = "token";
 export const logo = Logo;
 export const logoWhite = LogoWhite;
 export const mdfLogo = MDFLogo;
@@ -14,9 +14,4 @@ export const tagLine = "Fine Dining Indian Cuisine";
 export const description =
   "Experience the regal taste of India at Golden Bengal, offering fine dining Indian cuisine in Oxted. Explore our menu and reserve your table today.";
 export const keywords = ["Golden Bengal", "Indian cuisine", "fine dining", "YourCity", "Indian restaurant"];
-
-export const user = {
-  name: "Toufiq Hasan Kiron",
-  email: "x@kiron.dev",
-  role: "admin",
-} as TTokenUser;
+export const userAvatar = "https://as1.ftcdn.net/v2/jpg/03/39/45/96/1000_F_339459697_XAFacNQmwnvJRqe1Fe9VOptPWMUxlZP8.jpg";

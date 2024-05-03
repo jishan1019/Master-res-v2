@@ -3,24 +3,34 @@
 import { notifySuccess } from "@/components/toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import { Config } from "@/config";
 import { BiLogOut, GoGear, LuUser2, MdSpaceDashboard } from "@/constant/icons";
+import { logOut } from "@/lib/action";
 import { cn } from "@/lib/utils";
-import { TTokenUser } from "@/types";
+import { logout, selectUser } from "@/redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { ModeToggle } from "./mode-toggle";
 
 type UserDropdownProps = {
-          user: TTokenUser;
-          profile?: string;
           className?: string;
           contentClassName?: string;
 }
 
-export default function UserDropdown({ user, profile, className, contentClassName }: UserDropdownProps) {
+export default function UserDropdown({ className, contentClassName }: UserDropdownProps) {
+          const user = useAppSelector(selectUser);
+
           const router = useRouter();
           const pathname = usePathname();
 
+          const dispatch = useAppDispatch();
+
+          const profileImage = user?.profileImage?.includes("http") ? user?.profileImage : Config.userAvatar;
+
           const handleLogout = async () => {
+                    await logOut();
+                    dispatch(logout());
                     notifySuccess("Success", "You have been logged out successfully!");
                     pathname !== "/" && router.push('/');
           };
@@ -30,19 +40,22 @@ export default function UserDropdown({ user, profile, className, contentClassNam
                               <DropdownMenuTrigger className={cn("focus:bg-transparent focus-visible:outline-none focus-visible:ring-0", className)}>
                                         <div className="p-1 ring-1 ring-primary rounded-full">
                                                   <Avatar className="w-6 h-6">
-                                                            <AvatarImage src={profile ?? "https://github.com/shadcn.png"} draggable={false} className="select-none" />
+                                                            <AvatarImage src={profileImage} draggable={false} className="select-none" />
                                                             <AvatarFallback>
                                                                       {user?.name?.charAt(0)?.toUpperCase()}
                                                             </AvatarFallback>
                                                   </Avatar>
                                         </div>
                               </DropdownMenuTrigger>
-                              <DropdownMenuContent className={cn("w-72 mt-4 sm:mt-6 relative rounded-xl bg-background", contentClassName)}>
-                                        <DropdownMenuLabel>
+                              <DropdownMenuContent className={cn("w-72 mt-4 sm:mt-6 rounded-xl bg-background", contentClassName)}>
+                                        <DropdownMenuLabel className="relative">
+                                                  <div className="absolute top-1 right-0">
+                                                            <ModeToggle />
+                                                  </div>
                                                   <div className="flex flex-col justify-center items-center mt-5 mb-2">
                                                             <div className="p-1 ring-1 ring-primary rounded-full">
                                                                       <Avatar className="w-16 h-16">
-                                                                                <AvatarImage src={profile ?? "https://github.com/shadcn.png"} alt={user?.name} draggable={false} className="select-none" />
+                                                                                <AvatarImage src={profileImage} alt={user?.name} draggable={false} className="select-none" />
                                                                                 <AvatarFallback>
                                                                                           {user?.name?.charAt(0)?.toUpperCase()}
                                                                                 </AvatarFallback>

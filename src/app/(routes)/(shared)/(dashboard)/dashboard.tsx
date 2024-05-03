@@ -1,17 +1,20 @@
 "use client"
 
-import { TTokenUser } from "@/types"
-import AdminDashboard from "./admin-dashboard"
-import UserDashboard from "./user-dashboard"
+import { selectUser } from "@/redux/features/auth/authSlice";
+import { useAppSelector } from "@/redux/hooks";
+import AdminDashboard from "./admin-dashboard";
+import UserDashboard from "./user-dashboard";
 
-export default function Dashboard({ user }: { user: TTokenUser }) {
+export default function Dashboard() {
+          const user = useAppSelector(selectUser);
+
           return (
                     <>
                               {
                                         user?.role === 'admin' ? (
-                                                  <AdminDashboard />
+                                                  <AdminDashboard user={user} />
                                         ) : user?.role === 'user' ? (
-                                                  <UserDashboard />
+                                                  <UserDashboard user={user} />
                                         ) : null
                               }
                     </>

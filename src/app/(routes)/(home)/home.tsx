@@ -5,7 +5,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { Config } from "@/config";
 import Link from "next/link";
 
-export default function HomePage() {
+export default function HomePage({ token }: { token: string }) {
           return (
                     <main className="flex justify-center items-center h-screen">
                               <section className="flex flex-col justify-center items-center gap-5 px-1 sm:px-0">
@@ -15,9 +15,17 @@ export default function HomePage() {
                                                   <span className="uppercase text-primary">({Config.title})</span>
                                         </h1>
                                         <div className="flex items-center gap-4">
-                                                  <Link href="/dashboard" className={buttonVariants({ size: "sm", className: "text-xs" })}>
-                                                            Dashboard
-                                                  </Link>
+                                                  {
+                                                            token ? (
+                                                                      <Link href="/dashboard" className={buttonVariants({ size: "sm", className: "text-xs" })}>
+                                                                                Dashboard
+                                                                      </Link>
+                                                            ) : (
+                                                                      <Link href="/auth/login" className={buttonVariants({ size: "sm", className: "text-xs" })}>
+                                                                                Get Started
+                                                                      </Link>
+                                                            )
+                                                  }
                                         </div>
                               </section>
                     </main>

@@ -1,19 +1,17 @@
 "use client"
 
 import LogoHelper from "@/components/logo-helper"
-import { ModeToggle } from "@/components/mode-toggle"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import UserDropdown from "@/components/user-dropdown"
 import { Config } from "@/config"
 import { HiOutlineMenuAlt4 } from "@/constant"
-import { TTokenUser } from "@/types"
 import Link from "next/link"
 import { ReactNode } from "react"
 import SidebarNav from "./sidebar-nav"
 
-export default function DashboardLayout({ user, children }: { user: TTokenUser, children: ReactNode }) {
+export default function DashboardLayout({ role, children }: { role: string, children: ReactNode }) {
           return (
                     <div className="grid min-h-screen w-full lg:grid-cols-[350px_1fr]">
                               <div className="hidden border-r bg-background lg:block">
@@ -28,7 +26,7 @@ export default function DashboardLayout({ user, children }: { user: TTokenUser, 
                                                   </div>
                                                   <ScrollArea className="mx-1 h-[calc(100vh-11rem)]">
                                                             <nav className="grid items-start px-2 text-lg lg:px-4 gap-2">
-                                                                      <SidebarNav user={user} />
+                                                                      <SidebarNav role={role} />
                                                             </nav>
                                                   </ScrollArea>
                                         </div>
@@ -57,22 +55,21 @@ export default function DashboardLayout({ user, children }: { user: TTokenUser, 
                                                                       </div>
                                                                       <ScrollArea className="flex-1">
                                                                                 <nav className="grid gap-2 text-sm sm:text-lg px-3">
-                                                                                          <SidebarNav user={user} mobile />
+                                                                                          <SidebarNav role={role} mobile />
                                                                                 </nav>
                                                                       </ScrollArea>
                                                             </SheetContent>
                                                   </Sheet>
                                                   <div className="w-full flex-1">
                                                             <h1 className="text-lg font-semibold hidden md:block">
-                                                                      Welcome to <Link href="/" className="text-primary">{Config.title}</Link> {user?.role !== "user" && <span className="capitalize">{user?.role}</span>} Dashboard
+                                                                      Welcome to <Link href="/" className="text-primary">{Config.title}</Link> {role !== "user" && <span className="capitalize">{role}</span>} Dashboard
                                                             </h1>
-                                                            <h1 className="text-lg font-semibold md:hidden">
+                                                            <h1 className="text-lg font-semibold md:hidden text-center">
                                                                       <Link href="/" className="text-primary">{Config.title}</Link>
                                                             </h1>
                                                   </div>
                                                   <div className="flex items-center gap-2">
-                                                            <ModeToggle />
-                                                            <UserDropdown user={user} contentClassName='mr-2 sm:mr-5' />
+                                                            <UserDropdown contentClassName='mr-2 sm:mr-5' />
 
                                                   </div>
                                         </header>

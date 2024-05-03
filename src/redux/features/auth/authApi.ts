@@ -5,7 +5,7 @@ const authApi = baseApi
         endpoints: (builder) => ({
             getUserByToken: builder.query({
                 query: () => ({
-                    url: "/users/me",
+                    url: "/users/getMe",
                 }),
                 providesTags: ["User"],
             }),

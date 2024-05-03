@@ -1,8 +1,9 @@
 import { ThemeProvider } from "@/components/theme-provider";
+import UserProvider from "@/components/user-provider";
 import { Config } from "@/config";
 import { cn } from "@/lib/utils";
 import StoreProvider from "@/redux/StoreProvider";
-import {getBaseURL} from "@/utils";
+import { getBaseURL } from "@/utils";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";
@@ -67,7 +68,9 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <StoreProvider>
-            <main>{children}</main>
+            <UserProvider>
+              <main>{children}</main>
+            </UserProvider>
           </StoreProvider>
         </ThemeProvider>
         <Toaster />
