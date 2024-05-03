@@ -136,21 +136,19 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                                       <LogoHelper imgClassName="w-20" />
                                                             </Link>
                                                   </div>
-                                                  <div className="flex-1">
-                                                            <ScrollArea className="h-full">
-                                                                      <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-2">
-                                                                                {navLinks.map((link) => (
-                                                                                          <Link
-                                                                                                    key={link.label}
-                                                                                                    href={link.href}
-                                                                                                    className={`flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary ${pathname === link.href ? "bg-muted text-primary" : ""}`}
-                                                                                          >
-                                                                                                    {link.icon} {link.label} {link.badge && <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">{link.badge}</Badge>}
-                                                                                          </Link>
-                                                                                ))}
-                                                                      </nav>
-                                                            </ScrollArea>
-                                                  </div>
+                                                  <ScrollArea className="mx-1 h-[calc(100vh-20rem)]">
+                                                            <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-2">
+                                                                      {navLinks.map((link) => (
+                                                                                <Link
+                                                                                          key={link.label}
+                                                                                          href={link.href}
+                                                                                          className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${pathname === link.href ? "bg-muted text-primary" : "text-muted-foreground hover:text-primary"}`}
+                                                                                >
+                                                                                          {link.icon} {link.label} {link.badge && <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">{link.badge}</Badge>}
+                                                                                </Link>
+                                                                      ))}
+                                                            </nav>
+                                                  </ScrollArea>
                                                   <div className="mt-auto p-4">
                                                             <Card>
                                                                       <CardHeader>
@@ -193,7 +191,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                                                                     <Link
                                                                                                               key={link.label}
                                                                                                               href={link.href}
-                                                                                                              className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground sm:hover:text-foreground ${pathname === link.href ? "bg-muted text-foreground" : ""}`}
+                                                                                                              className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 ${pathname === link.href ? "bg-muted text-foreground" : "text-muted-foreground sm:hover:text-foreground"}`}
                                                                                                     >
                                                                                                               {link.icon} {link.label} {link.badge && <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">{link.badge}</Badge>}
                                                                                                     </Link>
