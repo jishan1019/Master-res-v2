@@ -27,9 +27,15 @@ export default function HomePage() {
                                                   </Button>
                                                   <ModeToggle />
                                         </div>
-                                        <Link href="#" className={buttonVariants({ size: "sm", className: "text-xs" })}>
-                                                  Top Loader
-                                        </Link>
+                                        <div className="flex items-center gap-4">
+                                                  <Link href="#" className={buttonVariants({ size: "sm", className: "text-xs" })}>
+                                                            Top Loader
+                                                  </Link>
+
+                                                  <Link href="/dashboard" className={buttonVariants({ size: "sm", className: "text-xs" })}>
+                                                            Dashboard
+                                                  </Link>
+                                        </div>
 
                                         <MDFLogoHelper className="mt-5" imgClassName="w-80" />
                               </section>
