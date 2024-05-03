@@ -2,7 +2,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Config } from "@/config";
 import { cn } from "@/lib/utils";
 import StoreProvider from "@/redux/StoreProvider";
-import getBaseURL from "@/utils/baseUrl";
+import {getBaseURL} from "@/utils";
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import NextTopLoader from "nextjs-toploader";

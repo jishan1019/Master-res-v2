@@ -3,7 +3,7 @@
 import BreadCrumb from "@/components/breadcrumb"
 import ComingSoon from "@/components/coming-soon"
 
-export default function Dashboard() {
+export default function OrdersManagement() {
           return (
                     <>
                               <BreadCrumb />

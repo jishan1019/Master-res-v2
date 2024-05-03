@@ -11,7 +11,7 @@ export default function BreadCrumb() {
           const filteredPaths = paths.slice(1, paths.length - 1);
 
           const firstPath = paths[0];
-          const lastPath = paths[paths.length - 1];
+          const lastPath = paths[paths.length - 1].split("-").join(" ");
 
           return (
                     <div className="pb-5">

@@ -14,7 +14,7 @@ type ToastProps = {
 export default function CustomToastMessage({ title, message, type }: ToastProps) {
           return (
                     <div className={`animate-leave rounded-lg shadow-lg 
-                    ${type === "success" ? "bg-primary text-primary-foreground" : type === "info" ? "bg-sky-500 text-white" : type === "warning" ? "bg-yellow-500 text-black" : "bg-destructive text-white"} w-full flex`}
+                    ${type === "success" ? "bg-green-500 text-primary-foreground" : type === "info" ? "bg-sky-500 text-white" : type === "warning" ? "bg-yellow-500 text-black" : "bg-destructive text-white"} w-full flex`}
                               style={{ padding: '0.75rem 1rem', width: '20rem', borderRadius: '0.5rem' }}
                     >
                               <div className="flex-1 w-0">
@@ -23,9 +23,11 @@ export default function CustomToastMessage({ title, message, type }: ToastProps)
                                                             <Image
                                                                       draggable={false}
                                                                       className="w-10 select-none"
-                                                                      src={type === "success" ? Logo : type === "info" ? LogoWhite : type === "warning" ? Logo : LogoWhite}
+                                                                      src={type === "success" ? LogoWhite : type === "info" ? LogoWhite : type === "warning" ? Logo : LogoWhite}
                                                                       placeholder='blur'
                                                                       alt={`${Config.title} Logo`}
+                                                                      width={5334}
+                                                                      height={2521}
                                                             />
                                                   </div>
                                                   <div className="ml-3 w-0 flex-1">

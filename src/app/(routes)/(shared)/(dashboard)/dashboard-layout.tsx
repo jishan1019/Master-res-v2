@@ -2,50 +2,21 @@
 
 import LogoHelper from "@/components/logo-helper"
 import { ModeToggle } from "@/components/mode-toggle"
-import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import { Config } from "@/config"
 import { HiOutlineMenuAlt4 } from "@/constant"
-import { CircleUser, Home, LineChart, Package, Search, ShoppingCart, Users } from "lucide-react"
+import { navLinks } from "@/utils"
+import { CircleUser } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ReactNode } from "react"
+import SidebarFooter from "./sidebar-footer"
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
           const pathname = usePathname();
-
-          const navLinks = [
-                    {
-                              href: "/dashboard",
-                              icon: <Home className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Dashboard",
-                    },
-                    {
-                              href: "/dashboard/orders",
-                              icon: <ShoppingCart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Orders",
-                              badge: 6,
-                    },
-                    {
-                              href: "/dashboard/products",
-                              icon: <Package className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Products",
-                    },
-                    {
-                              href: "/dashboard/customers",
-                              icon: <Users className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Customers",
-                    },
-                    {
-                              href: "/dashboard/analytics",
-                              icon: <LineChart className="h-5 w-5 sm:h-4 sm:w-4" />,
-                              label: "Analytics",
-                    },
-          ];
 
           return (
                     <div className="grid min-h-screen w-full lg:grid-cols-[350px_1fr]">
@@ -56,34 +27,21 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                                       <LogoHelper imgClassName="w-20" />
                                                             </Link>
                                                   </div>
-                                                  <ScrollArea className="mx-1 h-[calc(100vh-20rem)]">
-                                                            <nav className="grid items-start px-2 text-sm font-medium lg:px-4 gap-2">
-                                                                      {navLinks.map((link) => (
+                                                  <ScrollArea className="mx-1 h-[calc(100vh-15rem)]">
+                                                            <nav className="grid items-start px-2 text-lg font-medium lg:px-4 gap-2">
+                                                                      {navLinks.map((link, i) => (
                                                                                 <Link
-                                                                                          key={link.label}
+                                                                                          key={i}
                                                                                           href={link.href}
-                                                                                          className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${pathname === link.href ? "bg-muted text-primary" : "text-muted-foreground hover:text-primary"}`}
+                                                                                          className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${pathname === link.href ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted hover:text-primary"}`}
                                                                                 >
-                                                                                          {link.icon} {link.label} {link.badge && <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">{link.badge}</Badge>}
+                                                                                          {link.icon} {link.label}
                                                                                 </Link>
                                                                       ))}
                                                             </nav>
                                                   </ScrollArea>
-                                                  <div className="mt-auto p-4">
-                                                            <Card>
-                                                                      <CardHeader>
-                                                                                <CardTitle>Upgrade to Pro</CardTitle>
-                                                                                <CardDescription>
-                                                                                          Unlock all features and get unlimited access to our
-                                                                                          support team.
-                                                                                </CardDescription>
-                                                                      </CardHeader>
-                                                                      <CardContent>
-                                                                                <Button size="sm" className="w-full">
-                                                                                          Upgrade
-                                                                                </Button>
-                                                                      </CardContent>
-                                                            </Card>
+                                                  <div className="mt-auto space-y-3 p-4">
+                                                            <SidebarFooter />
                                                   </div>
                                         </div>
                               </div>
@@ -100,55 +58,38 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                                                 <span className="sr-only">Toggle navigation menu</span>
                                                                       </Button>
                                                             </SheetTrigger>
-                                                            <SheetContent side="left" className="flex flex-col px-3">
+                                                            <SheetContent side="left" className="flex flex-col px-3 w-[85%] sm:w-full">
                                                                       <Link href="/">
                                                                                 <LogoHelper className="flex items-center justify-center pb-2 sm:pb-5 sm:pt-5" imgClassName="w-24" />
                                                                       </Link>
                                                                       <hr className="border-t border-border" />
                                                                       <ScrollArea className="flex-1">
                                                                                 <nav className="grid gap-2 text-lg font-medium px-3">
-                                                                                          {navLinks.map((link) => (
+                                                                                          {navLinks.map((link, i) => (
                                                                                                     <SheetClose
-                                                                                                              key={link.label} asChild>
+                                                                                                              key={i} asChild>
                                                                                                               <Link
                                                                                                                         href={link.href}
-                                                                                                                        className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 ${pathname === link.href ? "bg-muted text-foreground" : "text-muted-foreground sm:hover:text-foreground"}`}
+                                                                                                                        className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 ${pathname === link.href ? "bg-primary text-primary-foreground" : "text-muted-foreground sm:hover:bg-muted sm:hover:text-primary"}`}
                                                                                                               >
-                                                                                                                        {link.icon} {link.label} {link.badge && <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">{link.badge}</Badge>}
+                                                                                                                        {link.icon} {link.label}
                                                                                                               </Link>
                                                                                                     </SheetClose>
                                                                                           ))}
                                                                                 </nav>
                                                                       </ScrollArea>
-                                                                      <div className="mt-auto">
-                                                                                <Card>
-                                                                                          <CardHeader>
-                                                                                                    <CardTitle>Upgrade to Pro</CardTitle>
-                                                                                                    <CardDescription>
-                                                                                                              Unlock all features and get unlimited access to our
-                                                                                                              support team.
-                                                                                                    </CardDescription>
-                                                                                          </CardHeader>
-                                                                                          <CardContent>
-                                                                                                    <Button size="sm" className="w-full">
-                                                                                                              Upgrade
-                                                                                                    </Button>
-                                                                                          </CardContent>
-                                                                                </Card>
+                                                                      <div className="mt-auto space-y-3">
+                                                                                <SidebarFooter />
                                                                       </div>
                                                             </SheetContent>
                                                   </Sheet>
                                                   <div className="w-full flex-1">
-                                                            <form>
-                                                                      <div className="relative">
-                                                                                <Search className="absolute left-2.5 top-2.5 h-5 w-5 sm:h-4 sm:w-4 text-muted-foreground" />
-                                                                                <Input
-                                                                                          type="search"
-                                                                                          placeholder="Search products..."
-                                                                                          className="w-full appearance-none bg-background pl-8 shadow-none md:w-2/3 lg:w-1/3"
-                                                                                />
-                                                                      </div>
-                                                            </form>
+                                                            <h1 className="text-lg font-semibold hidden md:block">
+                                                                      Welcome to <span className="text-primary">{Config.title}</span> Dashboard
+                                                            </h1>
+                                                            <h1 className="text-lg font-semibold md:hidden">
+                                                                      <span className="text-primary">{Config.title}</span>
+                                                            </h1>
                                                   </div>
                                                   <div className="flex items-center gap-2">
                                                             <ModeToggle />
