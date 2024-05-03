@@ -2,21 +2,25 @@
 
 import LogoHelper from "@/components/logo-helper"
 import { ModeToggle } from "@/components/mode-toggle"
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet"
+import UserDropdown from "@/components/user-dropdown"
 import { Config } from "@/config"
 import { HiOutlineMenuAlt4 } from "@/constant"
 import { navLinks } from "@/utils"
-import { CircleUser } from "lucide-react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ReactNode } from "react"
-import SidebarFooter from "./sidebar-footer"
 
 export default function DashboardLayout({ children }: { children: ReactNode }) {
           const pathname = usePathname();
+
+          const user = {
+                    name: "Toufiq Hasan Kiron",
+                    email: "x@kiron.dev",
+          }
 
           return (
                     <div className="grid min-h-screen w-full lg:grid-cols-[350px_1fr]">
@@ -40,9 +44,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                                       ))}
                                                             </nav>
                                                   </ScrollArea>
-                                                  <div className="mt-auto space-y-3 p-4">
+                                                  {/* <div className="mt-auto space-y-3 p-4">
                                                             <SidebarFooter />
-                                                  </div>
+                                                  </div> */}
                                         </div>
                               </div>
                               <div className="flex flex-col">
@@ -64,7 +68,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                                       </Link>
                                                                       <hr className="border-t border-border" />
                                                                       <ScrollArea className="flex-1">
-                                                                                <nav className="grid gap-2 text-lg font-medium px-3">
+                                                                                <nav className="grid gap-2 text-sm sm:text-lg font-medium px-3">
                                                                                           {navLinks.map((link, i) => (
                                                                                                     <SheetClose
                                                                                                               key={i} asChild>
@@ -78,9 +82,9 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                                                           ))}
                                                                                 </nav>
                                                                       </ScrollArea>
-                                                                      <div className="mt-auto space-y-3">
+                                                                      {/* <div className="mt-auto space-y-3">
                                                                                 <SidebarFooter />
-                                                                      </div>
+                                                                      </div> */}
                                                             </SheetContent>
                                                   </Sheet>
                                                   <div className="w-full flex-1">
@@ -93,22 +97,17 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                   </div>
                                                   <div className="flex items-center gap-2">
                                                             <ModeToggle />
-                                                            <DropdownMenu>
-                                                                      <DropdownMenuTrigger asChild>
-                                                                                <Button variant="secondary" size="icon" className="rounded-full">
-                                                                                          <CircleUser className="h-5 w-5" />
-                                                                                          <span className="sr-only">Toggle user menu</span>
-                                                                                </Button>
-                                                                      </DropdownMenuTrigger>
-                                                                      <DropdownMenuContent align="end">
-                                                                                <DropdownMenuLabel>My Account</DropdownMenuLabel>
-                                                                                <DropdownMenuSeparator />
-                                                                                <DropdownMenuItem>Settings</DropdownMenuItem>
-                                                                                <DropdownMenuItem>Support</DropdownMenuItem>
-                                                                                <DropdownMenuSeparator />
-                                                                                <DropdownMenuItem>Logout</DropdownMenuItem>
-                                                                      </DropdownMenuContent>
-                                                            </DropdownMenu>
+                                                            <UserDropdown user={user} contentClassName='mr-2 sm:mr-5'>
+                                                                      <div className="p-1 ring-1 ring-primary rounded-full">
+                                                                                <Avatar className="w-6 h-6">
+                                                                                          <AvatarImage src={`https://github.com/shadcn.png`} draggable={false} className="select-none" />
+                                                                                          <AvatarFallback>
+                                                                                                    {user?.name?.charAt(0)?.toUpperCase()}
+                                                                                          </AvatarFallback>
+                                                                                </Avatar>
+                                                                      </div>
+                                                            </UserDropdown>
+
                                                   </div>
                                         </header>
                                         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">

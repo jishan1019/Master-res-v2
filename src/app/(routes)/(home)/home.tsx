@@ -19,7 +19,7 @@ export default function HomePage() {
                                         <LogoHelper imgClassName="w-32" />
                                         <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-center">
                                                   Welcome to your new app! 🚀 <br />
-                                                  <span className="uppercase text-destructive">({Config.title})</span>
+                                                  <span className="uppercase text-primary">({Config.title})</span>
                                         </h1>
                                         <div className="flex justify-center items-center gap-5 mt-3">
                                                   <Button variant="default" size="sm" onClick={handleDiveIn}>
