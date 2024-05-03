@@ -37,7 +37,7 @@ export default function UserDropdown({ user, profile, className, contentClassNam
                                                   </Avatar>
                                         </div>
                               </DropdownMenuTrigger>
-                              <DropdownMenuContent className={cn("w-72 mt-4 relative rounded-xl", contentClassName)}>
+                              <DropdownMenuContent className={cn("w-72 mt-4 sm:mt-6 relative rounded-xl bg-background", contentClassName)}>
                                         <DropdownMenuLabel>
                                                   <div className="flex flex-col justify-center items-center mt-5 mb-2">
                                                             <div className="p-1 ring-1 ring-primary rounded-full">

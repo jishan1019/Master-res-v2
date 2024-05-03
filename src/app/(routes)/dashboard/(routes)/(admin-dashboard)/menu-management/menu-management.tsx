@@ -6,9 +6,9 @@ import { categories } from '@/utils/category';
 import Nestable from 'react-nestable';
 
 export default function MenuManagement() {
-          const items = categories.map((item) => {
+          const items = categories.map((item, i) => {
                     return {
-                              id: item._id,
+                              id: i,
                               ...item
                     }
           });
@@ -30,6 +30,10 @@ export default function MenuManagement() {
                     );
           };
 
+          const handleOnChange = (items: any) => {
+                    console.log(items);
+          };
+
           return (
                     <>
                               <BreadCrumb
@@ -39,7 +43,8 @@ export default function MenuManagement() {
                               <Nestable
                                         items={items}
                                         renderItem={renderItem}
-                              // onChange={(items) => console.log(items)}
+                                        onChange={handleOnChange}
+                                        onDragStart={(item: any) => console.log('onDragStart', item)}
                               />
                     </>
           )

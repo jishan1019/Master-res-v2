@@ -34,7 +34,7 @@ export default function DashboardLayout({ user, children }: { user: TTokenUser, 
                                         </div>
                               </div>
                               <div className="flex flex-col">
-                                        <header className="sticky top-0 flex h-20 items-center gap-4 border-b bg-background px-4 lg:h-[60px] lg:px-6">
+                                        <header className="sticky top-0 flex h-16 sm:h-20 items-center gap-4 border-b bg-background px-4 lg:px-6">
                                                   <Sheet>
                                                             <SheetTrigger asChild>
                                                                       <Button
