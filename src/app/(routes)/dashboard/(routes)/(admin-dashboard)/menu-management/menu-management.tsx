@@ -1,10 +1,11 @@
 "use client"
 
+import BreadCrumb from "@/components/breadcrumb";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { categories } from '@/utils/category';
 import Nestable from 'react-nestable';
 
-export default function ManageDish() {
+export default function MenuManagement() {
           const items = categories.map((item) => {
                     return {
                               id: item._id,
@@ -15,7 +16,7 @@ export default function ManageDish() {
           const renderItem = ({ item }: { item: any }) => {
                     return (
                               <Accordion type="single" collapsible className="w-full">
-                                        <AccordionItem value="item-1">
+                                        <AccordionItem value={item.name}>
                                                   <AccordionTrigger>{item.name}</AccordionTrigger>
                                                   <AccordionContent>
                                                             {item.isCategoryDesAvailable && (
@@ -31,6 +32,10 @@ export default function ManageDish() {
 
           return (
                     <>
+                              <BreadCrumb
+                                        title="Menu Management"
+                                        description="Manage your menu items here"
+                              />
                               <Nestable
                                         items={items}
                                         renderItem={renderItem}

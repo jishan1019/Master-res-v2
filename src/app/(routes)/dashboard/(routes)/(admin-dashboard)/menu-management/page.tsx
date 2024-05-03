@@ -1,9 +1,9 @@
-import ManageDish from "./manage-dish";
+import MenuManagement from "./menu-management";
 
 export default function Page() {
           return (
                     <>
-                              <ManageDish />
+                              <MenuManagement />
                     </>
           )
 }

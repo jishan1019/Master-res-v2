@@ -5,7 +5,12 @@ import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigge
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-export default function BreadCrumb() {
+type BreadCrumbProps = {
+          title?: string
+          description?: string
+}
+
+export default function BreadCrumb({ title, description }: BreadCrumbProps) {
           const pathname = usePathname();
           const paths = pathname.split("/").filter(Boolean);
           const filteredPaths = paths.slice(1, paths.length - 1);
@@ -14,7 +19,7 @@ export default function BreadCrumb() {
           const lastPath = paths[paths.length - 1].split("-").join(" ");
 
           return (
-                    <div className="pb-5">
+                    <div className="space-y-5">
                               <Breadcrumb>
                                         <BreadcrumbList>
                                                   <BreadcrumbItem>
@@ -67,6 +72,14 @@ export default function BreadCrumb() {
                                                   }
                                         </BreadcrumbList>
                               </Breadcrumb>
+                              {
+                                        title || description ? (
+                                                  <div>
+                                                            {title && <h1 className="text-lg font-semibold">{title}</h1>}
+                                                            {description && <p className="text-sm text-muted-foreground">{description}</p>}
+                                                  </div>
+                                        ) : null
+                              }
                     </div>
           )
 }
