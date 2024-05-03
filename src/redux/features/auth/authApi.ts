@@ -1,6 +1,6 @@
 import { baseApi } from "@/redux/api/baseApi/baseApi";
 
-const authApi = baseApi.enhanceEndpoints({ addTagTypes: ["User"] })
+const authApi = baseApi
     .injectEndpoints({
         endpoints: (builder) => ({
             getUserByToken: builder.query({

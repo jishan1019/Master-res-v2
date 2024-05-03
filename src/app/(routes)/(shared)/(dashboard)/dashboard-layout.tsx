@@ -64,10 +64,10 @@ export default function DashboardLayout({ user, children }: { user: TTokenUser, 
                                                   </Sheet>
                                                   <div className="w-full flex-1">
                                                             <h1 className="text-lg font-semibold hidden md:block">
-                                                                      Welcome to <span className="text-primary">{Config.title}</span> {user?.role !== "user" && <span className="capitalize">{user?.role}</span>} Dashboard
+                                                                      Welcome to <Link href="/" className="text-primary">{Config.title}</Link> {user?.role !== "user" && <span className="capitalize">{user?.role}</span>} Dashboard
                                                             </h1>
                                                             <h1 className="text-lg font-semibold md:hidden">
-                                                                      <span className="text-primary">{Config.title}</span>
+                                                                      <Link href="/" className="text-primary">{Config.title}</Link>
                                                             </h1>
                                                   </div>
                                                   <div className="flex items-center gap-2">

@@ -1,12 +1,18 @@
 "use client"
 
 import BreadCrumb from "@/components/breadcrumb";
+import Loading from "@/components/loading";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { categories } from '@/utils/category';
+import { useGetAllCategoriesQuery } from "@/redux/features/menu/menuApi";
+import { TCategory } from "@/types";
 import Nestable from 'react-nestable';
 
 export default function MenuManagement() {
-          const items = categories.map((item, i) => {
+          const { data, isLoading } = useGetAllCategoriesQuery(undefined);
+
+          const categories = data?.data || [] as TCategory[];
+
+          const items = categories?.map((item: TCategory, i: number) => {
                     return {
                               id: i,
                               ...item
@@ -30,9 +36,13 @@ export default function MenuManagement() {
                     );
           };
 
-          const handleOnChange = (items: any) => {
+          const handleOnChange = (dragItems: any) => {
+                    const items = dragItems?.items;
+
                     console.log(items);
           };
+
+          if (isLoading) return <Loading />
 
           return (
                     <>
@@ -44,7 +54,6 @@ export default function MenuManagement() {
                                         items={items}
                                         renderItem={renderItem}
                                         onChange={handleOnChange}
-                                        onDragStart={(item: any) => console.log('onDragStart', item)}
                               />
                     </>
           )
