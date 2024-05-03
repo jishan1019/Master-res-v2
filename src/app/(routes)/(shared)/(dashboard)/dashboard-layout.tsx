@@ -19,8 +19,8 @@ export default function DashboardLayout({ user, children }: { user: TTokenUser, 
 
           return (
                     <div className="grid min-h-screen w-full lg:grid-cols-[350px_1fr]">
-                              <div className="hidden border-r bg-muted/40 lg:block">
-                                        <div className="flex flex-col gap-2">
+                              <div className="hidden border-r bg-muted lg:block">
+                                        <div className="flex flex-col gap-2 sticky top-0">
                                                   <div className="flex flex-col items-center border-b px-4 lg:px-6 py-6 gap-3">
                                                             <Link href="/">
                                                                       <LogoHelper className="flex items-center justify-center sm:pt-6" imgClassName="w-24" />
@@ -29,7 +29,7 @@ export default function DashboardLayout({ user, children }: { user: TTokenUser, 
                                                                       {Config.tagLine}
                                                             </p>
                                                   </div>
-                                                  <ScrollArea className="mx-1 h-[calc(100vh-10rem)]">
+                                                  <ScrollArea className="mx-1 h-[calc(100vh-11rem)]">
                                                             <nav className="grid items-start px-2 text-lg lg:px-4 gap-2">
                                                                       {navLinks.map((link, i) => (
                                                                                 <Link
@@ -49,13 +49,13 @@ export default function DashboardLayout({ user, children }: { user: TTokenUser, 
                                         </div>
                               </div>
                               <div className="flex flex-col">
-                                        <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
+                                        <header className="sticky top-0 flex h-20 items-center gap-4 border-b bg-muted px-4 lg:h-[60px] lg:px-6">
                                                   <Sheet>
                                                             <SheetTrigger asChild>
                                                                       <Button
                                                                                 variant="outline"
                                                                                 size="sm"
-                                                                                className="shrink-0 lg:hidden"
+                                                                                className="shrink-0 lg:hidden bg-muted"
                                                                       >
                                                                                 <HiOutlineMenuAlt4 className="h-5 w-5" />
                                                                                 <span className="sr-only">Toggle navigation menu</span>
