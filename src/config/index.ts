@@ -1,5 +1,5 @@
 import { baseUrl, storeEncryptKey } from '@/config/dotenv-config';
-import { description, fullTitle, keywords, logo, logoWhite, mdfLogo, mdfLogoWhite, title } from '@/config/site-config';
+import { description, fullTitle, keywords, logo, logoWhite, mdfLogo, mdfLogoWhite, tagLine, title } from '@/config/site-config';
 
 export const Config = {
   logo,
@@ -8,6 +8,7 @@ export const Config = {
   mdfLogoWhite,
   title,
   fullTitle,
+  tagLine,
   description,
   keywords,
   baseUrl,

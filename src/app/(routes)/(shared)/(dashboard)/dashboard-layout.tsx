@@ -20,18 +20,22 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           const user = {
                     name: "Toufiq Hasan Kiron",
                     email: "x@kiron.dev",
+                    role: "admin",
           }
 
           return (
                     <div className="grid min-h-screen w-full lg:grid-cols-[350px_1fr]">
                               <div className="hidden border-r bg-muted/40 lg:block">
                                         <div className="flex flex-col gap-2">
-                                                  <div className="flex items-center border-b px-4 lg:px-6 py-6">
-                                                            <Link href="/" className="flex justify-center items-center mx-auto">
-                                                                      <LogoHelper imgClassName="w-20" />
+                                                  <div className="flex flex-col items-center border-b px-4 lg:px-6 py-6 gap-3">
+                                                            <Link href="/">
+                                                                      <LogoHelper className="flex items-center justify-center sm:pt-6" imgClassName="w-24" />
                                                             </Link>
+                                                            <p className="text-sm text-muted-foreground font-medium text-center">
+                                                                      {Config.tagLine}
+                                                            </p>
                                                   </div>
-                                                  <ScrollArea className="mx-1 h-[calc(100vh-15rem)]">
+                                                  <ScrollArea className="mx-1 h-[calc(100vh-10rem)]">
                                                             <nav className="grid items-start px-2 text-lg font-medium lg:px-4 gap-2">
                                                                       {navLinks.map((link, i) => (
                                                                                 <Link
@@ -44,9 +48,6 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                                       ))}
                                                             </nav>
                                                   </ScrollArea>
-                                                  {/* <div className="mt-auto space-y-3 p-4">
-                                                            <SidebarFooter />
-                                                  </div> */}
                                         </div>
                               </div>
                               <div className="flex flex-col">
@@ -63,10 +64,14 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                                       </Button>
                                                             </SheetTrigger>
                                                             <SheetContent side="left" className="flex flex-col px-3 w-[85%] sm:w-full">
-                                                                      <Link href="/">
-                                                                                <LogoHelper className="flex items-center justify-center pb-2 sm:pb-5 sm:pt-5" imgClassName="w-24" />
-                                                                      </Link>
-                                                                      <hr className="border-t border-border" />
+                                                                      <div className="flex flex-col items-center border-b px-4 lg:px-6 py-6 gap-3">
+                                                                                <Link href="/">
+                                                                                          <LogoHelper className="flex items-center justify-center" imgClassName="w-24" />
+                                                                                </Link>
+                                                                                <p className="text-sm text-muted-foreground font-medium text-center">
+                                                                                          {Config.tagLine}
+                                                                                </p>
+                                                                      </div>
                                                                       <ScrollArea className="flex-1">
                                                                                 <nav className="grid gap-2 text-sm sm:text-lg font-medium px-3">
                                                                                           {navLinks.map((link, i) => (
@@ -82,14 +87,11 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                                                           ))}
                                                                                 </nav>
                                                                       </ScrollArea>
-                                                                      {/* <div className="mt-auto space-y-3">
-                                                                                <SidebarFooter />
-                                                                      </div> */}
                                                             </SheetContent>
                                                   </Sheet>
                                                   <div className="w-full flex-1">
                                                             <h1 className="text-lg font-semibold hidden md:block">
-                                                                      Welcome to <span className="text-primary">{Config.title}</span> Dashboard
+                                                                      Welcome to <span className="text-primary">{Config.title}</span> {user?.role !== "user" && <span className="capitalize">{user?.role}</span>} Dashboard
                                                             </h1>
                                                             <h1 className="text-lg font-semibold md:hidden">
                                                                       <span className="text-primary">{Config.title}</span>
