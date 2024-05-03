@@ -1,5 +1,6 @@
 import Dashboard from "@/app/(routes)/(shared)/(dashboard)/dashboard";
 import { Config } from '@/config';
+import { user } from "@/config/site-config";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
 export default function Page() {
           return (
                     <>
-                              <Dashboard />
+                              <Dashboard user={user} />
                     </>
           )
 }

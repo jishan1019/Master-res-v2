@@ -2,26 +2,20 @@
 
 import LogoHelper from "@/components/logo-helper"
 import { ModeToggle } from "@/components/mode-toggle"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Sheet, SheetClose, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import UserDropdown from "@/components/user-dropdown"
 import { Config } from "@/config"
 import { HiOutlineMenuAlt4 } from "@/constant"
+import { TTokenUser } from "@/types"
 import { navLinks } from "@/utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { ReactNode } from "react"
 
-export default function DashboardLayout({ children }: { children: ReactNode }) {
+export default function DashboardLayout({ user, children }: { user: TTokenUser, children: ReactNode }) {
           const pathname = usePathname();
-
-          const user = {
-                    name: "Toufiq Hasan Kiron",
-                    email: "x@kiron.dev",
-                    role: "admin",
-          }
 
           return (
                     <div className="grid min-h-screen w-full lg:grid-cols-[350px_1fr]">
@@ -36,12 +30,16 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                             </p>
                                                   </div>
                                                   <ScrollArea className="mx-1 h-[calc(100vh-10rem)]">
-                                                            <nav className="grid items-start px-2 text-lg font-medium lg:px-4 gap-2">
+                                                            <nav className="grid items-start px-2 text-lg lg:px-4 gap-2">
                                                                       {navLinks.map((link, i) => (
                                                                                 <Link
                                                                                           key={i}
                                                                                           href={link.href}
-                                                                                          className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all ${pathname === link.href ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted hover:text-primary"}`}
+                                                                                          className={`flex items-center gap-3 rounded-lg px-3 py-2 transition-all 
+                                                                                          ${pathname === link.href ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:bg-muted hover:text-primary"}
+                                                                                          ${!link.roles.includes(user?.role) && "hidden"}
+                                                                                          ${link?.isHidden && "hidden"}
+                                                                                          `}
                                                                                 >
                                                                                           {link.icon} {link.label}
                                                                                 </Link>
@@ -73,13 +71,17 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                                                 </p>
                                                                       </div>
                                                                       <ScrollArea className="flex-1">
-                                                                                <nav className="grid gap-2 text-sm sm:text-lg font-medium px-3">
+                                                                                <nav className="grid gap-2 text-sm sm:text-lg px-3">
                                                                                           {navLinks.map((link, i) => (
                                                                                                     <SheetClose
                                                                                                               key={i} asChild>
                                                                                                               <Link
                                                                                                                         href={link.href}
-                                                                                                                        className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 ${pathname === link.href ? "bg-primary text-primary-foreground" : "text-muted-foreground sm:hover:bg-muted sm:hover:text-primary"}`}
+                                                                                                                        className={`mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 
+                                                                                                                        ${pathname === link.href ? "bg-primary text-primary-foreground" : "text-muted-foreground sm:hover:bg-muted sm:hover:text-primary"}
+                                                                                                                        ${!link.roles.includes(user?.role) && "hidden"}
+                                                                                                                        ${link?.isHidden && "hidden"}
+                                                                                                                        `}
                                                                                                               >
                                                                                                                         {link.icon} {link.label}
                                                                                                               </Link>
@@ -99,16 +101,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
                                                   </div>
                                                   <div className="flex items-center gap-2">
                                                             <ModeToggle />
-                                                            <UserDropdown user={user} contentClassName='mr-2 sm:mr-5'>
-                                                                      <div className="p-1 ring-1 ring-primary rounded-full">
-                                                                                <Avatar className="w-6 h-6">
-                                                                                          <AvatarImage src={`https://github.com/shadcn.png`} draggable={false} className="select-none" />
-                                                                                          <AvatarFallback>
-                                                                                                    {user?.name?.charAt(0)?.toUpperCase()}
-                                                                                          </AvatarFallback>
-                                                                                </Avatar>
-                                                                      </div>
-                                                            </UserDropdown>
+                                                            <UserDropdown user={user} contentClassName='mr-2 sm:mr-5' />
 
                                                   </div>
                                         </header>
