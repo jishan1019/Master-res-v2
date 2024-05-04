@@ -6,7 +6,7 @@ import { notifyError, notifySuccess } from "@/components/toast"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { BiLogIn, FaRegEye, FaRegEyeSlash, Hi2Icons } from "@/constant/icons"
+import { AiOutlineLogin, FaRegEye, FaRegEyeSlash, Hi2Icons } from "@/constant/icons"
 import { login } from "@/lib/action"
 import { loginSchema } from "@/lib/schema"
 import { useLoginUserMutation } from "@/redux/features/auth/authApi"
@@ -149,7 +149,7 @@ export default function Login() {
                                                                                           Go back
                                                                                 </Link>
                                                                                 <Button type="submit" disabled={form.formState.isSubmitting || isLoading}>
-                                                                                          <FormSubmit loading={form.formState.isSubmitting || isLoading} message="Login" icon={<BiLogIn />} iconPosition="left" />
+                                                                                          <FormSubmit loading={form.formState.isSubmitting || isLoading} message="Login" icon={<AiOutlineLogin />} iconPosition="left" />
                                                                                 </Button>
                                                                       </div>
                                                             </form>
