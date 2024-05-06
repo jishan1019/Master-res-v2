@@ -12,21 +12,21 @@ type UserProviderProps = {
 export default function UserProvider({ children }: UserProviderProps) {
           const dispatch = useAppDispatch();
 
-          const auth = useAppSelector((state) => state.auth);
+          const token = useAppSelector((state) => state.auth.token);
 
           const updatedUser = useAppSelector(selectUser)
 
           const { data } = useGetUserByTokenQuery(null, {
-                    skip: !auth.token,
+                    skip: !token,
           });
 
           const user = data?.data;
 
           useEffect(() => {
-                    if (updatedUser?._id !== user?._id && user) {
+                    if (user && updatedUser?._id !== user?._id) {
                               dispatch(setUpdatedUser(user));
                     }
-          }, [user, dispatch, auth.token, updatedUser?._id]);
+          }, [user, dispatch, token, updatedUser?._id]);
 
           return (
                     <>

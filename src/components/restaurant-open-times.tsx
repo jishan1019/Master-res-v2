@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 export default function RestaurantOpenTimes({ className }: { className?: string }) {
           return (
                     <Select>
-                              <SelectTrigger className={cn("w-[500px] md:w-3/5 bg-secondary", className)}>
+                              <SelectTrigger className={cn("w-[500px] md:w-3/5 lg:w-2/5 bg-secondary border-black/30 dark:border-primary-foreground focus:ring-0 focus:outline-none", className)}>
                                         <SelectValue placeholder={`${Config.openTimes[0].day.slice(0, 3)} ${Config.openTimes[0].open} - ${Config.openTimes[0].close}`} />
                               </SelectTrigger>
                               <SelectContent>

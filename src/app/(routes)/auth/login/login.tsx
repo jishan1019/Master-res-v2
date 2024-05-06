@@ -62,7 +62,7 @@ export default function Login() {
                                         dispatch(setUser(userData));
                                         dispatch(setToken(token));
 
-                                        notifySuccess("Success", "Logged in successfully", "bottom-left");
+                                        notifySuccess("Success", "You have been logged in successfully", "bottom-left");
 
                                         if (userData.user.role && allowDirectDashboard.includes(userData.user.role)) {
                                                   router.push("/dashboard");

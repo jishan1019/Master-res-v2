@@ -2,14 +2,18 @@
 
 import BaseLayout from "@/app/(routes)/(shared)/(home)/base-layout";
 import RestaurantOpenTimes from "@/components/restaurant-open-times";
+import { notifySuccess } from "@/components/toast";
 import { Button } from "@/components/ui/button";
+import UserDropdown from "@/components/user-dropdown";
 import { Config } from "@/config";
 import { Images } from "@/constant";
 import { AiOutlineClose, BiLogIn, BiLogOut, CiPhone, Fa6Icons, IoMdShare, MdMenu, MdSpaceDashboard } from "@/constant/icons";
-import { useAppSelector } from "@/redux/hooks";
+import { logOut } from "@/lib/action";
+import { logout } from "@/redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
 
 const isRestaurantOpen = true;
@@ -42,10 +46,21 @@ export default function Header({ children }: { children: ReactNode }) {
 
           const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
 
+          const router = useRouter();
           const pathname = usePathname();
+
+          const dispatch = useAppDispatch();
 
           const toggleMenu = () => {
                     setIsOpenMenu(!isOpenMenu);
+          };
+
+          const handleLogout = async () => {
+                    await logOut();
+                    dispatch(logout());
+                    toggleMenu();
+                    notifySuccess("Success", "You have been logged out successfully!");
+                    pathname !== "/" && router.push('/');
           };
 
           return (
@@ -62,12 +77,18 @@ export default function Header({ children }: { children: ReactNode }) {
                                                             <MdMenu className="size-7 cursor-pointer" onClick={toggleMenu} />
                                                   </div>
                                                   <div className="md:block hidden">
-                                                            <Link href="/auth/login" className="flex items-center gap-2 border px-2 py-2 rounded-full">
-                                                                      <p className="font-semibold text-xs">
-                                                                                Sign Up/Sign In
-                                                                      </p>
-                                                                      <Fa6Icons.FaRegCircleUser className="size-4 cursor-pointer" />
-                                                            </Link>
+                                                            {
+                                                                      token ? (
+                                                                                <UserDropdown contentClassName="mr-2 lg:mr-0 mt-2 sm:mt-2" />
+                                                                      ) : (
+                                                                                <Link href="/auth/login" className="flex items-center gap-2 border px-2 py-2 rounded-full">
+                                                                                          <p className="font-semibold text-xs">
+                                                                                                    Sign Up/Sign In
+                                                                                          </p>
+                                                                                          <Fa6Icons.FaRegCircleUser className="size-4 cursor-pointer" />
+                                                                                </Link>
+                                                                      )
+                                                            }
                                                   </div>
                                         </div>
                                         <div className="py-2 flex flex-col md:flex-row md:items-center md:justify-between gap-4 px-4 w-full">
@@ -75,7 +96,7 @@ export default function Header({ children }: { children: ReactNode }) {
                                                             <div className="flex items-center gap-1">
                                                                       <CiPhone className="size-5 text-primary" />
                                                                       <p className="font-medium text-sm">
-                                                                                <a href="/num1">01883717373</a> <span className="text-primary">|</span> <a href="/num2">01883712052</a>
+                                                                                <a href="tel:01883717373">01883717373</a> <span className="text-primary">|</span> <a href="tel:01883712052">01883712052</a>
                                                                       </p>
                                                             </div>
                                                   </div>
@@ -160,9 +181,7 @@ export default function Header({ children }: { children: ReactNode }) {
                                                                                           </Button>
                                                                                 </Link>
                                                                                 <Button className="shadow-md flex items-center gap-2"
-                                                                                          onClick={() => {
-                                                                                                    toggleMenu();
-                                                                                          }}
+                                                                                          onClick={handleLogout}
                                                                                 >
                                                                                           <BiLogOut /> Logout
                                                                                 </Button>
