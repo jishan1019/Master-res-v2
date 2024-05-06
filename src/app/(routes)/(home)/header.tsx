@@ -1,13 +1,14 @@
 "use client"
 
 import BaseLayout from "@/app/(routes)/(shared)/(home)/base-layout";
+import { ModeToggle } from "@/components/mode-toggle";
 import RestaurantOpenTimes from "@/components/restaurant-open-times";
 import { notifySuccess } from "@/components/toast";
 import { Button } from "@/components/ui/button";
 import UserDropdown from "@/components/user-dropdown";
 import { Config } from "@/config";
 import { Images } from "@/constant";
-import { AiOutlineClose, BiLogIn, BiLogOut, CiPhone, Fa6Icons, IoMdShare, MdMenu, MdSpaceDashboard } from "@/constant/icons";
+import { AiOutlineClose, CiPhone, Fa6Icons, IoMdShare, MdMenu } from "@/constant/icons";
 import { logOut } from "@/lib/action";
 import { logout } from "@/redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -42,7 +43,9 @@ const navLinks = [
 ];
 
 export default function Header({ children }: { children: ReactNode }) {
-          const token = useAppSelector((state) => state.auth.token);
+          const auth = useAppSelector((state) => state.auth);
+
+          const { token, updatedUser: user } = auth;
 
           const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
 
@@ -67,19 +70,28 @@ export default function Header({ children }: { children: ReactNode }) {
                     <BaseLayout>
                               <div className="bg-secondary pt-6 border-r border-l">
                                         <div className="flex items-center md:items-start justify-between gap-4 px-4">
-                                                  <div>
-                                                            <Link href={pathname === "/" ? "#" : "/"} className="text-primary text-xl md:text-2xl font-bold">
-                                                                      {Config.title}
-                                                            </Link>
-                                                  </div>
+                                                  <Link href={pathname === "/" ? "#" : "/"} className="text-primary text-xl md:text-2xl font-bold">
+                                                            {Config.title}
+                                                  </Link>
                                                   <div className="md:hidden flex items-center gap-4">
-                                                            <IoMdShare size={20} />
+                                                            <IoMdShare size={20}
+                                                                      onClick={() => navigator.share({
+                                                                                title: Config.title,
+                                                                                text: Config.description,
+                                                                                url: typeof window !== "undefined" && window.location.href || ""
+                                                                      })}
+                                                            />
                                                             <MdMenu className="size-7 cursor-pointer" onClick={toggleMenu} />
                                                   </div>
                                                   <div className="md:block hidden">
                                                             {
                                                                       token ? (
-                                                                                <UserDropdown contentClassName="mr-2 lg:mr-0 mt-2 sm:mt-2" />
+                                                                                <div className="flex items-center gap-3">
+                                                                                          <h1 className="font-semibold text-sm">
+                                                                                                    Hey, {user?.name?.split(" ")[0]}!
+                                                                                          </h1>
+                                                                                          <UserDropdown contentClassName="mr-2 lg:mr-0 mt-2 sm:mt-2" />
+                                                                                </div>
                                                                       ) : (
                                                                                 <Link href="/auth/login" className="flex items-center gap-2 border px-2 py-2 rounded-full">
                                                                                           <p className="font-semibold text-xs">
@@ -91,7 +103,7 @@ export default function Header({ children }: { children: ReactNode }) {
                                                             }
                                                   </div>
                                         </div>
-                                        <div className="py-2 flex flex-col md:flex-row md:items-center md:justify-between gap-4 px-4 w-full">
+                                        <div className="py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-4 px-4 w-full">
                                                   <div className="flex items-center gap-4 w-full">
                                                             <div className="flex items-center gap-1">
                                                                       <CiPhone className="size-5 text-primary" />
@@ -155,39 +167,54 @@ export default function Header({ children }: { children: ReactNode }) {
                                                   className="text-2xl absolute top-5 right-5"
                                                   onClick={toggleMenu}
                                         />
-                                        <div className="flex flex-col items-center gap-5 pt-16">
-                                                  {navLinks.map((link, index) => (
-                                                            <Link
-                                                                      key={index}
-                                                                      href={link.href}
-                                                                      className={`font-medium ${pathname === link.href ? "text-primary underline decoration-primary" : "text-gray-600 dark:text-white"}`}
-                                                                      onClick={toggleMenu}
-                                                            >
-                                                                      {link.name}
-                                                            </Link>
-                                                  ))}
-                                                  {
-                                                            !token ? (
-                                                                      <Link href="/auth/login" onClick={toggleMenu}>
-                                                                                <Button className="shadow-md flex items-center gap-2">
-                                                                                          <BiLogIn /> Login
-                                                                                </Button>
+                                        <div>
+                                                  <Link href={pathname === "/" ? "#" : "/"} className="text-primary text-xl md:text-2xl font-bold"
+                                                            onClick={toggleMenu}
+                                                  >
+                                                            {Config.title}
+                                                  </Link>
+                                                  <p className="text-sm">
+                                                            {Config.tagLine}
+                                                  </p>
+                                                  <div className="grid gap-3 pt-5">
+                                                            {navLinks.map((link, index) => (
+                                                                      <Link
+                                                                                key={index}
+                                                                                href={link.href}
+                                                                                className={`font-medium px-3 py-2 rounded-md ${pathname === link.href ? "bg-primary text-primary-foreground" : "bg-secondary text-secondary-foreground"}`}
+                                                                                onClick={toggleMenu}
+                                                                      >
+                                                                                {link.name}
                                                                       </Link>
-                                                            ) : (
-                                                                      <>
-                                                                                <Link href="/dashboard" onClick={toggleMenu}>
-                                                                                          <Button className="shadow-md flex items-center gap-2">
-                                                                                                    <MdSpaceDashboard /> Dashboard
-                                                                                          </Button>
-                                                                                </Link>
-                                                                                <Button className="shadow-md flex items-center gap-2"
-                                                                                          onClick={handleLogout}
+                                                            ))}
+                                                            {
+                                                                      token ? (
+                                                                                <>
+                                                                                          <Link href="/dashboard" className="font-medium px-3 py-2 rounded-md bg-secondary text-secondary-foreground"
+                                                                                                    onClick={toggleMenu}
+                                                                                          >
+                                                                                                    Dashboard
+                                                                                          </Link>
+                                                                                          <p className="font-medium px-3 py-2 rounded-md bg-secondary text-secondary-foreground"
+                                                                                                    onClick={handleLogout}
+                                                                                          >
+                                                                                                    Logout
+                                                                                          </p>
+                                                                                </>
+                                                                      ) : (
+                                                                                <Link href="/auth/login" className="font-medium px-3 py-2 rounded-md bg-secondary text-secondary-foreground"
+                                                                                          onClick={toggleMenu}
                                                                                 >
-                                                                                          <BiLogOut /> Logout
-                                                                                </Button>
-                                                                      </>
-                                                            )
-                                                  }
+                                                                                          Sign Up/Sign In
+                                                                                </Link>
+                                                                      )
+                                                            }
+                                                            <div className="flex justify-end">
+                                                                      <p className="bg-secondary text-secondary-foreground rounded-md">
+                                                                                <ModeToggle />
+                                                                      </p>
+                                                            </div>
+                                                  </div>
                                         </div>
                               </div>
                               <div>
