@@ -1,14 +1,12 @@
 "use client"
 
-import BaseLayout from "@/app/(routes)/(shared)/(home)/base-layout";
 import Header from "./header";
 import Order from "./order";
 
-export default function HomePage({ token }: { token: string }) {
+export default function HomePage() {
           return (
-                    <BaseLayout>
-                              <Header />
+                    <Header>
                               <Order />
-                    </BaseLayout>
+                    </Header>
           )
 }

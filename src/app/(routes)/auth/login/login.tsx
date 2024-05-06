@@ -5,7 +5,7 @@ import { notifyError, notifySuccess } from "@/components/toast"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { IMAGES } from "@/constant"
+import { Images } from "@/constant"
 import { AiOutlineLogin, FaRegEye, FaRegEyeSlash, Hi2Icons } from "@/constant/icons"
 import { login } from "@/lib/action"
 import { loginSchema } from "@/lib/schema"
@@ -164,7 +164,7 @@ export default function Login() {
                               </div>
                               <div className="hidden bg-muted lg:block">
                                         <Image
-                                                  src={IMAGES.Login}
+                                                  src={Images.Login}
                                                   alt="Image"
                                                   width="1920"
                                                   height="1080"

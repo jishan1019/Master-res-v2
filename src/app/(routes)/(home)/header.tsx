@@ -1,15 +1,16 @@
 "use client"
 
+import BaseLayout from "@/app/(routes)/(shared)/(home)/base-layout";
 import RestaurantOpenTimes from "@/components/restaurant-open-times";
 import { Button } from "@/components/ui/button";
 import { Config } from "@/config";
-import { IMAGES } from "@/constant";
+import { Images } from "@/constant";
 import { AiOutlineClose, BiLogIn, BiLogOut, CiPhone, Fa6Icons, IoMdShare, MdMenu, MdSpaceDashboard } from "@/constant/icons";
 import { useAppSelector } from "@/redux/hooks";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 
 const isRestaurantOpen = true;
 const discount = {
@@ -36,7 +37,7 @@ const navLinks = [
           },
 ];
 
-export default function Header() {
+export default function Header({ children }: { children: ReactNode }) {
           const token = useAppSelector((state) => state.auth.token);
 
           const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
@@ -48,7 +49,7 @@ export default function Header() {
           };
 
           return (
-                    <>
+                    <BaseLayout>
                               <div className="bg-secondary pt-6 border-r border-l">
                                         <div className="flex items-center md:items-start justify-between gap-4 px-4">
                                                   <div>
@@ -121,7 +122,7 @@ export default function Header() {
                               </div>
                               <div className="w-full h-full">
                                         <Image
-                                                  src={IMAGES.Banner}
+                                                  src={Images.Banner}
                                                   alt="Banner"
                                                   width={4608}
                                                   height={2592}
@@ -170,6 +171,9 @@ export default function Header() {
                                                   }
                                         </div>
                               </div>
-                    </>
+                              <div>
+                                        {children}
+                              </div>
+                    </BaseLayout>
           )
 }
