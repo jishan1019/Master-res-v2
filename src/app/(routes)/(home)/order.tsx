@@ -10,7 +10,7 @@ export default function Order() {
                               <h3 className="text-lg">Welcome to</h3>
                               <h1 className="text-4xl font-bold text-primary">{Config.title}</h1>
                               <p className="text-lg">Please Select</p>
-                              <div className="flex flex-col sm:flex-row justify-center items-center gap-4 sm:gap-6">
+                              <div className="flex justify-center items-center gap-4 sm:gap-6">
                                         <Link href="/menu" className={buttonVariants({ size: "sm" })}>
                                                   Order Online
                                         </Link>

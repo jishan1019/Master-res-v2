@@ -17,13 +17,13 @@ export const keywords = ["Golden Bengal", "Indian cuisine", "fine dining", "Your
 export const userAvatar = "https://as1.ftcdn.net/v2/jpg/03/39/45/96/1000_F_339459697_XAFacNQmwnvJRqe1Fe9VOptPWMUxlZP8.jpg";
 
 export const openTimes = [
-  { day: "Monday", open: "5:00 PM", close: "11:00 PM" },
-  { day: "Tuesday", open: "5:00 PM", close: "11:00 PM" },
-  { day: "Wednesday", open: "5:00 PM", close: "11:00 PM" },
-  { day: "Thursday", open: "5:00 PM", close: "11:00 PM" },
-  { day: "Friday", open: "5:00 PM", close: "11:00 PM" },
-  { day: "Saturday", open: "5:00 PM", close: "11:00 PM" },
-  { day: "Sunday", open: "5:00 PM", close: "11:00 PM" },
+  { day: "Monday", open: "5", close: "11", amPm: "PM" },
+  { day: "Tuesday", open: "5", close: "11", amPm: "PM" },
+  { day: "Wednesday", open: "5", close: "11", amPm: "PM" },
+  { day: "Thursday", open: "5", close: "11", amPm: "PM" },
+  { day: "Friday", open: "5", close: "11", amPm: "PM" },
+  { day: "Saturday", open: "5", close: "11", amPm: "PM" },
+  { day: "Sunday", open: "5", close: "11", amPm: "PM" },
 ];
 
 export const currency = "£";
