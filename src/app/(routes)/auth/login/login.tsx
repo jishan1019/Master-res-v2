@@ -1,11 +1,11 @@
 "use client"
 
-import LoginImg from "@/assets/img/login.jpg"
 import FormSubmit from "@/components/form-submit"
 import { notifyError, notifySuccess } from "@/components/toast"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { IMAGES } from "@/constant"
 import { AiOutlineLogin, FaRegEye, FaRegEyeSlash, Hi2Icons } from "@/constant/icons"
 import { login } from "@/lib/action"
 import { loginSchema } from "@/lib/schema"
@@ -164,7 +164,7 @@ export default function Login() {
                               </div>
                               <div className="hidden bg-muted lg:block">
                                         <Image
-                                                  src={LoginImg}
+                                                  src={IMAGES.Login}
                                                   alt="Image"
                                                   width="1920"
                                                   height="1080"
