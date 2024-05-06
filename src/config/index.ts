@@ -1,5 +1,5 @@
 import { baseUrl, nodeEnv, storeEncryptKey } from '@/config/dotenv-config';
-import { cookieName, description, fullTitle, keywords, logo, logoWhite, mdfLogo, mdfLogoWhite, openTimes, tagLine, title, userAvatar } from '@/config/site-config';
+import { cookieName, currency, description, fullTitle, keywords, logo, logoWhite, mdfLogo, mdfLogoWhite, openTimes, tagLine, title, userAvatar } from '@/config/site-config';
 
 export const Config = {
   nodeEnv,
@@ -17,4 +17,5 @@ export const Config = {
   storeEncryptKey,
   userAvatar,
   openTimes,
+  currency,
 };

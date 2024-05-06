@@ -25,3 +25,5 @@ export const openTimes = [
   { day: "Saturday", open: "5:00 PM", close: "11:00 PM" },
   { day: "Sunday", open: "5:00 PM", close: "11:00 PM" },
 ];
+
+export const currency = "£";
