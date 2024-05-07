@@ -1,6 +1,6 @@
 "use client"
 
-import { notifyError, notifySuccess } from "@/components/toast"
+import { notifyError } from "@/components/toast"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
@@ -44,7 +44,6 @@ export default function PostCodeCheck({ onClickDeliveryType, orderType, delivery
 
                                         if (postCode) {
                                                   setIsError(false);
-                                                  notifySuccess("Success", "Delivery available in your area. Redirecting to menu...", "top-center");
                                                   router.push(`/menu?order-type=${orderType}&delivery-type=${deliveryType}`);
                                         } else {
                                                   setIsError(true);
