@@ -66,7 +66,7 @@ export default function PostCodeCheck({ onClickDeliveryType, orderType, delivery
                                                                                                     <Input
                                                                                                               type="text"
                                                                                                               placeholder="Enter your post code"
-                                                                                                              className="w-full bg-transparent h-12"
+                                                                                                              className="w-full bg-transparent h-12 border border-black/30 dark:border-primary-foreground focus-visible:ring-0 focus-visible:outline-none"
                                                                                                               {...field}
                                                                                                     />
                                                                                                     <button type="submit" className="absolute top-1/2 right-3 transform -translate-y-1/2 select-none sm:cursor-pointer">
