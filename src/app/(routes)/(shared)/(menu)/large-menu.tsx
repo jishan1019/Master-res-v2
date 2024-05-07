@@ -7,6 +7,7 @@ import {
   useGetAllMenuQuery,
 } from "@/redux/features/menu/menuApi";
 import { TCategory } from "@/types";
+import { TGroupedItems, TItem } from "@/types/menu.type";
 import { useEffect, useState } from "react";
 
 export default function LargeMenu() {
@@ -23,6 +24,23 @@ export default function LargeMenu() {
       setActiveCategoryId(allCategories?.data?.[0]?._id);
     }
   }, [allCategories?.data, categoryLoading]);
+
+  const groupedItems: TGroupedItems = allMenus?.data?.items?.reduce(
+    (acc: TGroupedItems, item: TItem) => {
+      const categoryName = item?.category?.name;
+
+      if (categoryName) {
+        if (!acc[categoryName]) {
+          acc[categoryName] = [];
+        }
+        acc[categoryName].push(item);
+      }
+      return acc;
+    },
+    {}
+  );
+
+  const role: string = "user";
 
   if (categoryLoading || menuLoading) {
     return <Loading />;
@@ -55,24 +73,40 @@ export default function LargeMenu() {
           </h3>
 
           <div className=" mt-4 p-2">
-            <h3 className="border-b-2 px-2 border-destructive font-bold text-xl text-destructive">
-              Starters
-            </h3>
+            {Object.entries(groupedItems).map(([categoryName, items]) => (
+              <div key={categoryName}>
+                <h3 className="border-b-2 px-2 mt-4 border-destructive font-bold text-xl text-destructive">
+                  {categoryName}
+                </h3>
 
-            <div className="border-b-2 border-destructive/30 mt-3 pb-3 px-2">
-              <h5 className="font-bold text-[15px]">Chicken Tikka</h5>
-              <p className="text-xs font-semibold">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                Repudiandae, dicta?
-              </p>
+                {items?.map((item) => (
+                  <div
+                    key={item?._id}
+                    className="border-b-2 border-destructive/30 mt-3 pb-3 px-2"
+                  >
+                    <h5 className="font-bold text-[15px]">{item?.itemName}</h5>
 
-              <div className="flex justify-end items-center space-x-4">
-                <p className="font-semibold">{Config.currency}4.20</p>
-                <Button className="bg-destructive" size="sm">
-                  <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
-                </Button>
+                    <p className="text-xs font-semibold">
+                      {item?.description?.isItemDesAvailable
+                        ? item?.description?.itemDescription
+                        : ""}
+                    </p>
+
+                    <div className="flex justify-end items-center space-x-4">
+                      <p className="font-semibold">
+                        {Config.currency}
+                        {role === "user"
+                          ? item?.prices?.[0]?.priceOnline
+                          : item?.prices?.[0]?.priceTakeaway}
+                      </p>
+                      <Button className="bg-destructive" size="sm">
+                        <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
+                      </Button>
+                    </div>
+                  </div>
+                ))}
               </div>
-            </div>
+            ))}
           </div>
         </div>
 
