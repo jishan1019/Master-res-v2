@@ -1,11 +1,13 @@
 "use client"
 
-import { notifyError } from "@/components/toast"
+import { notifyError, notifySuccess } from "@/components/toast"
 import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { SlMagnifier } from "@/constant"
 import { postCodeCheckSchema } from "@/lib/schema"
+import { useGetAllPostCodesQuery } from "@/redux/features/post-code/postCodeApi"
+import { TPostCode } from "@/types"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -19,6 +21,9 @@ interface PostCodeCheckProps {
 }
 
 export default function PostCodeCheck({ onClickDeliveryType, orderType, deliveryType }: PostCodeCheckProps) {
+          const { data, isLoading } = useGetAllPostCodesQuery(undefined);
+          const postCodes = data?.data as TPostCode[];
+
           const [isError, setIsError] = useState<boolean>(false);
 
           const router = useRouter();
@@ -34,15 +39,16 @@ export default function PostCodeCheck({ onClickDeliveryType, orderType, delivery
                     const { code } = values;
 
                     try {
-                              if (code === "RH8 0AX") {
-                                        setIsError(false);
-                                        router.push(`/menu?order-type=${orderType}&delivery-type=${deliveryType}`);
-                              } else {
-                                        setIsError(true);
+                              if (postCodes?.length > 0) {
+                                        const postCode = postCodes.find((p) => p?.postCode?.toLowerCase() === code?.slice(0, 5).toLowerCase());
 
-                                        setTimeout(() => {
+                                        if (postCode) {
                                                   setIsError(false);
-                                        }, 5000);
+                                                  notifySuccess("Success", "Delivery available in your area. Redirecting to menu...", "top-center");
+                                                  router.push(`/menu?order-type=${orderType}&delivery-type=${deliveryType}`);
+                                        } else {
+                                                  setIsError(true);
+                                        }
                               }
                     } catch (error: any) {
                               notifyError("Error", "Sorry, this is not our delivery area. Alternative is to collect.", "bottom-left");
@@ -69,7 +75,7 @@ export default function PostCodeCheck({ onClickDeliveryType, orderType, delivery
                                                                                                               className="w-full bg-transparent h-12 border border-black/30 dark:border-primary-foreground focus-visible:ring-0 focus-visible:outline-none"
                                                                                                               {...field}
                                                                                                     />
-                                                                                                    <button type="submit" className="absolute top-1/2 right-3 transform -translate-y-1/2 select-none sm:cursor-pointer">
+                                                                                                    <button type="submit" disabled={isLoading} className="absolute top-1/2 right-3 transform -translate-y-1/2 select-none sm:cursor-pointer">
                                                                                                               <SlMagnifier size={20} />
                                                                                                     </button>
                                                                                           </div>
@@ -81,7 +87,7 @@ export default function PostCodeCheck({ onClickDeliveryType, orderType, delivery
                               </Form>
                               {isError && (
                                         <div className="space-y-2 pt-4">
-                                                  <p className="text-primary font-semibold text-sm mt-2">Sorry, this is not our delivery area. Alternative is to collect.</p>
+                                                  <p className="text-primary font-semibold text-sm mt-2 px-4 sm:px-0">Sorry, this is not our delivery area. Alternative is to collect.</p>
                                                   <Button size="sm" onClick={() => onClickDeliveryType("collection")}>
                                                             Collection
                                                   </Button>

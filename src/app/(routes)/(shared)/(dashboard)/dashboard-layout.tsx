@@ -70,7 +70,6 @@ export default function DashboardLayout({ role, children }: { role: string, chil
                                                   </div>
                                                   <div className="flex items-center gap-2">
                                                             <UserDropdown contentClassName='mr-2 sm:mr-5' />
-
                                                   </div>
                                         </header>
                                         <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">

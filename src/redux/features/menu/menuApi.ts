@@ -4,12 +4,12 @@ const menuApi = baseApi
           .injectEndpoints({
                     endpoints: (builder) => ({
                               getAllMenu: builder.query({
-                                        query: () => "menus/all",
+                                        query: () => "/menus/all",
                                         providesTags: ["Menu"],
                               }),
 
                               getSingleMenuByCategoryId: builder.query({
-                                        query: (query) => `menus/all?${query}`,
+                                        query: (query) => `/menus/all?${query}`,
                                         providesTags: ["Menu"],
                               }),
 

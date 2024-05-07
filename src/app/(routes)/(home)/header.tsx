@@ -101,7 +101,7 @@ export default function Header({ children }: { children: ReactNode }) {
                                                   </div>
                                         </div>
                               </div>
-                              <div className="bg-red-700 md:flex items-center gap-2 hidden px-3">
+                              <div className="bg-red-700 dark:bg-red-800 md:flex items-center gap-2 hidden px-3">
                                         {navLinks.map((link, index) => (
                                                   <Link
                                                             key={index}
@@ -120,15 +120,19 @@ export default function Header({ children }: { children: ReactNode }) {
                                                   {Config.discount.description}
                                         </p>
                               </div>
-                              <div className="w-full h-full">
-                                        <Image
-                                                  src={Images.Banner}
-                                                  alt="Banner"
-                                                  width={4608}
-                                                  height={2592}
-                                                  className="w-full h-full sm:h-[300px] md:h-[350px] lg:h-[400px] object-cover"
-                                        />
-                              </div>
+                              {
+                                        pathname !== "/menu" && (
+                                                  <div className="w-full h-full">
+                                                            <Image
+                                                                      src={Images.Banner}
+                                                                      alt="Banner"
+                                                                      width={4608}
+                                                                      height={2592}
+                                                                      className="w-full h-full sm:h-[300px] md:h-[350px] lg:h-[400px] object-cover"
+                                                            />
+                                                  </div>
+                                        )
+                              }
                               <div className={`fixed top-0 left-0 md:hidden w-full h-full bg-background z-50 p-5 transition-all duration-300 transform ${isOpenMenu ? "translate-x-0" : "translate-x-full"}`}>
                                         <AiOutlineClose
                                                   className="text-2xl absolute top-5 right-5"
