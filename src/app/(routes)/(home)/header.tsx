@@ -12,35 +12,11 @@ import { AiOutlineClose, CiPhone, Fa6Icons, IoMdShare, MdMenu } from "@/constant
 import { logOut } from "@/lib/action";
 import { logout } from "@/redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { navLinks } from "@/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
-
-const isRestaurantOpen = true;
-const discount = {
-          title: "Mother's Day Special Offer",
-          description: `Spend ${Config.currency}15+ on food and get 30% OFF`
-}
-
-const navLinks = [
-          {
-                    name: "Home",
-                    href: "/",
-          },
-          {
-                    name: "About",
-                    href: "/about",
-          },
-          {
-                    name: "Menu",
-                    href: "/menu",
-          },
-          {
-                    name: "Services",
-                    href: "/services",
-          },
-];
 
 export default function Header({ children }: { children: ReactNode }) {
           const auth = useAppSelector((state) => state.auth);
@@ -113,21 +89,25 @@ export default function Header({ children }: { children: ReactNode }) {
                                                             </div>
                                                   </div>
                                                   <div className="w-full hidden md:block">
-                                                            <Button disabled className="disabled:opacity-100"
-                                                                      variant={isRestaurantOpen ? "green" : "default"}
+                                                            <Button
+                                                                      disabled
+                                                                      className="disabled:opacity-100 sm:px-10"
+                                                                      variant={Config.isRestaurantOpen ? "green" : "default"}
                                                                       size="sm"
                                                             >
-                                                                      Now {isRestaurantOpen ? "Open" : "Closed"}
+                                                                      Now {Config.isRestaurantOpen ? "Open" : "Closed"}
                                                             </Button>
                                                   </div>
                                                   <RestaurantOpenTimes className="hidden md:flex" />
                                                   <div className="flex items-center justify-between md:hidden">
                                                             <div className="w-full">
-                                                                      <Button disabled className="disabled:opacity-100"
-                                                                                variant={isRestaurantOpen ? "green" : "default"}
+                                                                      <Button
+                                                                                disabled
+                                                                                className="disabled:opacity-100 sm:px-10"
+                                                                                variant={Config.isRestaurantOpen ? "green" : "default"}
                                                                                 size="sm"
                                                                       >
-                                                                                Now {isRestaurantOpen ? "Open" : "Closed"}
+                                                                                Now {Config.isRestaurantOpen ? "Open" : "Closed"}
                                                                       </Button>
                                                             </div>
                                                             <div className="w-full flex justify-end">
@@ -149,10 +129,10 @@ export default function Header({ children }: { children: ReactNode }) {
                               </div>
                               <div className="bg-gray-800 py-2 sm:py-4 flex flex-col md:flex-row items-center justify-center gap-1 px-3 md:px-0 text-primary-foreground">
                                         <h1 className="text-lg md:text-2xl font-semibold">
-                                                  {discount.title}
+                                                  {Config.discount.title}
                                         </h1>
                                         <p className="text-xs md:text-sm">
-                                                  {discount.description}
+                                                  {Config.discount.description}
                                         </p>
                               </div>
                               <div className="w-full h-full">

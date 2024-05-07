@@ -27,3 +27,9 @@ export const openTimes = [
 ];
 
 export const currency = "£";
+
+export const isRestaurantOpen = false;
+export const discount = {
+  title: "Mother's Day Special Offer",
+  description: `Spend ${currency}15+ on food and get 30% OFF`
+}

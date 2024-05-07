@@ -1,6 +1,6 @@
 import { BiDish, BiSolidDiscount, Fa6Icons, FaUsers, GoGear, LuUser2, MdOutlineRateReview, MdOutlineRestaurantMenu, MdOutlineTableRestaurant, RiHome6Line, TbReportAnalytics } from "@/constant";
 
-export const navLinks = [
+export const dashboardNavLinks = [
           {
                     href: "/dashboard",
                     icon: <RiHome6Line size={20} />,
@@ -80,5 +80,24 @@ export const navLinks = [
                     icon: <MdOutlineTableRestaurant size={20} />,
                     label: "Book Table",
                     roles: ["user"],
+          },
+];
+
+export const navLinks = [
+          {
+                    name: "Home",
+                    href: "/",
+          },
+          {
+                    name: "About",
+                    href: "/about",
+          },
+          {
+                    name: "Menu",
+                    href: "/menu",
+          },
+          {
+                    name: "Services",
+                    href: "/services",
           },
 ];

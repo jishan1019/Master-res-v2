@@ -1,7 +1,7 @@
 "use client"
 
 import { SheetClose } from "@/components/ui/sheet"
-import { navLinks } from "@/utils"
+import { dashboardNavLinks } from "@/utils"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
@@ -16,7 +16,7 @@ export default function SidebarNav({ role, mobile }: SidebarNavProps) {
           if (mobile) {
                     return (
                               <>
-                                        {navLinks.map((link, i) => (
+                                        {dashboardNavLinks.map((link, i) => (
                                                   <SheetClose
                                                             key={i} asChild>
                                                             <Link
@@ -37,7 +37,7 @@ export default function SidebarNav({ role, mobile }: SidebarNavProps) {
 
           return (
                     <>
-                              {navLinks.map((link, i) => (
+                              {dashboardNavLinks.map((link, i) => (
                                         <Link
                                                   key={i}
                                                   href={link.href}
