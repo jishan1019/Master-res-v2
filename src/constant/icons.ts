@@ -14,6 +14,7 @@ export * from "react-icons/md";
 export * from "react-icons/pi";
 export * from "react-icons/ri";
 export * from "react-icons/si";
+export * from "react-icons/sl";
 export * from "react-icons/tb";
 export * from "react-icons/ti";
 

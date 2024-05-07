@@ -46,7 +46,7 @@ export default function Header({ children }: { children: ReactNode }) {
                     <BaseLayout>
                               <div className="bg-secondary pt-3 sm:pt-6 border-r border-l">
                                         <div className="flex items-center md:items-start justify-between gap-4 px-4">
-                                                  <Link href={pathname === "/" ? "#" : "/"} className="text-primary text-2xl md:text-3xl font-bold">
+                                                  <Link href="/" className="text-primary text-2xl md:text-3xl font-bold">
                                                             {Config.title}
                                                   </Link>
                                                   <div className="md:hidden flex items-center gap-4">
@@ -88,7 +88,7 @@ export default function Header({ children }: { children: ReactNode }) {
                                                                       </p>
                                                             </div>
                                                   </div>
-                                                  <div className="w-full hidden md:block">
+                                                  <div className="flex items-center justify-between sm:justify-end sm:gap-4 w-full">
                                                             <Button
                                                                       disabled
                                                                       className="disabled:opacity-100 sm:px-10"
@@ -97,22 +97,7 @@ export default function Header({ children }: { children: ReactNode }) {
                                                             >
                                                                       Now {Config.isRestaurantOpen ? "Open" : "Closed"}
                                                             </Button>
-                                                  </div>
-                                                  <RestaurantOpenTimes className="hidden md:flex" />
-                                                  <div className="flex items-center justify-between md:hidden">
-                                                            <div className="w-full">
-                                                                      <Button
-                                                                                disabled
-                                                                                className="disabled:opacity-100 sm:px-10"
-                                                                                variant={Config.isRestaurantOpen ? "green" : "default"}
-                                                                                size="sm"
-                                                                      >
-                                                                                Now {Config.isRestaurantOpen ? "Open" : "Closed"}
-                                                                      </Button>
-                                                            </div>
-                                                            <div className="w-full flex justify-end">
-                                                                      <RestaurantOpenTimes />
-                                                            </div>
+                                                            <RestaurantOpenTimes />
                                                   </div>
                                         </div>
                               </div>
@@ -150,7 +135,7 @@ export default function Header({ children }: { children: ReactNode }) {
                                                   onClick={toggleMenu}
                                         />
                                         <div>
-                                                  <Link href={pathname === "/" ? "#" : "/"} className="text-primary text-2xl md:text-3xl font-bold"
+                                                  <Link href="/" className="text-primary text-2xl md:text-3xl font-bold"
                                                             onClick={toggleMenu}
                                                   >
                                                             {Config.title}

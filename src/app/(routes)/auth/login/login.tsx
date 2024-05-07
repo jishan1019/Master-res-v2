@@ -133,7 +133,7 @@ export default function Login() {
                                                                                                                                   {...field}
                                                                                                                         />
                                                                                                                         <div
-                                                                                                                                  className="eye absolute right-3 top-2.5 sm:cursor-pointer z-10 select-none"
+                                                                                                                                  className="z-10 absolute top-1/2 right-3 transform -translate-y-1/2 select-none sm:cursor-pointer"
                                                                                                                                   onClick={() => setIsShow((state) => !state)}
                                                                                                                         >
                                                                                                                                   {isShow ? <FaRegEye size={20} className='text-black dark:text-white' /> : <FaRegEyeSlash size={20} className='text-black dark:text-white' />}
