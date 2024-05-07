@@ -1,12 +1,20 @@
-"use client";
-
-import { useGetAllCategoriesQuery } from "@/redux/features/menu/menuApi";
+import Loading from "@/components/loading";
+import { Button } from "@/components/ui/button";
+import { Config } from "@/config";
+import { Fa6Icons } from "@/constant";
+import {
+  useGetAllCategoriesQuery,
+  useGetAllMenuQuery,
+} from "@/redux/features/menu/menuApi";
 import { TCategory } from "@/types";
 import { useEffect, useState } from "react";
 
 export default function LargeMenu() {
-  const { data: allCategories, isLoading } =
+  const { data: allCategories, isLoading: categoryLoading } =
     useGetAllCategoriesQuery(undefined);
+
+  const { data: allMenus, isLoading: menuLoading } =
+    useGetAllMenuQuery(undefined);
 
   const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
 
@@ -14,10 +22,10 @@ export default function LargeMenu() {
     if (allCategories?.data && allCategories?.data?.length > 0) {
       setActiveCategoryId(allCategories?.data?.[0]?._id);
     }
-  }, [allCategories?.data]);
+  }, [allCategories?.data, categoryLoading]);
 
-  if (isLoading) {
-    return <div>Loading...</div>;
+  if (categoryLoading || menuLoading) {
+    return <Loading />;
   }
 
   return (
@@ -46,11 +54,25 @@ export default function LargeMenu() {
             Menu
           </h3>
 
-          <div className="border mt-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque
-            eos, corporis quos itaque architecto repellat hic accusamus? In qui
-            mollitia iusto eos facere! Quis earum deleniti harum nisi, aliquid
-            expedita.
+          <div className=" mt-4 p-2">
+            <h3 className="border-b-2 px-2 border-destructive font-bold text-xl text-destructive">
+              Starters
+            </h3>
+
+            <div className="border-b-2 border-destructive/30 mt-3 pb-3 px-2">
+              <h5 className="font-bold text-[15px]">Chicken Tikka</h5>
+              <p className="text-xs font-semibold">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                Repudiandae, dicta?
+              </p>
+
+              <div className="flex justify-end items-center space-x-4">
+                <p className="font-semibold">{Config.currency}4.20</p>
+                <Button className="bg-destructive" size="sm">
+                  <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
 

@@ -1,3 +1,5 @@
+"use client";
+
 import LargeMenu from "../(shared)/(menu)/large-menu";
 
 export default function Menu() {
