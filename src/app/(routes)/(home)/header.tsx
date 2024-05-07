@@ -68,9 +68,9 @@ export default function Header({ children }: { children: ReactNode }) {
 
           return (
                     <BaseLayout>
-                              <div className="bg-secondary pt-6 border-r border-l">
+                              <div className="bg-secondary pt-3 sm:pt-6 border-r border-l">
                                         <div className="flex items-center md:items-start justify-between gap-4 px-4">
-                                                  <Link href={pathname === "/" ? "#" : "/"} className="text-primary text-xl md:text-2xl font-bold">
+                                                  <Link href={pathname === "/" ? "#" : "/"} className="text-primary text-2xl md:text-3xl font-bold">
                                                             {Config.title}
                                                   </Link>
                                                   <div className="md:hidden flex items-center gap-4">
@@ -130,7 +130,9 @@ export default function Header({ children }: { children: ReactNode }) {
                                                                                 Now {isRestaurantOpen ? "Open" : "Closed"}
                                                                       </Button>
                                                             </div>
-                                                            <RestaurantOpenTimes />
+                                                            <div className="w-full flex justify-end">
+                                                                      <RestaurantOpenTimes />
+                                                            </div>
                                                   </div>
                                         </div>
                               </div>
@@ -139,14 +141,14 @@ export default function Header({ children }: { children: ReactNode }) {
                                                   <Link
                                                             key={index}
                                                             href={link.href}
-                                                            className={`font-medium text-primary-foreground md:hover:bg-primary duration-300 px-2 py-2.5 ${pathname === link.href ? "bg-primary underline decoration-primary" : ""}`}
+                                                            className={`font-medium text-primary-foreground md:hover:bg-primary duration-300 px-2 py-2.5 ${pathname === link.href ? "bg-primary" : ""}`}
                                                   >
                                                             {link.name}
                                                   </Link>
                                         ))}
                               </div>
-                              <div className="bg-gray-800 py-3 sm:py-4 flex flex-col md:flex-row items-center justify-center gap-2 px-3 md:px-0 text-primary-foreground">
-                                        <h1 className="text-xl md:text-2xl font-semibold">
+                              <div className="bg-gray-800 py-2 sm:py-4 flex flex-col md:flex-row items-center justify-center gap-1 px-3 md:px-0 text-primary-foreground">
+                                        <h1 className="text-lg md:text-2xl font-semibold">
                                                   {discount.title}
                                         </h1>
                                         <p className="text-xs md:text-sm">
@@ -159,7 +161,7 @@ export default function Header({ children }: { children: ReactNode }) {
                                                   alt="Banner"
                                                   width={4608}
                                                   height={2592}
-                                                  className="w-full h-full sm:h-[400px] md:h-[450px] lg:h-[500px] object-cover"
+                                                  className="w-full h-full sm:h-[300px] md:h-[350px] lg:h-[400px] object-cover"
                                         />
                               </div>
                               <div className={`fixed top-0 left-0 md:hidden w-full h-full bg-background z-50 p-5 transition-all duration-300 transform ${isOpenMenu ? "translate-x-0" : "translate-x-full"}`}>
@@ -168,7 +170,7 @@ export default function Header({ children }: { children: ReactNode }) {
                                                   onClick={toggleMenu}
                                         />
                                         <div>
-                                                  <Link href={pathname === "/" ? "#" : "/"} className="text-primary text-xl md:text-2xl font-bold"
+                                                  <Link href={pathname === "/" ? "#" : "/"} className="text-primary text-2xl md:text-3xl font-bold"
                                                             onClick={toggleMenu}
                                                   >
                                                             {Config.title}

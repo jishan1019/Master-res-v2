@@ -10,7 +10,7 @@ type BaseLayoutProps = {
 
 export default function BaseLayout({ children, className }: BaseLayoutProps) {
           return (
-                    <div className={cn("max-w-[1600px] mx-auto", className)}>
+                    <div className={cn("max-w-7xl mx-auto", className)}>
                               {children}
                     </div>
           )
