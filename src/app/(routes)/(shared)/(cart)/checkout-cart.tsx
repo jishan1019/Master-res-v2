@@ -20,7 +20,6 @@ export default function CheckoutCart() {
               12
             </p>
           </div>
-
           <p>{Config.currency}23.5</p>
         </div>
         <div className="bg-destructive text-primary-foreground py-2 inline-flex justify-around items-center">
@@ -56,7 +55,6 @@ export default function CheckoutCart() {
           </label>
         </div>
       </section>
-
       <p className="text-sm font-semibold text-destructive dark:text-primary text-center bg-secondary mt-1 py-1">
         ALLERGY: Contact Restaurant
       </p>
