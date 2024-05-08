@@ -21,11 +21,7 @@ export default function LargeMenu() {
   const { data: allCategories, isLoading: categoryLoading } =
     useGetAllCategoriesQuery(undefined);
 
-  const {
-    data: singleMenu,
-    isLoading: menuLoading,
-    isFetching,
-  } = useGetSingleMenuByCategoryIdQuery(
+  const { data: singleMenu, isFetching } = useGetSingleMenuByCategoryIdQuery(
     `sort=-createdAt&skipLimit=YES&category=${activeCategory?._id}`,
     {
       skip: !activeCategory?._id,
@@ -36,9 +32,9 @@ export default function LargeMenu() {
     if (allCategories?.data && allCategories?.data?.length > 0) {
       setActiveCategory(allCategories?.data?.[0]);
     }
-  }, [allCategories?.data, categoryLoading, menuLoading]);
+  }, [allCategories?.data]);
 
-  if (categoryLoading || menuLoading) {
+  if (categoryLoading) {
     return <Loading className="h-[80vh]" />;
   }
 
@@ -49,10 +45,10 @@ export default function LargeMenu() {
           <ul className="bg-secondary p-4 rounded-md border-2 space-y-2">
             {allCategories?.data?.map((category: TCategory) => (
               <li
-                className={`cursor-pointer ${
+                className={`cursor-pointer font-medium duration-300 ${
                   category?._id === activeCategory?._id
-                    ? "font-bold text-destructive dark:text-primary"
-                    : ""
+                    ? "text-destructive dark:text-primary"
+                    : "sm:hover:text-destructive dark:sm:hover:text-primary"
                 }`}
                 key={category?._id}
                 onClick={() => setActiveCategory(category)}
@@ -62,10 +58,12 @@ export default function LargeMenu() {
             ))}
           </ul>
         </div>
+
         <div className="col-span-6">
           <h3 className="font-bold text-3xl text-destructive dark:text-primary text-center">
             Menu
           </h3>
+
           {isFetching ? (
             <Loading className="h-[60vh]" />
           ) : (
@@ -73,11 +71,13 @@ export default function LargeMenu() {
               <h3 className="px-2 mt-4 font-bold text-xl text-destructive dark:text-primary">
                 {activeCategory?.name}
               </h3>
+
               <p className="border-b-2 border-primary/25 px-2 text-xs font-semibold py-1 ">
                 {activeCategory?.isCategoryDesAvailable
                   ? activeCategory.categoryDes
                   : ""}
               </p>
+
               {singleMenu?.data?.items?.map((item: TItem) => (
                 <div key={item?._id} className="border-b mt-3 pb-3 px-2">
                   <h5 className="font-bold text-[15px]">{item?.itemName}</h5>
@@ -86,6 +86,7 @@ export default function LargeMenu() {
                       ? item?.description?.itemDescription
                       : ""}
                   </p>
+
                   <div className="flex justify-end items-center space-x-4">
                     <p className="font-semibold">
                       {Config.currency}
@@ -93,6 +94,7 @@ export default function LargeMenu() {
                         ? item?.prices?.[0]?.priceTakeaway
                         : item?.prices?.[0]?.priceOnline}
                     </p>
+
                     <Button
                       className="bg-destructive dark:bg-primary"
                       size="sm"

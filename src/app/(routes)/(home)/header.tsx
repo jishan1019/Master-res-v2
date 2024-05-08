@@ -108,19 +108,19 @@ export default function Header({ children }: { children: ReactNode }) {
                               {
                                         !hiddenDiscountPages.includes(pathname) && (
                                                   <>
-                                                            <div className="bg-red-700 dark:bg-red-800 md:flex items-center gap-2 hidden px-3">
+                                                            <div className="bg-primary md:flex items-center gap-2 hidden px-3">
                                                                       {navLinks.map((link, index) => (
                                                                                 <Link
                                                                                           key={index}
                                                                                           href={link.href}
-                                                                                          className={`font-medium text-primary-foreground md:hover:bg-primary duration-300 px-2 py-2.5 ${pathname === link.href ? "bg-primary" : ""}`}
+                                                                                          className={`font-medium text-primary-foreground md:hover:bg-red-700 md:hover:dark:bg-red-800 duration-300 px-2 py-2.5 ${pathname === link.href ? "bg-red-700 dark:bg-red-800" : ""}`}
                                                                                 >
                                                                                           {link.name}
                                                                                 </Link>
                                                                       ))}
                                                                       {pathname === "/" && (
                                                                                 <button
-                                                                                          className={`font-medium text-primary-foreground md:hover:bg-primary duration-300 px-2 py-2.5 bg-primary`}
+                                                                                          className="font-medium text-primary-foreground px-2 py-2.5 bg-red-700 dark:bg-red-800"
                                                                                           onClick={() => typeof window !== "undefined" && window.scrollTo({ top: window.innerHeight / 2, behavior: "smooth" })}
                                                                                 >
                                                                                           Order Now
