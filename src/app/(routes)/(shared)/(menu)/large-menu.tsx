@@ -25,7 +25,7 @@ export default function LargeMenu() {
     useGetSingleMenuByCategoryIdQuery(
       `sort=-createdAt&skipLimit=YES&category=${activeCategory?._id}`,
       {
-        skip: !activeCategory,
+        skip: !activeCategory?._id,
       }
     );
 
