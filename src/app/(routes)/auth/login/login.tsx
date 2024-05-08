@@ -1,12 +1,10 @@
 "use client"
 
-import FormSubmit from "@/components/form-submit"
 import { notifyError, notifySuccess } from "@/components/toast"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
-import { Images } from "@/constant"
-import { AiOutlineLogin, FaRegEye, FaRegEyeSlash, Hi2Icons } from "@/constant/icons"
+import { FaRegEye, FaRegEyeSlash, Hi2Icons } from "@/constant/icons"
 import { login } from "@/lib/action"
 import { loginSchema } from "@/lib/schema"
 import { useLoginUserMutation } from "@/redux/features/auth/authApi"
@@ -15,7 +13,6 @@ import { useAppDispatch } from "@/redux/hooks"
 import { TTokenUser } from "@/types"
 import { decodeToken } from "@/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
-import Image from "next/image"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
@@ -78,98 +75,77 @@ export default function Login() {
           }
 
           return (
-                    <div className="w-full lg:grid lg:grid-cols-2 min-h-screen">
-                              <div className="flex items-center justify-center min-h-screen">
-                                        <div className="sm:mx-auto grid w-full max-w-md gap-6 mx-4">
-                                                  <div className="grid gap-2 text-center">
-                                                            <h1 className="text-2xl sm:text-3xl font-bold uppercase">Login</h1>
-                                                            <p className="text-balance text-muted-foreground">
-                                                                      Enter your email below to login to your account
-                                                            </p>
-                                                  </div>
-                                                  <Form {...form}>
-                                                            <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4">
-                                                                      <FormField
-                                                                                control={form.control}
-                                                                                name="email"
-                                                                                render={({ field }) => (
-                                                                                          <FormItem>
+                    <div className="flex items-center justify-center mt-0 mb-5 sm:my-10">
+                              <div className="sm:mx-auto grid w-full max-w-md gap-6 bg-secondary">
+                                        <div className="bg-mdf text-primary-foreground py-3 text-center">
+                                                  <h1 className="text-lg sm:text-xl font-bold">Sign Up/Sign In</h1>
+                                        </div>
+                                        <p className="text-center text-sm font-semibold">
+                                                  Please Sign In or <Link href="/auth/sign-up" className="underline text-sky-500">Sign Up</Link>
+                                        </p>
+                                        <Form {...form}>
+                                                  <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4 px-5 pb-5">
+                                                            <FormField
+                                                                      control={form.control}
+                                                                      name="email"
+                                                                      render={({ field }) => (
+                                                                                <FormItem>
+                                                                                          <div className="flex items-center gap-2">
+                                                                                                    <FormLabel>Email</FormLabel> {form.formState.errors.email ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
+                                                                                          </div>
+                                                                                          <FormControl>
+                                                                                                    <Input
+                                                                                                              id="email"
+                                                                                                              type="email"
+                                                                                                              placeholder="m@example.com"
+                                                                                                              {...field}
+                                                                                                    />
+                                                                                          </FormControl>
+                                                                                </FormItem>
+                                                                      )}
+                                                            />
+                                                            <FormField
+                                                                      control={form.control}
+                                                                      name="password"
+                                                                      render={({ field }) => (
+                                                                                <FormItem>
+                                                                                          <div className="flex justify-between items-center">
                                                                                                     <div className="flex items-center gap-2">
-                                                                                                              <FormLabel>Email</FormLabel> {form.formState.errors.email ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
+                                                                                                              <FormLabel>Password</FormLabel> {form.formState.errors.password ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
                                                                                                     </div>
-                                                                                                    <FormControl>
+                                                                                                    <Link
+                                                                                                              href="/auth/forgot-password"
+                                                                                                              className="text-sm underline"
+                                                                                                    >
+                                                                                                              Forgot your password?
+                                                                                                    </Link>
+                                                                                          </div>
+                                                                                          <FormControl>
+                                                                                                    <div className="relative">
                                                                                                               <Input
-                                                                                                                        id="email"
-                                                                                                                        type="email"
-                                                                                                                        placeholder="m@example.com"
+                                                                                                                        id="password"
+                                                                                                                        type={isShow ? "text" : "password"}
+                                                                                                                        placeholder="********"
                                                                                                                         {...field}
                                                                                                               />
-                                                                                                    </FormControl>
-                                                                                          </FormItem>
-                                                                                )}
-                                                                      />
-                                                                      <FormField
-                                                                                control={form.control}
-                                                                                name="password"
-                                                                                render={({ field }) => (
-                                                                                          <FormItem>
-                                                                                                    <div className="flex justify-between items-center">
-                                                                                                              <div className="flex items-center gap-2">
-                                                                                                                        <FormLabel>Password</FormLabel> {form.formState.errors.password ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
-                                                                                                              </div>
-                                                                                                              <Link
-                                                                                                                        href="/auth/forgot-password"
-                                                                                                                        className="text-sm underline"
+                                                                                                              <div
+                                                                                                                        className="z-10 absolute top-1/2 right-3 transform -translate-y-1/2 select-none sm:cursor-pointer"
+                                                                                                                        onClick={() => setIsShow((state) => !state)}
                                                                                                               >
-                                                                                                                        Forgot your password?
-                                                                                                              </Link>
-                                                                                                    </div>
-                                                                                                    <FormControl>
-                                                                                                              <div className="relative">
-                                                                                                                        <Input
-                                                                                                                                  id="password"
-                                                                                                                                  type={isShow ? "text" : "password"}
-                                                                                                                                  placeholder="********"
-                                                                                                                                  {...field}
-                                                                                                                        />
-                                                                                                                        <div
-                                                                                                                                  className="z-10 absolute top-1/2 right-3 transform -translate-y-1/2 select-none sm:cursor-pointer"
-                                                                                                                                  onClick={() => setIsShow((state) => !state)}
-                                                                                                                        >
-                                                                                                                                  {isShow ? <FaRegEye size={20} className='text-black dark:text-white' /> : <FaRegEyeSlash size={20} className='text-black dark:text-white' />}
-                                                                                                                        </div>
+                                                                                                                        {isShow ? <FaRegEye size={20} className='text-black dark:text-white' /> : <FaRegEyeSlash size={20} className='text-black dark:text-white' />}
                                                                                                               </div>
-                                                                                                    </FormControl>
-                                                                                          </FormItem>
-                                                                                )}
-                                                                      />
-                                                                      <div className="flex justify-end items-center gap-3">
-                                                                                <Link href="/" className={buttonVariants({ className: "flex items-center gap-2", variant: "outline" })}>
-                                                                                          <Hi2Icons.HiArrowLongLeft />
-                                                                                          Go back
-                                                                                </Link>
-                                                                                <Button type="submit" disabled={form.formState.isSubmitting || isLoading}>
-                                                                                          <FormSubmit loading={form.formState.isSubmitting || isLoading} message="Login" icon={<AiOutlineLogin />} iconPosition="left" />
-                                                                                </Button>
-                                                                      </div>
-                                                            </form>
-                                                  </Form>
-                                                  <div className="mt-4 text-center text-sm">
-                                                            Don&apos;t have an account?{" "}
-                                                            <Link href="/auth/sign-up" className="underline">
-                                                                      Sign up
-                                                            </Link>
-                                                  </div>
-                                        </div>
-                              </div>
-                              <div className="hidden bg-muted lg:block">
-                                        <Image
-                                                  src={Images.Login}
-                                                  alt="Image"
-                                                  width="1920"
-                                                  height="1080"
-                                                  className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
-                                        />
+                                                                                                    </div>
+                                                                                          </FormControl>
+                                                                                </FormItem>
+                                                                      )}
+                                                            />
+                                                            <div className="flex justify-center">
+                                                                      <Button type="submit" disabled={form.formState.isSubmitting || isLoading} className="bg-mdf rounded-full" size="lg">
+                                                                                Login
+                                                                      </Button>
+                                                            </div>
+                                                  </form>
+                                        </Form>
                               </div>
                     </div>
           )

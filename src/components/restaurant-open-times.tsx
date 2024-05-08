@@ -14,7 +14,7 @@ export default function RestaurantOpenTimes({ className }: { className?: string 
 
           return (
                     <DropdownMenu>
-                              <DropdownMenuTrigger className={cn("w-fit md:w-[36%] lg:w-[26%] rounded-md h-9 border bg-secondary border-black/30 dark:border-primary-foreground focus:ring-0 focus:outline-none", className)}>
+                              <DropdownMenuTrigger className={cn("w-fit sm:w-2/5 md:w-3/5 lg:w-2/5 xl:w-1/3 rounded-md h-9 border bg-secondary border-black/30 dark:border-primary-foreground focus:ring-0 focus:outline-none", className)}>
                                         <DropdownMenuLabel className="flex justify-between items-center gap-2">
                                                   <p>{todayTime?.day.slice(0, 3)} {todayTime?.open} - {todayTime?.close}</p> <ChevronDown className="h-4 w-4 opacity-50" />
                                         </DropdownMenuLabel>

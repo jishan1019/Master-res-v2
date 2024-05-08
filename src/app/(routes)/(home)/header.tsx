@@ -18,6 +18,9 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
 
+const hiddenBannerPages = ["/menu", "/auth/login", "/auth/sign-up"];
+const hiddenDiscountPages = ["/auth/login", "/auth/sign-up"];
+
 export default function Header({ children }: { children: ReactNode }) {
           const auth = useAppSelector((state) => state.auth);
 
@@ -44,7 +47,7 @@ export default function Header({ children }: { children: ReactNode }) {
 
           return (
                     <BaseLayout>
-                              <div className="bg-secondary pt-3 sm:pt-6 border-r border-l">
+                              <div className="bg-secondary pt-3 sm:pt-6 border border-t-none">
                                         <div className="flex items-center md:items-start justify-between gap-4 px-4">
                                                   <Link href="/" className="text-primary text-2xl md:text-3xl font-bold">
                                                             {Config.title}
@@ -59,7 +62,8 @@ export default function Header({ children }: { children: ReactNode }) {
                                                             />
                                                             <MdMenu className="size-7 cursor-pointer" onClick={toggleMenu} />
                                                   </div>
-                                                  <div className="md:block hidden">
+                                                  <div className="md:flex items-center gap-2 hidden">
+                                                            <ModeToggle />
                                                             {
                                                                       token ? (
                                                                                 <div className="flex items-center gap-3">
@@ -101,27 +105,41 @@ export default function Header({ children }: { children: ReactNode }) {
                                                   </div>
                                         </div>
                               </div>
-                              <div className="bg-red-700 dark:bg-red-800 md:flex items-center gap-2 hidden px-3">
-                                        {navLinks.map((link, index) => (
-                                                  <Link
-                                                            key={index}
-                                                            href={link.href}
-                                                            className={`font-medium text-primary-foreground md:hover:bg-primary duration-300 px-2 py-2.5 ${pathname === link.href ? "bg-primary" : ""}`}
-                                                  >
-                                                            {link.name}
-                                                  </Link>
-                                        ))}
-                              </div>
-                              <div className="bg-gray-800 py-2 sm:py-4 flex flex-col md:flex-row items-center justify-center gap-1 px-3 md:px-0 text-primary-foreground">
-                                        <h1 className="text-lg md:text-2xl font-semibold">
-                                                  {Config.discount.title}
-                                        </h1>
-                                        <p className="text-xs md:text-sm">
-                                                  {Config.discount.description}
-                                        </p>
-                              </div>
                               {
-                                        pathname !== "/menu" && (
+                                        !hiddenDiscountPages.includes(pathname) && (
+                                                  <>
+                                                            <div className="bg-red-700 dark:bg-red-800 md:flex items-center gap-2 hidden px-3">
+                                                                      {navLinks.map((link, index) => (
+                                                                                <Link
+                                                                                          key={index}
+                                                                                          href={link.href}
+                                                                                          className={`font-medium text-primary-foreground md:hover:bg-primary duration-300 px-2 py-2.5 ${pathname === link.href ? "bg-primary" : ""}`}
+                                                                                >
+                                                                                          {link.name}
+                                                                                </Link>
+                                                                      ))}
+                                                                      {pathname === "/" && (
+                                                                                <button
+                                                                                          className={`font-medium text-primary-foreground md:hover:bg-primary duration-300 px-2 py-2.5 bg-primary`}
+                                                                                          onClick={() => { }}
+                                                                                >
+                                                                                          Order Now
+                                                                                </button>
+                                                                      )}
+                                                            </div>
+                                                            <div className="bg-gray-800 py-2 sm:py-4 flex flex-col md:flex-row items-center justify-center gap-1 px-3 md:px-0 text-primary-foreground">
+                                                                      <h1 className="text-lg md:text-2xl font-semibold">
+                                                                                {Config.discount.title}
+                                                                      </h1>
+                                                                      <p className="text-xs md:text-sm">
+                                                                                {Config.discount.description}
+                                                                      </p>
+                                                            </div>
+                                                  </>
+                                        )
+                              }
+                              {
+                                        !hiddenBannerPages.includes(pathname) && (
                                                   <div className="w-full h-full">
                                                             <Image
                                                                       src={Images.Banner}
