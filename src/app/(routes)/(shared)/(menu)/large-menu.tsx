@@ -47,7 +47,7 @@ export default function LargeMenu() {
             {allCategories?.data?.map((category: TCategory) => (
               <li
                 className={`cursor-pointer ${category?._id === activeCategory?._id
-                  ? "font-bold text-destructive"
+                  ? "font-bold text-destructive dark:text-primary"
                   : ""
                   }`}
                 key={category?._id}
@@ -60,14 +60,14 @@ export default function LargeMenu() {
         </div>
 
         <div className="col-span-6">
-          <h3 className="font-bold text-3xl text-destructive text-center">
+          <h3 className="font-bold text-3xl text-destructive dark:text-primary text-center">
             Menu
           </h3>
 
           {
             isFetching ? <Loading className="h-[60vh]" /> : (
               <div className="mt-4 p-2">
-                <h3 className="px-2 mt-4 font-bold text-xl text-destructive">
+                <h3 className="px-2 mt-4 font-bold text-xl text-destructive dark:text-primary">
                   {activeCategory?.name}
                 </h3>
 
@@ -94,7 +94,7 @@ export default function LargeMenu() {
                           : item?.prices?.[0]?.priceOnline}
                       </p>
 
-                      <Button className="bg-destructive" size="sm">
+                      <Button className="bg-destructive dark:bg-primary" size="sm">
                         <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
                       </Button>
                     </div>
