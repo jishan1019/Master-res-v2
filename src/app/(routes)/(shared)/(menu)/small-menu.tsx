@@ -57,6 +57,7 @@ export default function SmallMenu() {
             <AccordionContent className=" font-semibold text-xs border-b mb-2">
               {category?.isCategoryDesAvailable ? category.categoryDes : ""}
             </AccordionContent>
+
             {isFetching ? (
               <AccordionContent className="font-semibold text-xs ">
                 <Loading />
