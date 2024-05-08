@@ -46,7 +46,7 @@ export default function LargeMenu() {
   );
 
   if (categoryLoading || menuLoading) {
-    return <Loading />;
+    return <Loading className="h-[80vh]" />;
   }
 
   return (
