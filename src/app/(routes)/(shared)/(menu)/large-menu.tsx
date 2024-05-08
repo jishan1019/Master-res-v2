@@ -2,15 +2,20 @@ import Loading from "@/components/loading";
 import { Button } from "@/components/ui/button";
 import { Config } from "@/config";
 import { Fa6Icons } from "@/constant";
+import { selectUser } from "@/redux/features/auth/authSlice";
 import {
   useGetAllCategoriesQuery,
   useGetAllMenuQuery,
 } from "@/redux/features/menu/menuApi";
+import { useAppSelector } from "@/redux/hooks";
 import { TCategory } from "@/types";
 import { TGroupedItems, TItem } from "@/types/menu.type";
 import { useEffect, useState } from "react";
 
 export default function LargeMenu() {
+  const user = useAppSelector(selectUser);
+  const role = user?.role;
+
   const { data: allCategories, isLoading: categoryLoading } =
     useGetAllCategoriesQuery(undefined);
 
@@ -40,8 +45,6 @@ export default function LargeMenu() {
     {}
   );
 
-  const role: string = "user";
-
   if (categoryLoading || menuLoading) {
     return <Loading />;
   }
@@ -53,11 +56,10 @@ export default function LargeMenu() {
           <ul className="bg-secondary p-4 rounded-md border-2 space-y-2">
             {allCategories?.data?.map((category: TCategory) => (
               <li
-                className={`cursor-pointer ${
-                  category?._id === activeCategoryId
-                    ? "font-bold text-destructive"
-                    : ""
-                }`}
+                className={`cursor-pointer ${category?._id === activeCategoryId
+                  ? "font-bold text-destructive"
+                  : ""
+                  }`}
                 key={category?._id}
                 onClick={() => setActiveCategoryId(category?._id)}
               >
@@ -66,32 +68,27 @@ export default function LargeMenu() {
             ))}
           </ul>
         </div>
-
         <div className="col-span-6">
           <h3 className="font-bold text-3xl text-destructive text-center">
             Menu
           </h3>
-
           <div className=" mt-4 p-2">
             {Object.entries(groupedItems).map(([categoryName, items]) => (
               <div key={categoryName}>
-                <h3 className="border-b-2 px-2 mt-4 border-destructive font-bold text-xl text-destructive">
+                <h3 className="border-b-2 px-2 mt-4 font-bold text-xl text-destructive">
                   {categoryName}
                 </h3>
-
                 {items?.map((item) => (
                   <div
                     key={item?._id}
-                    className="border-b-2 border-destructive/30 mt-3 pb-3 px-2"
+                    className="border-b mt-3 pb-3 px-2"
                   >
                     <h5 className="font-bold text-[15px]">{item?.itemName}</h5>
-
                     <p className="text-xs font-semibold">
                       {item?.description?.isItemDesAvailable
                         ? item?.description?.itemDescription
                         : ""}
                     </p>
-
                     <div className="flex justify-end items-center space-x-4">
                       <p className="font-semibold">
                         {Config.currency}
@@ -109,7 +106,6 @@ export default function LargeMenu() {
             ))}
           </div>
         </div>
-
         <div className="col-span-3 border">My Basket</div>
       </section>
     </div>
