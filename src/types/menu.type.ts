@@ -44,7 +44,3 @@ export interface TCategory {
   updatedAt: string;
   __v?: number;
 }
-
-export interface TGroupedItems {
-  [categoryName: string]: TItem[];
-}
