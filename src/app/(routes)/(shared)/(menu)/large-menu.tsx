@@ -21,7 +21,7 @@ export default function LargeMenu() {
   const { data: allCategories, isLoading: categoryLoading } =
     useGetAllCategoriesQuery(undefined);
 
-  const { data: singleMenu, isLoading: menuLoading, isFetching } =
+  const { data: singleMenu, isFetching } =
     useGetSingleMenuByCategoryIdQuery(
       `sort=-createdAt&skipLimit=YES&category=${activeCategory?._id}`,
       {
@@ -33,9 +33,9 @@ export default function LargeMenu() {
     if (allCategories?.data && allCategories?.data?.length > 0) {
       setActiveCategory(allCategories?.data?.[0]);
     }
-  }, [allCategories?.data, categoryLoading, menuLoading]);
+  }, [allCategories?.data]);
 
-  if (categoryLoading || menuLoading) {
+  if (categoryLoading) {
     return <Loading className="h-[80vh]" />;
   }
 
@@ -46,9 +46,9 @@ export default function LargeMenu() {
           <ul className="bg-secondary p-4 rounded-md border-2 space-y-2">
             {allCategories?.data?.map((category: TCategory) => (
               <li
-                className={`cursor-pointer ${category?._id === activeCategory?._id
-                  ? "font-bold text-destructive dark:text-primary"
-                  : ""
+                className={`cursor-pointer font-medium duration-300 ${category?._id === activeCategory?._id
+                  ? "text-destructive dark:text-primary"
+                  : "sm:hover:text-destructive dark:sm:hover:text-primary"
                   }`}
                 key={category?._id}
                 onClick={() => setActiveCategory(category)}
