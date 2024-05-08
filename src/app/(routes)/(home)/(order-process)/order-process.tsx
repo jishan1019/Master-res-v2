@@ -2,8 +2,9 @@
 
 import Loading from "@/components/loading";
 import { Config } from "@/config";
+import useScrollIntoView from "@/hooks/useScrollIntoView";
 import { useRouter, useSearchParams } from "next/navigation";
-import { Suspense } from "react";
+import { Suspense, useRef } from "react";
 import BookTable from "./book-table";
 import DeliveryOptions from "./delivery-options";
 import OrderButtons from "./order-buttons";
@@ -11,6 +12,10 @@ import PostCodeCheck from "./post-code-check";
 import PreOrder from "./pre-order";
 
 function OrderProcessSuspense() {
+          const orderProcess = useRef<HTMLDivElement>(null);
+
+          useScrollIntoView({ ref: orderProcess });
+
           const isRestaurantOpen = Config.isRestaurantOpen;
 
           const router = useRouter();
@@ -31,7 +36,7 @@ function OrderProcessSuspense() {
           };
 
           return (
-                    <div className="flex flex-col justify-center items-center w-[90%] md:w-2/3 mx-auto rounded-lg my-5 sm:my-10 py-5 md:py-10 space-y-3 border bg-secondary text-center">
+                    <div ref={orderProcess} className="flex flex-col justify-center items-center w-[90%] md:w-2/3 mx-auto rounded-lg my-5 sm:my-10 py-5 md:py-10 space-y-3 border bg-secondary text-center">
                               {deliveryTypeFromUrl === null && (
                                         <>
                                                   <h3 className="text-lg">Welcome to</h3>
