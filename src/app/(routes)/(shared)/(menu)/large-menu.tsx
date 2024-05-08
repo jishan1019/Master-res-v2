@@ -11,6 +11,7 @@ import { useAppSelector } from "@/redux/hooks";
 import { TCategory } from "@/types";
 import { TItem } from "@/types/menu.type";
 import { useEffect, useState } from "react";
+import CheckoutCart from "../(cart)/checkout-cart";
 
 export default function LargeMenu() {
   const user = useAppSelector(selectUser);
@@ -39,7 +40,7 @@ export default function LargeMenu() {
   }
 
   return (
-    <div className="p-5">
+    <div className="p-5 relative">
       <section className="grid grid-cols-12 gap-6 mt-6 mb-16">
         <div className=" md:col-span-4 lg:col-span-3">
           <ul className="bg-secondary p-4 rounded-md border-2 space-y-2">
@@ -101,7 +102,9 @@ export default function LargeMenu() {
             </div>
           )}
         </div>
-        <div className=" md:col-span-12 lg:col-span-3 border">My Basket</div>
+        <div className=" md:col-span-12 lg:col-span-3 border h-56">
+          <CheckoutCart />
+        </div>
       </section>
     </div>
   );

@@ -2,7 +2,7 @@ export * from "react-icons/ai";
 export * from "react-icons/bi";
 export * from "react-icons/bs";
 export * from "react-icons/ci";
-export * from "react-icons/fa";
+export * as FaIcons from "react-icons/fa";
 export * as Fa6Icons from "react-icons/fa6";
 export * from "react-icons/go";
 export * from "react-icons/hi";
@@ -17,4 +17,3 @@ export * from "react-icons/si";
 export * from "react-icons/sl";
 export * from "react-icons/tb";
 export * from "react-icons/ti";
-
