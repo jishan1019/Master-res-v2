@@ -5,45 +5,35 @@ import { Fa6Icons } from "@/constant";
 import { selectUser } from "@/redux/features/auth/authSlice";
 import {
   useGetAllCategoriesQuery,
-  useGetAllMenuQuery,
+  useGetSingleMenuByCategoryIdQuery,
 } from "@/redux/features/menu/menuApi";
 import { useAppSelector } from "@/redux/hooks";
 import { TCategory } from "@/types";
-import { TGroupedItems, TItem } from "@/types/menu.type";
+import { TItem } from "@/types/menu.type";
 import { useEffect, useState } from "react";
 
 export default function LargeMenu() {
   const user = useAppSelector(selectUser);
   const role = user?.role;
 
+  const [activeCategory, setActiveCategory] = useState<TCategory | null>(null);
+
   const { data: allCategories, isLoading: categoryLoading } =
     useGetAllCategoriesQuery(undefined);
 
-  const { data: allMenus, isLoading: menuLoading } =
-    useGetAllMenuQuery(undefined);
-
-  const [activeCategoryId, setActiveCategoryId] = useState<string | null>(null);
+  const { data: singleMenu, isLoading: menuLoading } =
+    useGetSingleMenuByCategoryIdQuery(
+      `sort=-createdAt&skipLimit=YES&category=${activeCategory?._id}`,
+      {
+        skip: !activeCategory,
+      }
+    );
 
   useEffect(() => {
     if (allCategories?.data && allCategories?.data?.length > 0) {
-      setActiveCategoryId(allCategories?.data?.[0]?._id);
+      setActiveCategory(allCategories?.data?.[0]);
     }
-  }, [allCategories?.data, categoryLoading]);
-
-  const groupedItems: TGroupedItems = allMenus?.data?.items?.reduce(
-    (acc: TGroupedItems, item: TItem) => {
-      const categoryName = item?.category?.name;
-
-      if (categoryName) {
-        if (!acc[categoryName]) {
-          acc[categoryName] = [];
-        }
-        acc[categoryName].push(item);
-      }
-      return acc;
-    },
-    {}
-  );
+  }, [allCategories?.data, categoryLoading, menuLoading]);
 
   if (categoryLoading || menuLoading) {
     return <Loading className="h-[80vh]" />;
@@ -56,53 +46,57 @@ export default function LargeMenu() {
           <ul className="bg-secondary p-4 rounded-md border-2 space-y-2">
             {allCategories?.data?.map((category: TCategory) => (
               <li
-                className={`cursor-pointer ${category?._id === activeCategoryId
-                  ? "font-bold text-destructive"
-                  : ""
-                  }`}
+                className={`cursor-pointer ${
+                  category?._id === activeCategory?._id
+                    ? "font-bold text-destructive"
+                    : ""
+                }`}
                 key={category?._id}
-                onClick={() => setActiveCategoryId(category?._id)}
+                onClick={() => setActiveCategory(category)}
               >
                 {category?.name}
               </li>
             ))}
           </ul>
         </div>
+
         <div className="col-span-6">
           <h3 className="font-bold text-3xl text-destructive text-center">
             Menu
           </h3>
-          <div className=" mt-4 p-2">
-            {Object.entries(groupedItems).map(([categoryName, items]) => (
-              <div key={categoryName}>
-                <h3 className="border-b-2 px-2 mt-4 font-bold text-xl text-destructive">
-                  {categoryName}
-                </h3>
-                {items?.map((item) => (
-                  <div
-                    key={item?._id}
-                    className="border-b mt-3 pb-3 px-2"
-                  >
-                    <h5 className="font-bold text-[15px]">{item?.itemName}</h5>
-                    <p className="text-xs font-semibold">
-                      {item?.description?.isItemDesAvailable
-                        ? item?.description?.itemDescription
-                        : ""}
-                    </p>
-                    <div className="flex justify-end items-center space-x-4">
-                      <p className="font-semibold">
-                        {Config.currency}
-                        {role === "user"
-                          ? item?.prices?.[0]?.priceOnline
-                          : item?.prices?.[0]?.priceTakeaway}
-                      </p>
 
-                      <Button className="bg-destructive" size="sm">
-                        <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
-                      </Button>
-                    </div>
-                  </div>
-                ))}
+          <div className=" mt-4 p-2">
+            <h3 className=" px-2 mt-4 font-bold text-xl text-destructive">
+              {activeCategory?.name}
+            </h3>
+
+            <p className="border-b-2 border-primary/25 px-2 text-xs font-semibold py-1 ">
+              {activeCategory?.isCategoryDesAvailable
+                ? activeCategory.categoryDes
+                : ""}
+            </p>
+
+            {singleMenu?.data?.items?.map((item: TItem) => (
+              <div key={item?._id} className="border-b mt-3 pb-3 px-2">
+                <h5 className="font-bold text-[15px]">{item?.itemName}</h5>
+                <p className="text-xs font-semibold">
+                  {item?.description?.isItemDesAvailable
+                    ? item?.description?.itemDescription
+                    : ""}
+                </p>
+
+                <div className="flex justify-end items-center space-x-4">
+                  <p className="font-semibold">
+                    {Config.currency}
+                    {role === "admin"
+                      ? item?.prices?.[0]?.priceTakeaway
+                      : item?.prices?.[0]?.priceOnline}
+                  </p>
+
+                  <Button className="bg-destructive" size="sm">
+                    <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
+                  </Button>
+                </div>
               </div>
             ))}
           </div>
