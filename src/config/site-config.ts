@@ -10,10 +10,25 @@ export const mdfLogo = MDFLogo;
 export const mdfLogoWhite = MDFLogoWhite;
 export const title = "Golden Bengal";
 export const fullTitle = "Golden Bengal - Fine Dining Indian Cuisine | Oxted";
-export const tagLine = "Fine Dining Indian Cuisine";
+export const tagLine = "The Finest Indian Cuisine In Aylesbury";
+export const tagLine2 = "Order at The Best Indian Takeaway";
 export const description =
   "Experience the regal taste of India at Golden Bengal, offering fine dining Indian cuisine in Oxted. Explore our menu and reserve your table today.";
 export const keywords = ["Golden Bengal", "Indian cuisine", "fine dining", "YourCity", "Indian restaurant"];
+export const address = {
+  street: "51 Station Road East",
+  city: "Oxted",
+  county: "Surrey",
+  postcode: "RH8 0AX",
+}
+export const contact = {
+  phone: "01883-712052",
+  email: "goldenbengaloxted@gmail.com",
+}
+export const openingHours = {
+  weekdays: "17:00 - 22:30",
+  weekend: "17:00 - 23:00",
+}
 export const userAvatar = "https://as1.ftcdn.net/v2/jpg/03/39/45/96/1000_F_339459697_XAFacNQmwnvJRqe1Fe9VOptPWMUxlZP8.jpg";
 
 export const openTimes = [

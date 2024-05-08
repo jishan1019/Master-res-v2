@@ -59,7 +59,8 @@ export default function Header({ children }: { children: ReactNode }) {
                                                             />
                                                             <MdMenu className="size-7 cursor-pointer" onClick={toggleMenu} />
                                                   </div>
-                                                  <div className="md:block hidden">
+                                                  <div className="md:flex items-center gap-2 hidden">
+                                                            <ModeToggle />
                                                             {
                                                                       token ? (
                                                                                 <div className="flex items-center gap-3">

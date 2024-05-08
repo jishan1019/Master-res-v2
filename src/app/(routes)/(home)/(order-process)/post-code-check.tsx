@@ -86,7 +86,7 @@ export default function PostCodeCheck({ onClickDeliveryType, orderType, delivery
                               </Form>
                               {isError && (
                                         <div className="space-y-2 pt-4">
-                                                  <p className="text-primary font-semibold text-sm mt-2 px-4 sm:px-0">Sorry, this is not our delivery area. Alternative is to collect.</p>
+                                                  <p className="font-semibold text-sm mt-2 px-4 sm:px-0">Sorry, this is not our delivery area. Alternative is to collect.</p>
                                                   <Button size="sm" onClick={() => onClickDeliveryType("collection")}>
                                                             Collection
                                                   </Button>
