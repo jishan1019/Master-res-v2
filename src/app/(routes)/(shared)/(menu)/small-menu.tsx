@@ -2,10 +2,10 @@ import React from "react";
 
 export default function SmallMenu() {
   return (
-    <div>
-      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Corrupti beatae
-      incidunt nam dicta fuga, rem mollitia. Dicta distinctio, ipsam in aliquid
-      laudantium hic quod dolore totam? Aliquam reiciendis porro recusandae.
-    </div>
+    <>
+      <h3 className="font-bold text-3xl text-destructive dark:text-primary text-center mt-2">
+        Menu
+      </h3>
+    </>
   );
 }

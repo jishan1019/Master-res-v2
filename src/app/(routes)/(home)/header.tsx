@@ -73,7 +73,7 @@ export default function Header({ children }: { children: ReactNode }) {
                                                                                           <UserDropdown contentClassName="mr-2 lg:mr-0 mt-2 sm:mt-2" />
                                                                                 </div>
                                                                       ) : (
-                                                                                <Link href="/auth/login" className="flex items-center gap-2 border px-2 py-2 rounded-full">
+                                                                                <Link href="/auth/login" className="flex items-center gap-2 border border-black/30 dark:border-primary-foreground px-2 py-2 rounded-full">
                                                                                           <p className="font-semibold text-xs">
                                                                                                     Sign Up/Sign In
                                                                                           </p>
