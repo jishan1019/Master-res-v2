@@ -36,9 +36,9 @@ export default function Footer({ className }: { className?: string }) {
                                                                       href={`tel:${Config.contact.phone}`}
                                                                       aria-label="Our phone"
                                                                       title="Our phone"
-                                                                      className="transition-colors duration-300 hover:text-primary"
+                                                                      className="transition-colors duration-300 sm:hover:text-primary"
                                                             >
-                                                                      <span className="hover:underline font-semibold">{Config.contact.phone}</span>
+                                                                      <span className="sm:hover:underline font-semibold">{Config.contact.phone}</span>
                                                             </a>
                                                   </div>
                                                   <div className="flex text-xs sm:text-sm">
@@ -47,9 +47,9 @@ export default function Footer({ className }: { className?: string }) {
                                                                       href={`mailto:${Config.contact.email}`}
                                                                       aria-label="Our email"
                                                                       title="Our email"
-                                                                      className="transition-colors duration-300 hover:text-primary"
+                                                                      className="transition-colors duration-300 sm:hover:text-primary"
                                                             >
-                                                                      <span className="hover:underline font-semibold">{Config.contact.email}</span>
+                                                                      <span className="sm:hover:underline font-semibold">{Config.contact.email}</span>
                                                             </a>
                                                   </div>
                                                   <div className="text-xs  sm:text-sm">
