@@ -99,6 +99,7 @@ export default function LargeMenu() {
                           ? item?.prices?.[0]?.priceOnline
                           : item?.prices?.[0]?.priceTakeaway}
                       </p>
+
                       <Button className="bg-destructive" size="sm">
                         <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
                       </Button>
