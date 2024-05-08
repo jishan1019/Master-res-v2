@@ -1,3 +1,5 @@
+import { TCategory } from "./category.type";
+
 export interface TItem {
   variants: TVariants;
   spices: TSpices;
@@ -32,15 +34,4 @@ export interface TPrice {
   priceOnline: number;
   priceTakeaway: number;
   _id: string;
-}
-
-export interface TCategory {
-  _id: string;
-  name: string;
-  categoryImg?: string;
-  isCategoryDesAvailable?: boolean;
-  categoryDes?: string;
-  createdAt: string;
-  updatedAt: string;
-  __v?: number;
 }

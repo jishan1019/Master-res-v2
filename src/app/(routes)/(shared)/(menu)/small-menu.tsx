@@ -1,3 +1,4 @@
+import Loading from "@/components/loading";
 import {
   Accordion,
   AccordionContent,
@@ -8,11 +9,33 @@ import { Button } from "@/components/ui/button";
 import { Config } from "@/config";
 import { Fa6Icons } from "@/constant";
 import { selectUser } from "@/redux/features/auth/authSlice";
+import {
+  useGetAllCategoriesQuery,
+  useGetSingleMenuByCategoryIdQuery,
+} from "@/redux/features/menu/menuApi";
 import { useAppSelector } from "@/redux/hooks";
+import { TCategory, TItem } from "@/types";
+import { useState } from "react";
 
 export default function SmallMenu() {
   const user = useAppSelector(selectUser);
   const role = user?.role;
+
+  const [activeCategory, setActiveCategory] = useState<TCategory | null>(null);
+
+  const { data: allCategories, isLoading: categoryLoading } =
+    useGetAllCategoriesQuery(undefined);
+
+  const { data: singleMenu, isFetching } = useGetSingleMenuByCategoryIdQuery(
+    `sort=-createdAt&skipLimit=YES&category=${activeCategory?._id}`,
+    {
+      skip: !activeCategory?._id,
+    }
+  );
+
+  if (categoryLoading) {
+    return <Loading className="h-[80vh]" />;
+  }
 
   return (
     <>
@@ -20,55 +43,54 @@ export default function SmallMenu() {
         Menu
       </h3>
 
-      <Accordion type="single" collapsible className="w-full">
-        <AccordionItem className="border-b-2 border-primary/25" value="item-1">
-          <AccordionTrigger className="text-destructive dark:text-primary font-semibold text-lg">
-            Staters
-          </AccordionTrigger>
+      <Accordion type="single" collapsible className="w-full mb-12">
+        {allCategories?.data?.map((category: TCategory) => (
+          <AccordionItem
+            key={category?._id}
+            className="border-b-2 border-primary/25"
+            value={category?._id}
+            onClick={() => setActiveCategory(category)}
+          >
+            <AccordionTrigger className="text-destructive dark:text-primary font-semibold text-lg">
+              {category?.name}
+            </AccordionTrigger>
+            <AccordionContent className=" font-semibold text-xs border-b mb-2">
+              {category?.isCategoryDesAvailable ? category.categoryDes : ""}
+            </AccordionContent>
+            {isFetching ? (
+              <AccordionContent className="font-semibold text-xs ">
+                <Loading />
+              </AccordionContent>
+            ) : (
+              singleMenu?.data?.items?.map((item: TItem) => (
+                <AccordionContent key={item?._id} className="border-b-2 mt-2">
+                  <h5 className="font-bold text-[15px]">{item?.itemName}</h5>
+                  <p className="text-xs font-semibold">
+                    {item?.description?.isItemDesAvailable
+                      ? item?.description?.itemDescription
+                      : ""}
+                  </p>
 
-          <AccordionContent className=" font-semibold text-xs border-b mb-2">
-            Category Des: Lorem ipsum, dolor sit amet consectetur adipisicing
-            elit.
-          </AccordionContent>
+                  <div className="flex justify-end items-center space-x-4">
+                    <p className="font-semibold">
+                      {Config.currency}
+                      {role === "admin"
+                        ? item?.prices?.[0]?.priceTakeaway
+                        : item?.prices?.[0]?.priceOnline}
+                    </p>
 
-          <AccordionContent className="border-b-2 mb-2">
-            <h5 className="font-bold text-[15px]">Chicken Tikka</h5>
-            <p className="text-xs font-semibold">
-              Item Des: Lorem ipsum, dolor sit amet consectetur adipisicing
-              elit.
-            </p>
-
-            <div className="flex justify-end items-center space-x-4">
-              <p className="font-semibold">
-                {Config.currency}
-                {role === "admin" ? "4.20" : "3.80"}
-              </p>
-
-              <Button className="bg-destructive dark:bg-primary" size="sm">
-                <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
-              </Button>
-            </div>
-          </AccordionContent>
-
-          <AccordionContent className="border-b-2">
-            <h5 className="font-bold text-[15px]">Chicken Tikka</h5>
-            <p className="text-xs font-semibold">
-              Item Des: Lorem ipsum, dolor sit amet consectetur adipisicing
-              elit.
-            </p>
-
-            <div className="flex justify-end items-center space-x-4">
-              <p className="font-semibold">
-                {Config.currency}
-                {role === "admin" ? "4.20" : "3.80"}
-              </p>
-
-              <Button className="bg-destructive dark:bg-primary" size="sm">
-                <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
-              </Button>
-            </div>
-          </AccordionContent>
-        </AccordionItem>
+                    <Button
+                      className="bg-destructive dark:bg-primary"
+                      size="sm"
+                    >
+                      <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
+                    </Button>
+                  </div>
+                </AccordionContent>
+              ))
+            )}
+          </AccordionItem>
+        ))}
       </Accordion>
     </>
   );
