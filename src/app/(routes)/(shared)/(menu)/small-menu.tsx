@@ -57,7 +57,6 @@ export default function SmallMenu() {
             <AccordionContent className=" font-semibold text-xs border-b mb-2">
               {category?.isCategoryDesAvailable ? category.categoryDes : ""}
             </AccordionContent>
-
             {isFetching ? (
               <AccordionContent className="font-semibold text-xs ">
                 <Loading />
@@ -71,7 +70,6 @@ export default function SmallMenu() {
                       ? item?.description?.itemDescription
                       : ""}
                   </p>
-
                   <div className="flex justify-end items-center space-x-4">
                     <p className="font-semibold">
                       {Config.currency}
@@ -79,7 +77,6 @@ export default function SmallMenu() {
                         ? item?.prices?.[0]?.priceTakeaway
                         : item?.prices?.[0]?.priceOnline}
                     </p>
-
                     <Button
                       className="bg-destructive dark:bg-primary"
                       size="sm"

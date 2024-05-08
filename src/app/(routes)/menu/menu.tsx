@@ -9,7 +9,6 @@ export default function Menu() {
       <div className="p-5 hidden md:block">
         <LargeMenu />
       </div>
-
       <div className="p-5 md:hidden">
         <SmallMenu />
       </div>
