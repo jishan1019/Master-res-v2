@@ -41,7 +41,7 @@ export default function LargeMenu() {
   return (
     <div className="p-5">
       <section className="grid grid-cols-12 gap-6 mt-6 mb-16">
-        <div className="col-span-3">
+        <div className=" md:col-span-4 lg:col-span-3">
           <ul className="bg-secondary p-4 rounded-md border-2 space-y-2">
             {allCategories?.data?.map((category: TCategory) => (
               <li
@@ -59,7 +59,7 @@ export default function LargeMenu() {
           </ul>
         </div>
 
-        <div className="col-span-6">
+        <div className="md:col-span-8 lg:col-span-6">
           <h3 className="font-bold text-3xl text-destructive dark:text-primary text-center">
             Menu
           </h3>
@@ -107,7 +107,8 @@ export default function LargeMenu() {
             </div>
           )}
         </div>
-        <div className="col-span-3 border">My Basket</div>
+
+        <div className=" md:col-span-12 lg:col-span-3 border">My Basket</div>
       </section>
     </div>
   );
