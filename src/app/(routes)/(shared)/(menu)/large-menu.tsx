@@ -21,7 +21,7 @@ export default function LargeMenu() {
   const { data: allCategories, isLoading: categoryLoading } =
     useGetAllCategoriesQuery(undefined);
 
-  const { data: singleMenu, isLoading: menuLoading } =
+  const { data: singleMenu, isLoading: menuLoading, isFetching } =
     useGetSingleMenuByCategoryIdQuery(
       `sort=-createdAt&skipLimit=YES&category=${activeCategory?._id}`,
       {
@@ -46,11 +46,10 @@ export default function LargeMenu() {
           <ul className="bg-secondary p-4 rounded-md border-2 space-y-2">
             {allCategories?.data?.map((category: TCategory) => (
               <li
-                className={`cursor-pointer ${
-                  category?._id === activeCategory?._id
-                    ? "font-bold text-destructive"
-                    : ""
-                }`}
+                className={`cursor-pointer ${category?._id === activeCategory?._id
+                  ? "font-bold text-destructive"
+                  : ""
+                  }`}
                 key={category?._id}
                 onClick={() => setActiveCategory(category)}
               >
@@ -65,41 +64,45 @@ export default function LargeMenu() {
             Menu
           </h3>
 
-          <div className=" mt-4 p-2">
-            <h3 className=" px-2 mt-4 font-bold text-xl text-destructive">
-              {activeCategory?.name}
-            </h3>
+          {
+            isFetching ? <Loading className="h-[60vh]" /> : (
+              <div className="mt-4 p-2">
+                <h3 className="px-2 mt-4 font-bold text-xl text-destructive">
+                  {activeCategory?.name}
+                </h3>
 
-            <p className="border-b-2 border-primary/25 px-2 text-xs font-semibold py-1 ">
-              {activeCategory?.isCategoryDesAvailable
-                ? activeCategory.categoryDes
-                : ""}
-            </p>
-
-            {singleMenu?.data?.items?.map((item: TItem) => (
-              <div key={item?._id} className="border-b mt-3 pb-3 px-2">
-                <h5 className="font-bold text-[15px]">{item?.itemName}</h5>
-                <p className="text-xs font-semibold">
-                  {item?.description?.isItemDesAvailable
-                    ? item?.description?.itemDescription
+                <p className="border-b-2 border-primary/25 px-2 text-xs font-semibold py-1 ">
+                  {activeCategory?.isCategoryDesAvailable
+                    ? activeCategory.categoryDes
                     : ""}
                 </p>
 
-                <div className="flex justify-end items-center space-x-4">
-                  <p className="font-semibold">
-                    {Config.currency}
-                    {role === "admin"
-                      ? item?.prices?.[0]?.priceTakeaway
-                      : item?.prices?.[0]?.priceOnline}
-                  </p>
+                {singleMenu?.data?.items?.map((item: TItem) => (
+                  <div key={item?._id} className="border-b mt-3 pb-3 px-2">
+                    <h5 className="font-bold text-[15px]">{item?.itemName}</h5>
+                    <p className="text-xs font-semibold">
+                      {item?.description?.isItemDesAvailable
+                        ? item?.description?.itemDescription
+                        : ""}
+                    </p>
 
-                  <Button className="bg-destructive" size="sm">
-                    <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
-                  </Button>
-                </div>
+                    <div className="flex justify-end items-center space-x-4">
+                      <p className="font-semibold">
+                        {Config.currency}
+                        {role === "admin"
+                          ? item?.prices?.[0]?.priceTakeaway
+                          : item?.prices?.[0]?.priceOnline}
+                      </p>
+
+                      <Button className="bg-destructive" size="sm">
+                        <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
+                      </Button>
+                    </div>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
+            )
+          }
         </div>
         <div className="col-span-3 border">My Basket</div>
       </section>
