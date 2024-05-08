@@ -6,7 +6,7 @@ export default function CheckoutCart() {
   const [deliveryMethod, setDeliveryMethod] = useState<string>("delivery");
 
   return (
-    <div className="w-full border border-black">
+    <div className="w-full">
       <section className="grid grid-cols-2 gap-1 font-semibold text-center">
         <div className="bg-primary-foreground dark:bg-secondary py-2 flex justify-center items-center gap-3">
           <div className="inline-flex items-center">
