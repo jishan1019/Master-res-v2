@@ -5,10 +5,14 @@ import SmallMenu from "../(shared)/(menu)/small-menu";
 
 export default function Menu() {
   return (
-    <div className="p-5">
-      <LargeMenu />
+    <>
+      <div className="p-5">
+        <LargeMenu />
+      </div>
 
-      <SmallMenu />
-    </div>
+      <div className="p-5">
+        <SmallMenu />
+      </div>
+    </>
   );
 }

@@ -121,7 +121,7 @@ export default function Header({ children }: { children: ReactNode }) {
                                                                       {pathname === "/" && (
                                                                                 <button
                                                                                           className={`font-medium text-primary-foreground md:hover:bg-primary duration-300 px-2 py-2.5 bg-primary`}
-                                                                                          onClick={() => { }}
+                                                                                          onClick={() => typeof window !== "undefined" && window.scrollTo({ top: window.innerHeight / 2, behavior: "smooth" })}
                                                                                 >
                                                                                           Order Now
                                                                                 </button>

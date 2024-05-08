@@ -14,14 +14,14 @@ import PreOrder from "./pre-order";
 function OrderProcessSuspense() {
           const orderProcess = useRef<HTMLDivElement>(null);
 
-          useScrollIntoView({ ref: orderProcess });
-
           const isRestaurantOpen = Config.isRestaurantOpen;
 
           const router = useRouter();
           const searchparams = useSearchParams();
           const orderTypeFromUrl = searchparams.get("order-type");
           const deliveryTypeFromUrl = searchparams.get("delivery-type");
+
+          useScrollIntoView({ ref: orderProcess, searchparams: searchparams });
 
           const handleOrderClick = (type: string) => {
                     router.push(`?order-type=${type}`);
