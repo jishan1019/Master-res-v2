@@ -28,29 +28,27 @@ export default function CheckoutCart() {
           </p>
           <p>Checkout</p>
         </div>
-        <div className="bg-secondary py-2">
+        <div
+          onClick={() => setDeliveryMethod("delivery")}
+          className="bg-secondary py-2 cursor-pointer"
+        >
           <label
             htmlFor="delivery"
             className="flex justify-evenly items-center cursor-pointer"
           >
-            <input
-              type="radio"
-              checked={deliveryMethod === "delivery"}
-              onClick={() => setDeliveryMethod("delivery")}
-            />
+            <input type="radio" checked={deliveryMethod === "delivery"} />
             Delivery
           </label>
         </div>
-        <div className="bg-secondary py-2">
+        <div
+          onClick={() => setDeliveryMethod("collection")}
+          className="bg-secondary py-2 cursor-pointer"
+        >
           <label
             htmlFor="collection"
             className="flex justify-evenly items-center cursor-pointer"
           >
-            <input
-              type="radio"
-              checked={deliveryMethod === "collection"}
-              onClick={() => setDeliveryMethod("collection")}
-            />
+            <input type="radio" checked={deliveryMethod === "collection"} />
             Collection
           </label>
         </div>
