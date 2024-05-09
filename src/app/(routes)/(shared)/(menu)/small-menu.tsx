@@ -16,6 +16,8 @@ import {
 import { useAppSelector } from "@/redux/hooks";
 import { TCategory, TItem } from "@/types";
 import { useState } from "react";
+import BasketCart from "../(cart)/basket-cart";
+import CheckoutCart from "../(cart)/checkout-cart";
 
 export default function SmallMenu() {
   const user = useAppSelector(selectUser);
@@ -42,7 +44,6 @@ export default function SmallMenu() {
       <h3 className="font-bold text-3xl text-destructive dark:text-primary text-center mt-3">
         Menu
       </h3>
-
       <Accordion type="single" collapsible className="w-full mb-12">
         {allCategories?.data?.map((category: TCategory) => (
           <AccordionItem
@@ -90,6 +91,10 @@ export default function SmallMenu() {
           </AccordionItem>
         ))}
       </Accordion>
+      <div className="md:col-span-12 lg:col-span-3">
+        <BasketCart />
+        <CheckoutCart />
+      </div>
     </>
   );
 }

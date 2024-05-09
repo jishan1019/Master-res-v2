@@ -103,7 +103,7 @@ export default function LargeMenu() {
             </div>
           )}
         </div>
-        <div className=" md:col-span-12 lg:col-span-3 border">
+        <div className="md:col-span-12 lg:col-span-3">
           <BasketCart />
           <CheckoutCart />
         </div>
