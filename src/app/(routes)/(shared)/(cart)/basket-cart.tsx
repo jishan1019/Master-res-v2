@@ -15,7 +15,6 @@ export default function BasketCart() {
         </p>
         <h5>My Basket</h5>
       </header>
-
       <main className="w-full mx-auto py-1 pl-2">
         <section>
           <div className="grid grid-cols-12 font-semibold text-[17px] text-destructive dark:text-primary-foreground gap-3 mt-3">
