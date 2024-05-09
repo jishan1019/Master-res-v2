@@ -76,8 +76,8 @@ export default function Login() {
 
           return (
                     <div className="flex items-center justify-center mt-0 mb-5 sm:my-10">
-                              <div className="sm:mx-auto grid w-full max-w-md gap-6 bg-secondary">
-                                        <div className="bg-mdf text-primary-foreground py-3 text-center">
+                              <div className="sm:mx-auto grid w-full max-w-md gap-6 bg-secondary md:rounded-lg">
+                                        <div className="bg-mdf text-primary-foreground py-3 text-center md:rounded-lg md:rounded-bl-none md:rounded-br-none">
                                                   <h1 className="text-lg sm:text-xl font-bold">Sign Up/Sign In</h1>
                                         </div>
                                         <p className="text-center text-sm font-semibold">

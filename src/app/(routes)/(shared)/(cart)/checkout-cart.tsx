@@ -35,9 +35,9 @@ export default function CheckoutCart() {
         <RadioGroup className="cursor-pointer">
           <div
             onClick={() => setDeliveryMethod("delivery")}
-            className="bg-secondary py-2 flex justify-center items-center gap-1"
+            className="bg-secondary py-2 flex justify-center items-center gap-2"
           >
-            <RadioGroupItem value="delivery" checked={deliveryMethod === "delivery"} />
+            <RadioGroupItem value="delivery" checked={deliveryMethod === "delivery"} className="border-black text-black" />
             <Label htmlFor="delivery" className="cursor-pointer">
               Delivery
             </Label>
@@ -46,9 +46,9 @@ export default function CheckoutCart() {
         <RadioGroup className="cursor-pointer">
           <div
             onClick={() => setDeliveryMethod("collection")}
-            className="bg-secondary py-2 flex justify-center items-center gap-1"
+            className="bg-secondary py-2 flex justify-center items-center gap-2"
           >
-            <RadioGroupItem value="collection" checked={deliveryMethod === "collection"} />
+            <RadioGroupItem value="collection" checked={deliveryMethod === "collection"} className="border-black text-black" />
             <Label htmlFor="collection" className="cursor-pointer">
               Collection
             </Label>
