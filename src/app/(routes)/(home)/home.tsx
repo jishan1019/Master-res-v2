@@ -8,7 +8,7 @@ export default function HomePage() {
           return (
                     <Header>
                               <OrderProcess />
-                              <Footer className="mt-48 sm:mt-96" />
+                              <Footer className="mt-24 sm:mt-96" />
                     </Header>
           )
 }

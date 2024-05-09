@@ -117,14 +117,6 @@ export default function Header({ children }: { children: ReactNode }) {
                                                                                           {link.name}
                                                                                 </Link>
                                                                       ))}
-                                                                      {pathname === "/" && (
-                                                                                <button
-                                                                                          className="font-medium text-primary-foreground px-2 py-2.5 bg-red-700 dark:bg-red-800"
-                                                                                          onClick={() => typeof window !== "undefined" && window.scrollTo({ top: window.innerHeight / 2, behavior: "smooth" })}
-                                                                                >
-                                                                                          Booking
-                                                                                </button>
-                                                                      )}
                                                             </div>
                                                             <div className="bg-gray-800 py-2 sm:py-4 flex flex-col md:flex-row items-center justify-center gap-1 px-3 md:px-0 text-primary-foreground">
                                                                       <h1 className="text-lg md:text-2xl font-semibold">

@@ -100,4 +100,8 @@ export const navLinks = [
                     name: "Services",
                     href: "/services",
           },
+          {
+                    name: "Booking",
+                    href: "#",
+          },
 ];

@@ -80,7 +80,7 @@ export default function Footer({ className }: { className?: string }) {
                                                                       rel="noopener noreferrer"
                                                                       className="text-sm transition-colors duration-300 hover:text-deep-purple-accent-400"
                                                             >
-                                                                      <MDFLogoHelper lightImg={Config.mdfLogoWhite} imgClassName="w-52" />
+                                                                      <MDFLogoHelper imgClassName="w-52" />
                                                             </a>
                                                   </div>
                                         </div>

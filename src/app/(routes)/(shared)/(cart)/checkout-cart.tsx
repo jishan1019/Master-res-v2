@@ -1,7 +1,7 @@
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Config } from "@/config";
-import { FaShoppingBasket, Io5Icons } from "@/constant";
+import { BsBasket, Io5Icons } from "@/constant";
 import { useState } from "react";
 
 export default function CheckoutCart() {
@@ -13,14 +13,14 @@ export default function CheckoutCart() {
     <div className="w-full">
       <section className="grid grid-cols-2 gap-1 font-semibold text-center">
         <div className="bg-primary-foreground dark:bg-secondary py-2 flex justify-center items-center gap-3">
-          <div className="inline-flex items-center">
+          <div className="inline-flex items-center gap-1">
             <p>
-              <FaShoppingBasket
-                size={24}
+              <BsBasket
+                size={20}
                 className="text-destructive dark:text-primary"
               />
             </p>
-            <p className="border border-destructive dark:border-primary rounded-full h-7 w-7 flex justify-center items-center bg-primary-foreground dark:bg-secondary -ml-2">
+            <p className="border border-destructive dark:border-primary rounded-full h-8 w-8 flex justify-center items-center bg-primary-foreground dark:bg-secondary -ml-2">
               12
             </p>
           </div>
@@ -35,7 +35,7 @@ export default function CheckoutCart() {
         <RadioGroup className="cursor-pointer">
           <div
             onClick={() => setDeliveryMethod("delivery")}
-            className="bg-secondary py-2 flex justify-center items-center gap-2"
+            className="bg-secondary py-2 flex justify-center items-center gap-3"
           >
             <RadioGroupItem value="delivery" checked={deliveryMethod === "delivery"} className="border-black text-black" />
             <Label htmlFor="delivery" className="cursor-pointer">
@@ -46,7 +46,7 @@ export default function CheckoutCart() {
         <RadioGroup className="cursor-pointer">
           <div
             onClick={() => setDeliveryMethod("collection")}
-            className="bg-secondary py-2 flex justify-center items-center gap-2"
+            className="bg-secondary py-2 flex justify-center items-center gap-3"
           >
             <RadioGroupItem value="collection" checked={deliveryMethod === "collection"} className="border-black text-black" />
             <Label htmlFor="collection" className="cursor-pointer">
