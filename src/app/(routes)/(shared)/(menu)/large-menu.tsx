@@ -12,6 +12,7 @@ import { TCategory } from "@/types";
 import { TItem } from "@/types/menu.type";
 import { useEffect, useState } from "react";
 import CheckoutCart from "../(cart)/checkout-cart";
+import BasketCart from "../(cart)/basket-cart";
 
 export default function LargeMenu() {
   const user = useAppSelector(selectUser);
@@ -46,10 +47,11 @@ export default function LargeMenu() {
           <ul className="bg-secondary p-4 rounded-md border-2 space-y-2">
             {allCategories?.data?.map((category: TCategory) => (
               <li
-                className={`cursor-pointer font-medium duration-300 ${category?._id === activeCategory?._id
-                  ? "text-destructive dark:text-primary"
-                  : "sm:hover:text-destructive dark:sm:hover:text-primary"
-                  }`}
+                className={`cursor-pointer font-medium duration-300 ${
+                  category?._id === activeCategory?._id
+                    ? "text-destructive dark:text-primary"
+                    : "sm:hover:text-destructive dark:sm:hover:text-primary"
+                }`}
                 key={category?._id}
                 onClick={() => setActiveCategory(category)}
               >
@@ -102,6 +104,7 @@ export default function LargeMenu() {
           )}
         </div>
         <div className=" md:col-span-12 lg:col-span-3 border">
+          <BasketCart />
           <CheckoutCart />
         </div>
       </section>

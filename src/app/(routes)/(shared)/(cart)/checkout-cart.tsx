@@ -7,8 +7,6 @@ import { useState } from "react";
 export default function CheckoutCart() {
   const [deliveryMethod, setDeliveryMethod] = useState<string>("delivery");
 
-  console.log(deliveryMethod);
-
   return (
     <div className="w-full">
       <section className="grid grid-cols-2 gap-1 font-semibold text-center">
