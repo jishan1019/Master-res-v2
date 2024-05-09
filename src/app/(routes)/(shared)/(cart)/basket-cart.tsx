@@ -29,7 +29,6 @@ export default function BasketCart() {
               </span>
             </p>
           </div>
-
           {itemArr?.length > 0 ? (
             <>
               <div className="grid grid-cols-12 text-sm gap-3 mt-2 font-semibold border-b-2 pb-2">
@@ -70,7 +69,6 @@ export default function BasketCart() {
             <p className="col-span-5 md:hidden text-center">0</p>
           </div>
         </section>
-
         <section>
           <div className="grid grid-cols-12 font-semibold text-[17px] text-destructive dark:text-primary-foreground gap-3 mt-3">
             <p className="col-span-5 md:col-span-6">Drinks</p>
@@ -83,7 +81,6 @@ export default function BasketCart() {
               </span>
             </p>
           </div>
-
           {drinksArr?.length > 0 ? (
             <>
               <div className="grid grid-cols-12 text-sm gap-3 mt-2 font-semibold border-b-2 pb-2">
@@ -116,7 +113,6 @@ export default function BasketCart() {
               <p className="text-sm font-semibold mt-2">None selected</p>
             </>
           )}
-
           <div className="grid grid-cols-12 font-bold text-sm gap-3 mt-2">
             <p className="col-span-5 md:col-span-6">Drinks Total</p>
             <p className="col-span-2 md:col-span-6 text-center">
@@ -125,7 +121,6 @@ export default function BasketCart() {
             <p className="col-span-5 md:hidden text-center">0</p>
           </div>
         </section>
-
         <section>
           <div className="grid grid-cols-12 font-bold text-[16px] gap-3 mt-3 md:hidden">
             <p className="col-span-6">Order Total</p>
