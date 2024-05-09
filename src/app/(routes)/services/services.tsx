@@ -13,7 +13,7 @@ export default function Services() {
                                                   <li>- Birthdays</li>
                                         </ul>
                               </div>
-                              <Footer className="mt-96" />
+                              <Footer className="mt-10 sm:mt-20" />
                     </>
           )
 }

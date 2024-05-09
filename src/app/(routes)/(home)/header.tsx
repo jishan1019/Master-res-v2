@@ -7,8 +7,7 @@ import { notifySuccess } from "@/components/toast";
 import { Button } from "@/components/ui/button";
 import UserDropdown from "@/components/user-dropdown";
 import { Config } from "@/config";
-import { Images } from "@/constant";
-import { AiOutlineClose, CiPhone, Fa6Icons, IoMdShare, MdMenu } from "@/constant/icons";
+import { AiOutlineClose, CiPhone, Fa6Icons, Images, IoMdShare, MdMenu } from "@/constant";
 import { logOut } from "@/lib/action";
 import { logout } from "@/redux/features/auth/authSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -123,7 +122,7 @@ export default function Header({ children }: { children: ReactNode }) {
                                                                                           className="font-medium text-primary-foreground px-2 py-2.5 bg-red-700 dark:bg-red-800"
                                                                                           onClick={() => typeof window !== "undefined" && window.scrollTo({ top: window.innerHeight / 2, behavior: "smooth" })}
                                                                                 >
-                                                                                          Order Now
+                                                                                          Booking
                                                                                 </button>
                                                                       )}
                                                             </div>

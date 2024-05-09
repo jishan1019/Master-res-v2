@@ -46,11 +46,10 @@ export default function LargeMenu() {
           <ul className="bg-secondary p-4 rounded-md border-2 space-y-2">
             {allCategories?.data?.map((category: TCategory) => (
               <li
-                className={`cursor-pointer font-medium duration-300 ${
-                  category?._id === activeCategory?._id
-                    ? "text-destructive dark:text-primary"
-                    : "sm:hover:text-destructive dark:sm:hover:text-primary"
-                }`}
+                className={`cursor-pointer font-medium duration-300 ${category?._id === activeCategory?._id
+                  ? "text-destructive dark:text-primary"
+                  : "sm:hover:text-destructive dark:sm:hover:text-primary"
+                  }`}
                 key={category?._id}
                 onClick={() => setActiveCategory(category)}
               >
@@ -73,7 +72,7 @@ export default function LargeMenu() {
               <p className="border-b-2 border-primary/25 px-2 text-xs font-semibold py-1 ">
                 {activeCategory?.isCategoryDesAvailable
                   ? activeCategory.categoryDes
-                  : ""}
+                  : "No description available for this category."}
               </p>
               {singleMenu?.data?.items?.map((item: TItem) => (
                 <div key={item?._id} className="border-b mt-3 pb-3 px-2">

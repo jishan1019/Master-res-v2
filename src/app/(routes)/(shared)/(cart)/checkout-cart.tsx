@@ -1,9 +1,13 @@
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Config } from "@/config";
-import { FaIcons, Io5Icons } from "@/constant";
+import { FaShoppingBasket, Io5Icons } from "@/constant";
 import { useState } from "react";
 
 export default function CheckoutCart() {
   const [deliveryMethod, setDeliveryMethod] = useState<string>("delivery");
+
+  console.log(deliveryMethod);
 
   return (
     <div className="w-full">
@@ -11,7 +15,7 @@ export default function CheckoutCart() {
         <div className="bg-primary-foreground dark:bg-secondary py-2 flex justify-center items-center gap-3">
           <div className="inline-flex items-center">
             <p>
-              <FaIcons.FaShoppingBasket
+              <FaShoppingBasket
                 size={24}
                 className="text-destructive dark:text-primary"
               />
@@ -28,30 +32,28 @@ export default function CheckoutCart() {
           </p>
           <p>Checkout</p>
         </div>
-        <div
-          onClick={() => setDeliveryMethod("delivery")}
-          className="bg-secondary py-2 cursor-pointer"
-        >
-          <label
-            htmlFor="delivery"
-            className="flex justify-evenly items-center cursor-pointer"
+        <RadioGroup className="cursor-pointer">
+          <div
+            onClick={() => setDeliveryMethod("delivery")}
+            className="bg-secondary py-2 flex justify-center items-center gap-1"
           >
-            <input type="radio" checked={deliveryMethod === "delivery"} />
-            Delivery
-          </label>
-        </div>
-        <div
-          onClick={() => setDeliveryMethod("collection")}
-          className="bg-secondary py-2 cursor-pointer"
-        >
-          <label
-            htmlFor="collection"
-            className="flex justify-evenly items-center cursor-pointer"
+            <RadioGroupItem value="delivery" checked={deliveryMethod === "delivery"} />
+            <Label htmlFor="delivery" className="cursor-pointer">
+              Delivery
+            </Label>
+          </div>
+        </RadioGroup>
+        <RadioGroup className="cursor-pointer">
+          <div
+            onClick={() => setDeliveryMethod("collection")}
+            className="bg-secondary py-2 flex justify-center items-center gap-1"
           >
-            <input type="radio" checked={deliveryMethod === "collection"} />
-            Collection
-          </label>
-        </div>
+            <RadioGroupItem value="collection" checked={deliveryMethod === "collection"} />
+            <Label htmlFor="collection" className="cursor-pointer">
+              Collection
+            </Label>
+          </div>
+        </RadioGroup>
       </section>
       <p className="text-sm font-semibold text-destructive dark:text-primary text-center bg-secondary mt-1 py-1">
         ALLERGY: Contact Restaurant

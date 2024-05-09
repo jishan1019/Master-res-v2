@@ -14,7 +14,7 @@ export default function About() {
                                                   <p className="text-sm sm:text-base">Visit us at Golden Bengal and embark on a culinary adventure that celebrates the rich heritage and culinary delights of Bangladesh. Experience the essence of Indian-Bangladeshi cuisine at its finest, right here in Oxted.</p>
                                         </div>
                               </div>
-                              <Footer className="mt-96" />
+                              <Footer className="mt-10 sm:mt-20" />
                     </>
           )
 }

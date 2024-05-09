@@ -4,7 +4,7 @@ import { notifySuccess } from "@/components/toast";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Config } from "@/config";
-import { BiLogOut, GoGear, LuUser2, MdSpaceDashboard } from "@/constant/icons";
+import { BiLogOut, GoGear, LuUser2, MdSpaceDashboard } from "@/constant";
 import { logOut } from "@/lib/action";
 import { cn } from "@/lib/utils";
 import { logout, selectUser } from "@/redux/features/auth/authSlice";
