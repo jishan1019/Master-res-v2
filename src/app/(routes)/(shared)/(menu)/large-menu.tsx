@@ -7,17 +7,23 @@ import {
   useGetAllCategoriesQuery,
   useGetSingleMenuByCategoryIdQuery,
 } from "@/redux/features/menu/menuApi";
-import { useAppSelector } from "@/redux/hooks";
-import { TCategory } from "@/types";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { TCategory, TFoodOrDrinksItem } from "@/types";
 import { TItem } from "@/types/menu.type";
 import { useEffect, useState } from "react";
 import CheckoutCart from "../(cart)/checkout-cart";
 import BasketCart from "../(cart)/basket-cart";
 import Image from "next/image";
+import { useGetActiveDiscountQuery } from "@/redux/features/discount/discountApi";
+import {
+  setDrinkItems,
+  setFoodItems,
+} from "@/redux/features/basket/basketSlice";
 
 export default function LargeMenu() {
   const user = useAppSelector(selectUser);
   const role = user?.role;
+  const dispatch = useAppDispatch();
 
   const [activeCategory, setActiveCategory] = useState<TCategory | null>(null);
 
@@ -31,11 +37,46 @@ export default function LargeMenu() {
     }
   );
 
+  const { data: activeDiscountData } = useGetActiveDiscountQuery(undefined);
+  const excludedCategoryId =
+    activeDiscountData?.data?.excludedCategory?.[0]?._id || "";
+
   useEffect(() => {
     if (allCategories?.data && allCategories?.data?.length > 0) {
       setActiveCategory(allCategories?.data?.[0]);
     }
   }, [allCategories?.data]);
+
+  const handelAddToBasket = (
+    item: TItem,
+    activeCategoryId: string | undefined,
+    discountCategoryId: string | undefined,
+    userRole: string
+  ) => {
+    const isDiscountCategoryItem: boolean =
+      activeCategoryId == discountCategoryId ? true : false;
+
+    const singleItemPrice =
+      userRole === "admin"
+        ? item?.prices?.[0]?.priceTakeaway
+        : item?.prices?.[0]?.priceOnline;
+
+    const basketItem: TFoodOrDrinksItem = {
+      itemId: item?._id,
+      itemName: item?.itemName,
+      singleItemPrice: singleItemPrice,
+      singleItemQty: 1,
+      priceId: item?.prices?.[0]?._id,
+      categoryId: activeCategoryId,
+      itemType: isDiscountCategoryItem ? "drink" : "food",
+    };
+
+    if (isDiscountCategoryItem) {
+      dispatch(setDrinkItems(basketItem));
+    } else {
+      dispatch(setFoodItems(basketItem));
+    }
+  };
 
   if (categoryLoading) {
     return <Loading className="h-[80vh]" />;
@@ -102,6 +143,14 @@ export default function LargeMenu() {
                     <Button
                       className="bg-destructive dark:bg-primary"
                       size="sm"
+                      onClick={() =>
+                        handelAddToBasket(
+                          item,
+                          activeCategory?._id,
+                          excludedCategoryId,
+                          role
+                        )
+                      }
                     >
                       <Fa6Icons.FaPlus className="text-xl text-primary-foreground" />
                     </Button>

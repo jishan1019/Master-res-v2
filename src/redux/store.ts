@@ -14,7 +14,7 @@ import { encryptTransform } from "redux-persist-transform-encrypt";
 import { baseApi } from "./api/baseApi/baseApi";
 import authReducer from "./features/auth/authSlice";
 import storage from "./storage";
-import basketSlice from "./features/menu/basketSlice";
+import basketReducer from "./features/basket/basketSlice";
 
 const encryptor = encryptTransform({
   secretKey: Config.storeEncryptKey,
@@ -36,7 +36,7 @@ const persistedAuthReducer = persistReducer(
 );
 const persistedBasketReducer = persistReducer(
   createPersistConfig("_config_basket"),
-  basketSlice
+  basketReducer
 );
 
 export const store = configureStore({

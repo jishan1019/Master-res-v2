@@ -2,19 +2,34 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Config } from "@/config";
 import { BsBasket, Io5Icons } from "@/constant";
-import { setIsBasketOpen } from "@/redux/features/menu/basketSlice";
+import { setIsBasketOpen } from "@/redux/features/basket/basketSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { TBasketInitialState } from "@/types";
+import {
+  TBasketInitialState,
+  TFoodOrDrinksItem,
+  TTotalPriceQty,
+} from "@/types";
 import { useState } from "react";
 
 export default function CheckoutCart() {
   const [deliveryMethod, setDeliveryMethod] = useState<string>("delivery");
 
-  const { isBasketOpen }: TBasketInitialState = useAppSelector(
-    (state) => state.basket
-  );
+  const { isBasketOpen, foodItems, drinksItems }: TBasketInitialState =
+    useAppSelector((state) => state.basket);
 
   const dispatch = useAppDispatch();
+
+  const items: TFoodOrDrinksItem[] = [...foodItems, ...drinksItems];
+
+  const totalPriceAndQty: TTotalPriceQty = items?.reduce(
+    (acc: TTotalPriceQty, currentItem: TFoodOrDrinksItem) => {
+      acc.totalQty += currentItem?.singleItemQty;
+      acc.totalPrice +=
+        currentItem?.singleItemPrice * currentItem?.singleItemQty;
+      return acc;
+    },
+    { totalQty: 0, totalPrice: 0 }
+  );
 
   return (
     <div className="w-full border border-t-0 bg-background">
@@ -40,10 +55,13 @@ export default function CheckoutCart() {
                   />
                 </p>
                 <p className="border border-destructive dark:border-primary rounded-full h-8 w-8 flex justify-center items-center bg-primary-foreground dark:bg-secondary -ml-2">
-                  12
+                  {totalPriceAndQty?.totalQty}
                 </p>
               </div>
-              <p>{Config.currency}23.5</p>
+              <p>
+                {Config.currency}
+                {totalPriceAndQty?.totalPrice?.toFixed(2)}
+              </p>
             </>
           )}
         </div>
@@ -56,10 +74,13 @@ export default function CheckoutCart() {
               />
             </p>
             <p className="border border-destructive dark:border-primary rounded-full h-8 w-8 flex justify-center items-center bg-primary-foreground dark:bg-secondary -ml-2">
-              12
+              {totalPriceAndQty?.totalQty}
             </p>
           </div>
-          <p>{Config.currency}23.5</p>
+          <p>
+            {Config.currency}
+            {totalPriceAndQty?.totalPrice?.toFixed(2)}
+          </p>
         </div>
         <div className="bg-destructive text-primary-foreground py-2 inline-flex justify-around items-center cursor-pointer">
           <p>
