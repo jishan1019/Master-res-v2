@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Config } from "@/config";
 import { BsBasket, Fa6Icons } from "@/constant";
-import React from "react";
 
 export default function BasketCart() {
   const itemArr: string[] = ["Item1", "Item2", "Item3"];
@@ -35,7 +34,7 @@ export default function BasketCart() {
                 <p className="col-span-2 md:hidden text-center">
                   {Config.currency}4.20
                 </p>
-                <div className="col-span-5 md:col-span-6 flex justify-center items-center gap-1 sm:gap-2">
+                <div className="col-span-5 md:col-span-6 flex justify-center items-center gap-2 sm:gap-2">
                   <Button
                     className="bg-secondary-foreground/50 dark:bg-primary"
                     size="xs"
@@ -87,7 +86,7 @@ export default function BasketCart() {
                 <p className="col-span-2 md:hidden text-center">
                   {Config.currency}4.20
                 </p>
-                <div className="col-span-5 md:col-span-6 flex justify-center items-center gap-1 sm:gap-2">
+                <div className="col-span-5 md:col-span-6 flex justify-center items-center gap-2 sm:gap-2">
                   <Button
                     className="bg-secondary-foreground/50 dark:bg-primary"
                     size="xs"
