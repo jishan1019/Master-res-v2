@@ -2,8 +2,10 @@
 
 import { notifyError, notifySuccess } from "@/components/toast"
 import { Button } from "@/components/ui/button"
+import { Checkbox } from "@/components/ui/checkbox"
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 import { FaRegEye, FaRegEyeSlash, Hi2Icons } from "@/constant"
 import { login } from "@/lib/action"
 import { loginSchema } from "@/lib/schema"
@@ -76,12 +78,12 @@ export default function Login() {
 
           return (
                     <div className="flex items-center justify-center mt-0 mb-5 sm:my-10">
-                              <div className="sm:mx-auto grid w-full max-w-md gap-6 bg-secondary md:rounded-lg">
-                                        <div className="bg-mdf text-primary-foreground py-3 text-center md:rounded-lg md:rounded-bl-none md:rounded-br-none">
+                              <div className="sm:mx-auto grid w-full max-w-md gap-6 md:bg-secondary sm:rounded-lg border">
+                                        <div className="bg-mdf text-primary-foreground py-3 text-center sm:rounded-lg sm:rounded-bl-none sm:rounded-br-none">
                                                   <h1 className="text-lg sm:text-xl font-bold">Sign Up/Sign In</h1>
                                         </div>
                                         <p className="text-center text-sm font-semibold">
-                                                  Please Sign In or <Link href="/auth/sign-up" className="underline text-sky-500">Sign Up</Link>
+                                                  Please Sign In or <Link href="/auth/sign-up" className="underline text-blue-500">Sign Up</Link>
                                         </p>
                                         <Form {...form}>
                                                   <form onSubmit={form.handleSubmit(onSubmit)} className="grid gap-4 px-5 pb-5">
@@ -109,16 +111,8 @@ export default function Login() {
                                                                       name="password"
                                                                       render={({ field }) => (
                                                                                 <FormItem>
-                                                                                          <div className="flex justify-between items-center">
-                                                                                                    <div className="flex items-center gap-2">
-                                                                                                              <FormLabel>Password</FormLabel> {form.formState.errors.password ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
-                                                                                                    </div>
-                                                                                                    <Link
-                                                                                                              href="/auth/forgot-password"
-                                                                                                              className="text-sm underline"
-                                                                                                    >
-                                                                                                              Forgot your password?
-                                                                                                    </Link>
+                                                                                          <div className="flex items-center gap-2">
+                                                                                                    <FormLabel>Password</FormLabel> {form.formState.errors.password ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
                                                                                           </div>
                                                                                           <FormControl>
                                                                                                     <div className="relative">
@@ -139,9 +133,26 @@ export default function Login() {
                                                                                 </FormItem>
                                                                       )}
                                                             />
-                                                            <div className="flex justify-center">
-                                                                      <Button type="submit" disabled={form.formState.isSubmitting || isLoading} className="bg-mdf rounded-full" size="lg">
-                                                                                Login
+                                                            <div className="flex justify-between items-center">
+                                                                      <div className="flex items-center gap-2">
+                                                                                <Checkbox
+                                                                                          id="remember-me"
+                                                                                          className="data-[state=checked]:bg-black border-black dark:border-primary-foreground"
+                                                                                />
+                                                                                <Label htmlFor="remember-me">
+                                                                                          Remember me
+                                                                                </Label>
+                                                                      </div>
+                                                                      <Link
+                                                                                href="/auth/forgot-password"
+                                                                                className="text-sm underline text-blue-500"
+                                                                      >
+                                                                                Forgot your password?
+                                                                      </Link>
+                                                            </div>
+                                                            <div className="flex justify-center pt-5">
+                                                                      <Button type="submit" disabled={form.formState.isSubmitting || isLoading} className="bg-mdf rounded-full w-[80%] h-12 font-semibold" size="lg">
+                                                                                Log in
                                                                       </Button>
                                                             </div>
                                                   </form>
