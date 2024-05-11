@@ -4,8 +4,8 @@ import { BsBasket, Fa6Icons } from "@/constant";
 import React from "react";
 
 export default function BasketCart() {
-  const itemArr: string[] = ["Item1", "Item2", "Item3"];
-  const drinksArr: string[] = ["drink1"];
+  const itemArr: string[] = [];
+  const drinksArr: string[] = [];
 
   return (
     <div className="min-h-64 pb-8 border border-b-0">
