@@ -1,7 +1,7 @@
 import Loading from "@/components/loading";
 import { Button } from "@/components/ui/button";
 import { Config } from "@/config";
-import { Fa6Icons } from "@/constant";
+import { Fa6Icons, Images } from "@/constant";
 import { selectUser } from "@/redux/features/auth/authSlice";
 import {
   useGetAllCategoriesQuery,
@@ -13,6 +13,7 @@ import { TItem } from "@/types/menu.type";
 import { useEffect, useState } from "react";
 import CheckoutCart from "../(cart)/checkout-cart";
 import BasketCart from "../(cart)/basket-cart";
+import Image from "next/image";
 
 export default function LargeMenu() {
   const user = useAppSelector(selectUser);
@@ -64,6 +65,13 @@ export default function LargeMenu() {
           <h3 className="font-bold text-3xl text-destructive dark:text-primary text-center">
             Menu
           </h3>
+          <Image
+            src={Images.OrnamentRed}
+            alt="Menu Image"
+            width={600}
+            height={100}
+            className="w-full -mt-6 ml-[6px] mx-auto"
+          />
           {isFetching ? (
             <Loading className="h-[60vh]" />
           ) : (

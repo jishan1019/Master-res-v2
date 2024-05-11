@@ -7,11 +7,12 @@ import LargeMenu from "../(shared)/(menu)/large-menu";
 import SmallMenu from "../(shared)/(menu)/small-menu";
 import { motion } from "framer-motion";
 import { TBasketInitialState } from "@/types";
+import dynamic from "next/dynamic";
 
 const Menu = () => {
   const { isBasketOpen }: TBasketInitialState = useAppSelector(
     (state) => state.basket
-  ) || { isBasketOpen: false };
+  );
 
   return (
     <>
@@ -47,4 +48,6 @@ const Menu = () => {
   );
 };
 
-export default Menu;
+// export default Menu;
+
+export default dynamic(() => Promise.resolve(Menu), { ssr: false });

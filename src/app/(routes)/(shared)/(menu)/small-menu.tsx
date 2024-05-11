@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Config } from "@/config";
-import { Fa6Icons } from "@/constant";
+import { Fa6Icons, Images } from "@/constant";
 import { selectUser } from "@/redux/features/auth/authSlice";
 import {
   useGetAllCategoriesQuery,
@@ -15,6 +15,7 @@ import {
 } from "@/redux/features/menu/menuApi";
 import { useAppSelector } from "@/redux/hooks";
 import { TCategory, TItem } from "@/types";
+import Image from "next/image";
 import { useState } from "react";
 
 export default function SmallMenu() {
@@ -42,6 +43,13 @@ export default function SmallMenu() {
       <h3 className="font-bold text-3xl text-destructive dark:text-primary text-center mt-3">
         Menu
       </h3>
+      <Image
+        src={Images.OrnamentRed}
+        alt="Menu Image"
+        width={500}
+        height={300}
+        className="w-[600px] h-16 -mt-5 ml-1 mx-auto"
+      />
       <Accordion type="single" collapsible className="w-full mb-36">
         {allCategories?.data?.map((category: TCategory) => (
           <AccordionItem

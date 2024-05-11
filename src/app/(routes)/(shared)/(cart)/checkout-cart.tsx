@@ -12,7 +12,7 @@ export default function CheckoutCart() {
 
   const { isBasketOpen }: TBasketInitialState = useAppSelector(
     (state) => state.basket
-  ) || { isBasketOpen: false };
+  );
 
   const dispatch = useAppDispatch();
 
@@ -47,7 +47,6 @@ export default function CheckoutCart() {
             </>
           )}
         </div>
-
         <div className="bg-primary-foreground dark:bg-secondary py-2 md:flex justify-center items-center gap-3 cursor-pointer md:cursor-default hidden">
           <div className="inline-flex items-center gap-1">
             <p>
@@ -62,7 +61,6 @@ export default function CheckoutCart() {
           </div>
           <p>{Config.currency}23.5</p>
         </div>
-
         <div className="bg-destructive text-primary-foreground py-2 inline-flex justify-around items-center cursor-pointer">
           <p>
             <Io5Icons.IoCardOutline size={24} />
