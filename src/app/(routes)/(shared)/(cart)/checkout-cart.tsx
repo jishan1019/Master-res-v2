@@ -3,11 +3,17 @@ import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Config } from "@/config";
 import { BsBasket, Io5Icons } from "@/constant";
 import { setIsBasketOpen } from "@/redux/features/menu/basketSlice";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { TBasketInitialState } from "@/types";
 import { useState } from "react";
 
 export default function CheckoutCart() {
   const [deliveryMethod, setDeliveryMethod] = useState<string>("delivery");
+
+  const { isBasketOpen }: TBasketInitialState = useAppSelector(
+    (state) => state.basket
+  ) || { isBasketOpen: false };
+
   const dispatch = useAppDispatch();
 
   return (
@@ -15,21 +21,33 @@ export default function CheckoutCart() {
       <section className="grid grid-cols-2 gap-1 font-semibold text-center">
         <div
           onClick={() => dispatch(setIsBasketOpen())}
-          className="bg-primary-foreground dark:bg-secondary py-2 flex justify-center items-center gap-3 cursor-pointer lg:cursor-default"
+          className="bg-primary-foreground dark:bg-secondary py-2 flex justify-center items-center gap-3 cursor-pointer md:cursor-default"
         >
-          <div className="inline-flex items-center gap-1">
-            <p>
-              <BsBasket
-                size={20}
-                className="text-destructive dark:text-primary"
-              />
-            </p>
-            <p className="border border-destructive dark:border-primary rounded-full h-8 w-8 flex justify-center items-center bg-primary-foreground dark:bg-secondary -ml-2">
-              12
-            </p>
-          </div>
-          <p>{Config.currency}23.5</p>
+          {isBasketOpen ? (
+            <div className="text-destructive dark:text-primary inline-flex items-center justify-center gap-2 h-8">
+              <p>
+                <Io5Icons.IoReturnUpBackOutline size={20} />
+              </p>
+              <p>Shopping</p>
+            </div>
+          ) : (
+            <>
+              <div className="inline-flex items-center gap-1">
+                <p>
+                  <BsBasket
+                    size={20}
+                    className="text-destructive dark:text-primary"
+                  />
+                </p>
+                <p className="border border-destructive dark:border-primary rounded-full h-8 w-8 flex justify-center items-center bg-primary-foreground dark:bg-secondary -ml-2">
+                  12
+                </p>
+              </div>
+              <p>{Config.currency}23.5</p>
+            </>
+          )}
         </div>
+
         <div className="bg-destructive text-primary-foreground py-2 inline-flex justify-around items-center cursor-pointer">
           <p>
             <Io5Icons.IoCardOutline size={24} />
