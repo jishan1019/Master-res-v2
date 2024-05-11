@@ -6,13 +6,9 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 import { FaRegEye, FaRegEyeSlash, Hi2Icons } from "@/constant"
-import { login } from "@/lib/action"
 import { signUpSchema, SignUpSchema } from "@/lib/schema"
 import { useRegisterUserMutation } from "@/redux/features/auth/authApi"
-import { setToken, setUser } from "@/redux/features/auth/authSlice"
 import { useAppDispatch } from "@/redux/hooks"
-import { TTokenUser } from "@/types"
-import { decodeToken } from "@/utils"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
@@ -56,43 +52,15 @@ export default function SignUp() {
                               email,
                               password,
                               phoneNumber,
-                              address: {
-                                        door: address.door,
-                                        road: address.road,
-                                        postCode: address.postCode,
-                                        city: address.city,
-                              },
+                              address,
                     }
 
                     try {
                               const result = await registerUser(formData).unwrap();
 
                               if (result?.success) {
-                                        const token = result?.data?.accesstoken;
-
-                                        const decodedUser = decodeToken(token) as TTokenUser;
-
-                                        const userData = {
-                                                  user: {
-                                                            id: decodedUser?.id,
-                                                            email: decodedUser?.email,
-                                                            role: decodedUser?.role,
-                                                  },
-                                                  token,
-                                        }
-
-                                        await login(token);
-                                        dispatch(setUser(userData));
-                                        dispatch(setToken(token));
-
-                                        notifySuccess("Success", "You have been logged in successfully!", "bottom-left");
-
-                                        if (userData.user.role && allowDirectDashboard.includes(userData.user.role)) {
-                                                  router.push("/dashboard");
-                                        } else {
-                                                  router.push("/");
-                                        }
-
+                                        notifySuccess("Success", "Account created successfully. Please login to continue.", "bottom-left");
+                                        router.push("/auth/login");
                                         form.reset();
                               }
                     } catch (error: any) {
