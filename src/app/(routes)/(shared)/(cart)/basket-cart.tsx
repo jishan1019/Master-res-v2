@@ -3,8 +3,8 @@ import { Config } from "@/config";
 import { BsBasket, Fa6Icons } from "@/constant";
 
 export default function BasketCart() {
-  const itemArr: string[] = [];
-  const drinksArr: string[] = [];
+  const itemArr: string[] = ["mango"];
+  const drinksArr: string[] = ["litchi"];
 
   return (
     <div className="min-h-64 pb-8 border border-b-0">
