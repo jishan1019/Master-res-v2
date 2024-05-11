@@ -171,13 +171,13 @@ export default function SignUp() {
                                                                       )}
                                                             />
                                                             <Separator />
-                                                            <h2 className="font-semibold text-center text-sm underline">Address</h2>
+                                                            <h2 className="font-semibold text-center underline">Address</h2>
                                                             <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                                                                       <FormField
                                                                                 control={form.control}
                                                                                 name="address.door"
                                                                                 render={({ field }) => (
-                                                                                          <FormItem>
+                                                                                          <FormItem className="w-full">
                                                                                                     <div className="flex items-center gap-2">
                                                                                                               <FormLabel htmlFor="door">Door</FormLabel> {form.formState.errors.address?.door ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
                                                                                                     </div>
@@ -196,7 +196,7 @@ export default function SignUp() {
                                                                                 control={form.control}
                                                                                 name="address.road"
                                                                                 render={({ field }) => (
-                                                                                          <FormItem>
+                                                                                          <FormItem className="w-full">
                                                                                                     <div className="flex items-center gap-2">
                                                                                                               <FormLabel htmlFor="road">Road</FormLabel> {form.formState.errors.address?.road ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
                                                                                                     </div>
@@ -217,7 +217,7 @@ export default function SignUp() {
                                                                                 control={form.control}
                                                                                 name="address.postCode"
                                                                                 render={({ field }) => (
-                                                                                          <FormItem>
+                                                                                          <FormItem className="w-full">
                                                                                                     <div className="flex items-center gap-2">
                                                                                                               <FormLabel htmlFor="postCode">Post Code</FormLabel> {form.formState.errors.address?.postCode ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
                                                                                                     </div>
@@ -236,7 +236,7 @@ export default function SignUp() {
                                                                                 control={form.control}
                                                                                 name="address.city"
                                                                                 render={({ field }) => (
-                                                                                          <FormItem>
+                                                                                          <FormItem className="w-full">
                                                                                                     <div className="flex items-center gap-2">
                                                                                                               <FormLabel htmlFor="city">City</FormLabel> {form.formState.errors.address?.city ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
                                                                                                     </div>
