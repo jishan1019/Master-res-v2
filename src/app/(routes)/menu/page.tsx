@@ -4,14 +4,14 @@ import Header from "../(home)/header";
 import Menu from "./menu";
 
 export const metadata: Metadata = {
-          title: `Menu | ${Config.fullTitle}`,
-          description: Config.description,
+  title: `Menu | ${Config.fullTitle}`,
+  description: Config.description,
 };
 
 export default function Page() {
-          return (
-                    <Header>
-                              <Menu />
-                    </Header>
-          )
+  return (
+    <Header>
+      <Menu />
+    </Header>
+  );
 }

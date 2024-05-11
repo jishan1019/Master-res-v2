@@ -5,10 +5,13 @@ import BasketCart from "../(shared)/(cart)/basket-cart";
 import CheckoutCart from "../(shared)/(cart)/checkout-cart";
 import LargeMenu from "../(shared)/(menu)/large-menu";
 import SmallMenu from "../(shared)/(menu)/small-menu";
-import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
+import { TBasketInitialState } from "@/types";
 
 const Menu = () => {
-  const { isBasketOpen } = useAppSelector((state) => state.basket);
+  const { isBasketOpen }: TBasketInitialState = useAppSelector(
+    (state) => state.basket
+  ) || { isBasketOpen: false };
 
   return (
     <>
@@ -16,7 +19,26 @@ const Menu = () => {
         <LargeMenu />
       </div>
       <div className="md:hidden">
-        {isBasketOpen ? <BasketCart /> : <SmallMenu />}
+        {isBasketOpen ? (
+          <motion.div
+            key={"basket-cart"}
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 1 } }}
+          >
+            <BasketCart />
+          </motion.div>
+        ) : (
+          <motion.div
+            key={"small-menu"}
+            exit={{ opacity: 0 }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, transition: { duration: 1 } }}
+          >
+            <SmallMenu />
+          </motion.div>
+        )}
+
         <div className="fixed bottom-0 w-full">
           <CheckoutCart />
         </div>
@@ -25,4 +47,4 @@ const Menu = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Menu), { ssr: false });
+export default Menu;
