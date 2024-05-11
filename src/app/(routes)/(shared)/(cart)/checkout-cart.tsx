@@ -24,7 +24,7 @@ export default function CheckoutCart() {
           </div>
           <p>{Config.currency}23.5</p>
         </div>
-        <div className="bg-destructive text-primary-foreground py-2 inline-flex justify-around items-center">
+        <div className="bg-destructive text-primary-foreground py-2 inline-flex justify-around items-center cursor-pointer">
           <p>
             <Io5Icons.IoCardOutline size={24} />
           </p>
@@ -33,7 +33,7 @@ export default function CheckoutCart() {
         <RadioGroup className="cursor-pointer">
           <div
             onClick={() => setDeliveryMethod("delivery")}
-            className="bg-secondary py-2 flex justify-center items-center gap-3"
+            className="bg-secondary py-4 flex justify-center items-center gap-3"
           >
             <RadioGroupItem
               value="delivery"
@@ -48,7 +48,7 @@ export default function CheckoutCart() {
         <RadioGroup className="cursor-pointer">
           <div
             onClick={() => setDeliveryMethod("collection")}
-            className="bg-secondary py-2 flex justify-center items-center gap-3"
+            className="bg-secondary py-4 flex justify-center items-center gap-3"
           >
             <RadioGroupItem
               value="collection"

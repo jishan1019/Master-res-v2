@@ -18,10 +18,19 @@ const authApi = baseApi
                 }),
                 invalidatesTags: ["User"],
             }),
+            registerUser: builder.mutation({
+                query: (body: any) => ({
+                    url: "/users/register",
+                    method: "POST",
+                    body: body,
+                }),
+                invalidatesTags: ["User"],
+            }),
         }),
     });
 
 export const {
     useGetUserByTokenQuery,
     useLoginUserMutation,
+    useRegisterUserMutation,
 } = authApi;

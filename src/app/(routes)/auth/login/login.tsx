@@ -8,7 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { FaRegEye, FaRegEyeSlash, Hi2Icons } from "@/constant"
 import { login } from "@/lib/action"
-import { loginSchema } from "@/lib/schema"
+import { LoginSchema, loginSchema } from "@/lib/schema"
 import { useLoginUserMutation } from "@/redux/features/auth/authApi"
 import { setToken, setUser } from "@/redux/features/auth/authSlice"
 import { useAppDispatch } from "@/redux/hooks"
@@ -19,7 +19,6 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useForm, UseFormReturn } from "react-hook-form"
-import { z } from "zod"
 
 const allowDirectDashboard = ["admin"];
 
@@ -31,15 +30,15 @@ export default function Login() {
 
           const router = useRouter();
 
-          const form = useForm<z.infer<typeof loginSchema>>({
+          const form = useForm<LoginSchema>({
                     resolver: zodResolver(loginSchema),
                     defaultValues: {
                               email: "",
                               password: "",
                     },
-          }) as UseFormReturn<z.infer<typeof loginSchema>>;
+          }) as UseFormReturn<LoginSchema>;
 
-          const onSubmit = async (values: z.infer<typeof loginSchema>) => {
+          const onSubmit = async (values: LoginSchema) => {
                     try {
                               const result = await loginUser(values).unwrap();
 
@@ -78,9 +77,9 @@ export default function Login() {
 
           return (
                     <div className="flex items-center justify-center mt-0 mb-5 sm:my-10">
-                              <div className="sm:mx-auto grid w-full max-w-md gap-6 md:bg-secondary sm:rounded-lg border">
+                              <div className="sm:mx-auto grid w-full max-w-md gap-6 md:bg-secondary sm:rounded-lg sm:border">
                                         <div className="bg-mdf text-primary-foreground py-3 text-center sm:rounded-lg sm:rounded-bl-none sm:rounded-br-none">
-                                                  <h1 className="text-lg sm:text-xl font-bold">Sign Up/Sign In</h1>
+                                                  <h1 className="text-lg sm:text-xl font-bold">Sign In</h1>
                                         </div>
                                         <p className="text-center text-sm font-semibold">
                                                   Please Sign In or <Link href="/auth/sign-up" className="underline text-blue-500">Sign Up</Link>
@@ -93,7 +92,7 @@ export default function Login() {
                                                                       render={({ field }) => (
                                                                                 <FormItem>
                                                                                           <div className="flex items-center gap-2">
-                                                                                                    <FormLabel>Email</FormLabel> {form.formState.errors.email ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
+                                                                                                    <FormLabel htmlFor="email">Email</FormLabel> {form.formState.errors.email ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
                                                                                           </div>
                                                                                           <FormControl>
                                                                                                     <Input
@@ -112,7 +111,7 @@ export default function Login() {
                                                                       render={({ field }) => (
                                                                                 <FormItem>
                                                                                           <div className="flex items-center gap-2">
-                                                                                                    <FormLabel>Password</FormLabel> {form.formState.errors.password ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
+                                                                                                    <FormLabel htmlFor="password">Password</FormLabel> {form.formState.errors.password ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
                                                                                           </div>
                                                                                           <FormControl>
                                                                                                     <div className="relative">
