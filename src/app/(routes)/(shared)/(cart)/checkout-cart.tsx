@@ -21,7 +21,7 @@ export default function CheckoutCart() {
       <section className="grid grid-cols-2 gap-1 font-semibold text-center">
         <div
           onClick={() => dispatch(setIsBasketOpen())}
-          className="bg-primary-foreground dark:bg-secondary py-2 flex justify-center items-center gap-3 cursor-pointer md:cursor-default"
+          className="bg-primary-foreground dark:bg-secondary py-2 flex justify-center items-center gap-3 cursor-pointer md:cursor-default md:hidden"
         >
           {isBasketOpen ? (
             <div className="text-destructive dark:text-primary inline-flex items-center justify-center gap-2 h-8">
@@ -46,6 +46,21 @@ export default function CheckoutCart() {
               <p>{Config.currency}23.5</p>
             </>
           )}
+        </div>
+
+        <div className="bg-primary-foreground dark:bg-secondary py-2 md:flex justify-center items-center gap-3 cursor-pointer md:cursor-default hidden">
+          <div className="inline-flex items-center gap-1">
+            <p>
+              <BsBasket
+                size={20}
+                className="text-destructive dark:text-primary"
+              />
+            </p>
+            <p className="border border-destructive dark:border-primary rounded-full h-8 w-8 flex justify-center items-center bg-primary-foreground dark:bg-secondary -ml-2">
+              12
+            </p>
+          </div>
+          <p>{Config.currency}23.5</p>
         </div>
 
         <div className="bg-destructive text-primary-foreground py-2 inline-flex justify-around items-center cursor-pointer">
