@@ -15,24 +15,8 @@ const Menu = () => {
       <div className="p-5 hidden md:block">
         <LargeMenu />
       </div>
-
       <div className="md:hidden">
-        <div
-          className={`transition-opacity duration-300 ${
-            isBasketOpen ? "ease-in opacity-100" : "ease-out opacity-0 h-0"
-          }`}
-        >
-          <BasketCart />
-        </div>
-        <div
-          className={`transition-opacity duration-300 ${
-            isBasketOpen
-              ? "ease-out opacity-0 h-0 hidden"
-              : "ease-in opacity-100"
-          }`}
-        >
-          <SmallMenu />
-        </div>
+        {isBasketOpen ? <BasketCart /> : <SmallMenu />}
         <div className="fixed bottom-0 w-full">
           <CheckoutCart />
         </div>
