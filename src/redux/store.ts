@@ -1,30 +1,48 @@
 import { Config } from "@/config";
 import { configureStore } from "@reduxjs/toolkit";
-import { FLUSH, PAUSE, PERSIST, persistReducer, persistStore, PURGE, REGISTER, REHYDRATE, } from "redux-persist";
+import {
+  FLUSH,
+  PAUSE,
+  PERSIST,
+  persistReducer,
+  persistStore,
+  PURGE,
+  REGISTER,
+  REHYDRATE,
+} from "redux-persist";
 import { encryptTransform } from "redux-persist-transform-encrypt";
 import { baseApi } from "./api/baseApi/baseApi";
 import authReducer from "./features/auth/authSlice";
 import storage from "./storage";
+import basketSlice from "./features/menu/basketSlice";
 
 const encryptor = encryptTransform({
   secretKey: Config.storeEncryptKey,
-  onError: function (error) {
-  },
+  onError: function (error) {},
 });
 
-const persistConfig = {
-  key: "_config",
-  storage,
-  transforms: [encryptor],
+const createPersistConfig = (key: string) => {
+  const persistConfig = {
+    key,
+    storage,
+    transforms: [encryptor],
+  };
+  return persistConfig;
 };
 
-
-const persistedAuthReducer = persistReducer(persistConfig, authReducer);
-
+const persistedAuthReducer = persistReducer(
+  createPersistConfig("_config"),
+  authReducer
+);
+const persistedBasketReducer = persistReducer(
+  createPersistConfig("_config_basket"),
+  basketSlice
+);
 
 export const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
+    basket: persistedBasketReducer,
 
     [baseApi.reducerPath]: baseApi.reducer,
   },
@@ -34,7 +52,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(baseApi.middleware,),
+    }).concat(baseApi.middleware),
 });
 
 export const persistor = persistStore(store);

@@ -2,15 +2,21 @@ import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Config } from "@/config";
 import { BsBasket, Io5Icons } from "@/constant";
+import { setIsBasketOpen } from "@/redux/features/menu/basketSlice";
+import { useAppDispatch } from "@/redux/hooks";
 import { useState } from "react";
 
 export default function CheckoutCart() {
   const [deliveryMethod, setDeliveryMethod] = useState<string>("delivery");
+  const dispatch = useAppDispatch();
 
   return (
     <div className="w-full border border-t-0 bg-background">
       <section className="grid grid-cols-2 gap-1 font-semibold text-center">
-        <div className="bg-primary-foreground dark:bg-secondary py-2 flex justify-center items-center gap-3">
+        <div
+          onClick={() => dispatch(setIsBasketOpen())}
+          className="bg-primary-foreground dark:bg-secondary py-2 flex justify-center items-center gap-3 cursor-pointer lg:cursor-default"
+        >
           <div className="inline-flex items-center gap-1">
             <p>
               <BsBasket
