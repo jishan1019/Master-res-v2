@@ -9,10 +9,17 @@ import {
   TFoodOrDrinksItem,
   TTotalPriceQty,
 } from "@/types";
-import { useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
 
 export default function CheckoutCart() {
-  const [deliveryMethod, setDeliveryMethod] = useState<string>("delivery");
+  const router = useRouter();
+
+  const searchparams = useSearchParams();
+  const orderTypeFromUrl = searchparams.get("order-type");
+  const deliveryTypeFromUrl = searchparams.get("delivery-type");
+
+  const [deliveryMethod, setDeliveryMethod] = useState<string>(deliveryTypeFromUrl || "delivery");
 
   const { isBasketOpen, foodItems, drinksItems }: TBasketInitialState =
     useAppSelector((state) => state.basket);
@@ -30,6 +37,14 @@ export default function CheckoutCart() {
     },
     { totalQty: 0, totalPrice: 0 }
   );
+
+  useEffect(() => {
+    if (searchparams?.size === 0 && deliveryTypeFromUrl === "collection") {
+      router.push(`/menu?order-type=${orderTypeFromUrl}&delivery-type=collection`);
+    } else if (searchparams?.size === 0 && deliveryTypeFromUrl === "delivery") {
+      router.push(`/menu?order-type=${orderTypeFromUrl}&delivery-type=delivery`);
+    }
+  }, [deliveryMethod, deliveryTypeFromUrl, orderTypeFromUrl, router, searchparams?.size]);
 
   return (
     <div className="w-full border border-t-0 bg-background">
