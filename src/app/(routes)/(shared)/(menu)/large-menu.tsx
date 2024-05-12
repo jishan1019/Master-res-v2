@@ -89,10 +89,11 @@ export default function LargeMenu() {
           <ul className="bg-secondary p-4 rounded-md border-2 space-y-2">
             {allCategories?.data?.map((category: TCategory) => (
               <li
-                className={`cursor-pointer font-medium duration-300 ${category?._id === activeCategory?._id
+                className={`cursor-pointer font-medium duration-300 ${
+                  category?._id === activeCategory?._id
                     ? "text-destructive dark:text-primary"
                     : "sm:hover:text-destructive dark:sm:hover:text-primary"
-                  }`}
+                }`}
                 key={category?._id}
                 onClick={() => setActiveCategory(category)}
               >

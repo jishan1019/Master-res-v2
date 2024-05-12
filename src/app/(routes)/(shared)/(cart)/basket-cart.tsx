@@ -59,14 +59,14 @@ export default function BasketCart() {
   const grandTotalDrinksItemPriceAndQty = handelTotalPriceAndQuantity(allItems);
 
   return (
-    <div className="min-h-64 pb-8 sm:border sm:border-b-0">
+    <div className="min-h-64 pb-8 sm:border sm:border-b-0 ">
       <header className="flex justify-center items-center bg-destructive dark:bg-secondary text-primary-foreground py-2 gap-2">
         <p>
           <BsBasket size={20} />
         </p>
         <h5>My Basket</h5>
       </header>
-      <main className="w-full mx-auto py-1 px-4 sm:px-2">
+      <main className="w-full mx-auto py-1 px-4 sm:px-2 pb-36 md:pb-0">
         <section>
           <div className="grid grid-cols-12 font-semibold text-[17px] text-destructive dark:text-primary-foreground gap-3 mt-3">
             <p className="col-span-5 md:col-span-6">Food</p>
