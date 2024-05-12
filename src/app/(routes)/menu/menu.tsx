@@ -1,13 +1,13 @@
 "use client";
 
 import { useAppSelector } from "@/redux/hooks";
+import { TBasketInitialState } from "@/types";
+import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import BasketCart from "../(shared)/(cart)/basket-cart";
 import CheckoutCart from "../(shared)/(cart)/checkout-cart";
 import LargeMenu from "../(shared)/(menu)/large-menu";
 import SmallMenu from "../(shared)/(menu)/small-menu";
-import { motion } from "framer-motion";
-import { TBasketInitialState } from "@/types";
-import dynamic from "next/dynamic";
 
 const Menu = () => {
   const { isBasketOpen }: TBasketInitialState = useAppSelector(
@@ -23,18 +23,20 @@ const Menu = () => {
         {isBasketOpen ? (
           <motion.div
             key={"basket-cart"}
-            exit={{ opacity: 0 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 1 } }}
+            exit={{ y: 100, opacity: 0 }}
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
             <BasketCart />
           </motion.div>
         ) : (
           <motion.div
             key={"small-menu"}
-            exit={{ opacity: 0 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { duration: 1 } }}
+            exit={{ y: 100, opacity: 0 }}
+            initial={{ y: 100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5 }}
           >
             <SmallMenu />
           </motion.div>
@@ -47,7 +49,5 @@ const Menu = () => {
     </>
   );
 };
-
-// export default Menu;
 
 export default dynamic(() => Promise.resolve(Menu), { ssr: false });
