@@ -71,6 +71,8 @@ const basketSlice = createSlice({
         itemsArray[existingItemIndex].singleItemQty > 1
       ) {
         itemsArray[existingItemIndex].singleItemQty -= 1;
+      } else {
+        itemsArray.splice(existingItemIndex, 1);
       }
     },
   },
