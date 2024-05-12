@@ -13,7 +13,7 @@ import SidebarNav from "./sidebar-nav"
 
 export default function DashboardLayout({ role, children }: { role: string, children: ReactNode }) {
           return (
-                    <div className="grid min-h-screen w-full lg:grid-cols-[350px_1fr]">
+                    <div className="flex flex-col lg:grid min-h-screen w-full lg:grid-cols-[350px_1fr]">
                               <div className="hidden border-r bg-background lg:block">
                                         <div className="flex flex-col gap-2 sticky top-0">
                                                   <div className="flex flex-col items-center border-b px-4 lg:px-6 py-6 gap-3">
