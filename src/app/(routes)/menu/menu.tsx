@@ -1,5 +1,6 @@
 "use client";
 
+import { ScrollArea } from "@/components/ui/scroll-area";
 import { useAppSelector } from "@/redux/hooks";
 import { TBasketInitialState } from "@/types";
 import { motion } from "framer-motion";
@@ -19,7 +20,7 @@ const Menu = () => {
       <div className="p-5 hidden md:block">
         <LargeMenu />
       </div>
-      <div className="md:hidden">
+      <ScrollArea className="md:hidden h-full overflow-y-auto">
         {isBasketOpen ? (
           <motion.div
             key={"basket-cart"}
@@ -45,7 +46,7 @@ const Menu = () => {
         <div className="fixed bottom-0 w-full">
           <CheckoutCart />
         </div>
-      </div>
+      </ScrollArea>
     </>
   );
 };
