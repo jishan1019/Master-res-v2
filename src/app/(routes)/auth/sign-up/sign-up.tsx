@@ -8,20 +8,15 @@ import { Separator } from "@/components/ui/separator"
 import { FaRegEye, FaRegEyeSlash, Hi2Icons } from "@/constant"
 import { signUpSchema, SignUpSchema } from "@/lib/schema"
 import { useRegisterUserMutation } from "@/redux/features/auth/authApi"
-import { useAppDispatch } from "@/redux/hooks"
 import { zodResolver } from "@hookform/resolvers/zod"
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { useForm, UseFormReturn } from "react-hook-form"
 
-const allowDirectDashboard = ["admin"];
-
 export default function SignUp() {
           const [isShow, setIsShow] = useState<boolean>(false);
           const [registerUser, { isLoading }] = useRegisterUserMutation();
-
-          const dispatch = useAppDispatch();
 
           const router = useRouter();
 
@@ -147,7 +142,7 @@ export default function SignUp() {
                                                                                 render={({ field }) => (
                                                                                           <FormItem className="w-full">
                                                                                                     <div className="flex items-center gap-2">
-                                                                                                              <FormLabel htmlFor="door">Door</FormLabel> {form.formState.errors.address?.door ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
+                                                                                                              <FormLabel htmlFor="door">Door No</FormLabel> {form.formState.errors.address?.door ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
                                                                                                     </div>
                                                                                                     <FormControl>
                                                                                                               <Input
@@ -166,7 +161,7 @@ export default function SignUp() {
                                                                                 render={({ field }) => (
                                                                                           <FormItem className="w-full">
                                                                                                     <div className="flex items-center gap-2">
-                                                                                                              <FormLabel htmlFor="road">Road</FormLabel> {form.formState.errors.address?.road ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
+                                                                                                              <FormLabel htmlFor="road">Road Name</FormLabel> {form.formState.errors.address?.road ? <><Hi2Icons.HiArrowLongLeft className="text-destructive" /> <FormMessage /></> : <span className="text-destructive">*</span>}
                                                                                                     </div>
                                                                                                     <FormControl>
                                                                                                               <Input

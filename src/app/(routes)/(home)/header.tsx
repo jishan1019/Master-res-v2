@@ -17,8 +17,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { ReactNode, useState } from "react";
 
-const hiddenBannerPages = ["/menu", "/auth/login", "/auth/sign-up"];
-const hiddenDiscountPages = ["/auth/login", "/auth/sign-up"];
+const hiddenBannerPages = ["/menu", "/auth/login", "/auth/sign-up", "/menu/checkout"];
+const hiddenDiscountPages = ["/auth/login", "/auth/sign-up", , "/menu/checkout"];
 
 export default function Header({ children }: { children: ReactNode }) {
           const auth = useAppSelector((state) => state.auth);
