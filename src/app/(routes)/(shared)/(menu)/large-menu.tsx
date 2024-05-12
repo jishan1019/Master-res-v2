@@ -4,21 +4,21 @@ import { Config } from "@/config";
 import { Fa6Icons, Images } from "@/constant";
 import { selectUser } from "@/redux/features/auth/authSlice";
 import {
+  setDrinkItems,
+  setFoodItems,
+} from "@/redux/features/basket/basketSlice";
+import { useGetActiveDiscountQuery } from "@/redux/features/discount/discountApi";
+import {
   useGetAllCategoriesQuery,
   useGetSingleMenuByCategoryIdQuery,
 } from "@/redux/features/menu/menuApi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { TCategory, TFoodOrDrinksItem } from "@/types";
 import { TItem } from "@/types/menu.type";
-import { useEffect, useState } from "react";
-import CheckoutCart from "../(cart)/checkout-cart";
-import BasketCart from "../(cart)/basket-cart";
 import Image from "next/image";
-import { useGetActiveDiscountQuery } from "@/redux/features/discount/discountApi";
-import {
-  setDrinkItems,
-  setFoodItems,
-} from "@/redux/features/basket/basketSlice";
+import { useEffect, useState } from "react";
+import BasketCart from "../(cart)/basket-cart";
+import CheckoutCart from "../(cart)/checkout-cart";
 
 export default function LargeMenu() {
   const user = useAppSelector(selectUser);
@@ -89,11 +89,10 @@ export default function LargeMenu() {
           <ul className="bg-secondary p-4 rounded-md border-2 space-y-2">
             {allCategories?.data?.map((category: TCategory) => (
               <li
-                className={`cursor-pointer font-medium duration-300 ${
-                  category?._id === activeCategory?._id
+                className={`cursor-pointer font-medium duration-300 ${category?._id === activeCategory?._id
                     ? "text-destructive dark:text-primary"
                     : "sm:hover:text-destructive dark:sm:hover:text-primary"
-                }`}
+                  }`}
                 key={category?._id}
                 onClick={() => setActiveCategory(category)}
               >

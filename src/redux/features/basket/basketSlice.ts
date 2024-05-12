@@ -19,6 +19,7 @@ const basketSlice = createSlice({
       const existingItemIndex = state.foodItems.findIndex(
         (item) => item.itemId === action.payload.itemId
       );
+
       if (existingItemIndex !== -1) {
         state.foodItems[existingItemIndex].singleItemQty +=
           action.payload.singleItemQty;
@@ -31,6 +32,7 @@ const basketSlice = createSlice({
       const existingItemIndex = state.drinksItems.findIndex(
         (item) => item.itemId === action.payload.itemId
       );
+
       if (existingItemIndex !== -1) {
         state.drinksItems[existingItemIndex].singleItemQty +=
           action.payload.singleItemQty;
@@ -44,8 +46,10 @@ const basketSlice = createSlice({
       action: PayloadAction<{ itemId: string; itemType: string }>
     ) => {
       const { itemId, itemType } = action.payload;
+
       const itemsArray =
         itemType === "food" ? state.foodItems : state.drinksItems;
+
       const existingItemIndex = itemsArray.findIndex(
         (item) => item.itemId === itemId
       );
@@ -60,8 +64,10 @@ const basketSlice = createSlice({
       action: PayloadAction<{ itemId: string; itemType: string }>
     ) => {
       const { itemId, itemType } = action.payload;
+
       const itemsArray =
         itemType === "food" ? state.foodItems : state.drinksItems;
+
       const existingItemIndex = itemsArray.findIndex(
         (item) => item.itemId === itemId
       );
