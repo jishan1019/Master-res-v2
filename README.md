@@ -1,5 +1,12 @@
 ## Master Restaurant Frontend v2 - a master template for restaurant-type web app
 
+
+NEXT_PUBLIC_NODE_ENV="development"
+NEXT_PUBLIC_BASE_URL="https://server.bengal-oxted.co.uk/api/v1"
+NEXT_PUBLIC_STORE_ENCRYPT_SECRET_KEY="5c6c9550cbf62e4dc88db170b080ee9833af18d94d2af7851c2dcbab9ee03b9ed5263b1c03f5e21662129260c1327e39eff03cb4efb455134b9a480009af546d"
+
+
+
 Hey there! Are you seeking a fantastic template to create a stunning restaurant website or web app? Look no further! Introducing the ultimate master template for all your restaurant needs—Master Restaurant Frontend v2. With this template, you can create a beautiful and functional website quickly. So, what are you waiting for? Get started and impress your customers with a top-notch web presence today! Master Restaurant Frontend v2 is a master template for a restaurant-type web app.
 
 ## Template Features
